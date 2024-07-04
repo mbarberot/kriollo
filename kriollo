@@ -8,4 +8,4 @@ then
   echo "Done"
 fi
 
-kotlin -classpath kriollo.jar KriolloKt
+kotlin -classpath kriollo.jar KriolloKt $*
