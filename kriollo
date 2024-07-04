@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+last_edited_file=$(ls -lt | grep -e 'Kriollo.kt' -e 'kriollo.jar' | head -n 1 | sed 's/.*\([Kk]riollo.[\(jar\)|\(kt\)]\)/\1/g')
+if [[ "${last_edited_file}" == "Kriollo.kt" ]]
+then
+  echo "Building jar"
+  kotlinc Kriollo.kt -include-runtime -d kriollo.jar
+  echo "Done"
+fi
+
+kotlin -classpath kriollo.jar KriolloKt
