@@ -155,7 +155,10 @@ fun createPomFile() {
 }
 
 fun createDirectories() {
-    val paths = listOf("./src/main/kotlin")
+    val paths = listOf(
+        "./src/main/kotlin",
+        "./src/test/kotlin",
+    )
 
     paths.forEach {
         println("> Generating directory $it")
