@@ -6,3 +6,6 @@
 
 # Java artifacts
 *.jar
+
+# Maven working directories
+target/
