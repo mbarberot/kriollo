@@ -13,24 +13,33 @@ fun main(args: Array<String>) {
     """.trimIndent()
     )
 
+    val buildCommand = "build"
+
     if (args.isEmpty()) {
-        println(
-            """
-        
-            Usage : 
-                init-project : Init the project structure
-            
-        """.trimIndent()
-        )
+        showHelp(buildCommand)
         return
     }
 
-    if (args[0] == "init-project") {
+    if (buildCommand.equals(args[0])) {
         initNixFile()
         initGit()
         initMaven()
         return
     }
+
+    showHelp(buildCommand)
+}
+
+fun showHelp(buildCommand: String) {
+    println(
+        """
+        
+            Usage : 
+                $buildCommand : generate or regenerate the project
+            
+        """.trimIndent()
+    )
+    return
 }
 
 /*
