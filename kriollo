@@ -5,7 +5,13 @@ if [[ "${last_edited_file}" == "Kriollo.kt" ]]
 then
   echo "Building jar"
   kotlinc Kriollo.kt -include-runtime -d kriollo.jar
-  echo "Done"
+  if [[ $? > 0 ]]
+  then
+    echo "Build failed"
+    exit 1
+  else
+    echo "Build successful"
+  fi
 fi
 
 kotlin -classpath kriollo.jar KriolloKt $*
