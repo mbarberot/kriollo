@@ -53,6 +53,7 @@ data class JteConfiguration(
     val artifactId: String = "jte",
     val version: String = "",
     val sourceDirectory: String = "src/main/jte",
+    val contentType: String = "Html"
 ) {
     fun getArtifacts(configuration: CodegenConfiguration): List<JavaArtifact> {
         return buildList {
