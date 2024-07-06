@@ -7,6 +7,8 @@ import kotlin.io.path.createDirectory
 import kotlin.io.path.createParentDirectories
 import kotlin.io.path.notExists
 
+// TODO: create a service to inject into generators
+
 fun initFile(filename: String, template: String, isScript: Boolean = false) {
     println("> Generating $filename file")
 

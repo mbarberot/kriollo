@@ -1,10 +1,19 @@
 package kriollo.generator.templating
 
 import kriollo.configuration.CodegenConfiguration
+import kriollo.generator.Generator
 import kriollo.generator.utils.createDirectories
 import kriollo.generator.utils.initFile
 
-fun initJte(codegenConfiguration: CodegenConfiguration) {
-    createDirectories(codegenConfiguration.templating.jte.sourceDirectory)
-    initFile("${codegenConfiguration.templating.jte.sourceDirectory}/.jteroot", "")
+
+class JteGenerator: Generator {
+
+    override fun isActivated(configuration: CodegenConfiguration): Boolean {
+        return configuration.templating.jte.enabled
+    }
+
+    override fun execute(configuration: CodegenConfiguration) {
+        createDirectories(configuration.templating.jte.sourceDirectory)
+        initFile("${configuration.templating.jte.sourceDirectory}/.jteroot", "")
+    }
 }

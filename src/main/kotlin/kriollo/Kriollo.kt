@@ -4,12 +4,11 @@ import gg.jte.ContentType
 import gg.jte.TemplateEngine
 import gg.jte.resolve.DirectoryCodeResolver
 import kriollo.configuration.*
+import kriollo.generator.CodeGenerators
 import kriollo.generator.git.initGit
 import kriollo.generator.maven.initMaven
-import kriollo.generator.nix.initNixFile
 import kriollo.generator.script.initBuild
 import kriollo.generator.script.initMainScript
-import kriollo.generator.templating.initJte
 import java.nio.file.Path
 
 fun main(args: Array<String>) {
@@ -55,19 +54,21 @@ fun main(args: Array<String>) {
             enabled = true,
             jte = JteConfiguration(
                 enabled = true,
-                version = "3.1.12"
+                version = "3.1.12",
+                contentType = "Plain"
             )
         )
     )
 
+    val generators = CodeGenerators()
+
     if (buildCommand == args[0]) {
+
+        generators.execute(codegenConfiguration)
 
         initBuild(codegenConfiguration)
         initMainScript(codegenConfiguration)
 
-        if (codegenConfiguration.nix.enabled) {
-            initNixFile()
-        }
 
         if (codegenConfiguration.git.enabled) {
             initGit()
@@ -75,10 +76,6 @@ fun main(args: Array<String>) {
 
         if (codegenConfiguration.maven.enabled) {
             initMaven(codegenConfiguration)
-        }
-
-        if (codegenConfiguration.templating.jte.enabled) {
-            initJte(codegenConfiguration)
         }
 
         return
