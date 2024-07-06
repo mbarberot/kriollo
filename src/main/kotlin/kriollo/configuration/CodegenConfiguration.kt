@@ -3,21 +3,33 @@ package kriollo.configuration
 
 data class CodegenConfiguration(
     val project: ProjectConfiguration,
+    val cli: CliConfiguration = CliConfiguration(),
     val kotlin: KotlinConfiguration = KotlinConfiguration(),
     val nix: NixConfiguration = NixConfiguration(),
     val git: GitConfiguration = GitConfiguration(),
     val scripts: ScriptsConfiguration = ScriptsConfiguration(),
-    val mainScript: MainScriptConfiguration = MainScriptConfiguration(),
     val maven: MavenConfiguration = MavenConfiguration(),
     val templating: TemplatingConfiguration = TemplatingConfiguration(),
 )
 
 data class ProjectConfiguration(
-    val mainClass: String
+    val mainClass: String // TODO add artifact informations and finalName
+)
+
+data class CliConfiguration(
+    val enabled: Boolean = false, // TODO use this to generate the assemble plugin configuration in pom generation
+    val script: MainScriptConfiguration = MainScriptConfiguration(),
+)
+
+data class MainScriptConfiguration(
+    val enabled: Boolean = false,
+    val fileName: String = "run.sh",
+    val targetDirectory: String = "./build",
+    val jarLocation: String = "",
 )
 
 data class KotlinConfiguration(
-    val enabled: Boolean = false
+    val enabled: Boolean = false // TODO use this to generate kotlin configuration in the pom
 )
 
 data class NixConfiguration(
@@ -25,14 +37,12 @@ data class NixConfiguration(
 )
 
 data class GitConfiguration(
-    val enabled: Boolean = false
+    val enabled: Boolean = false // TODO inject conventionnal commit in pre-commit hook
 )
 
 data class ScriptsConfiguration(
     val build: BuildScriptConfiguration = BuildScriptConfiguration()
 )
-
-class MainScriptConfiguration
 
 data class BuildScriptConfiguration(
     val enabled: Boolean = false,

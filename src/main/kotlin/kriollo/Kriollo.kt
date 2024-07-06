@@ -4,7 +4,6 @@ import gg.jte.ContentType
 import gg.jte.TemplateEngine
 import kriollo.configuration.*
 import kriollo.generator.CodeGenerators
-import kriollo.generator.script.initMainScript
 
 fun main(args: Array<String>) {
 
@@ -27,6 +26,15 @@ fun main(args: Array<String>) {
         project = ProjectConfiguration(
             mainClass = "kriollo.KriolloKt"
         ),
+        cli = CliConfiguration(
+            enabled = true,
+            script = MainScriptConfiguration(
+                enabled = true,
+                fileName = "kriollo",
+                targetDirectory = "codegen",
+                jarLocation = "codegen/kriollo.jar" // TODO : get jar name from project equivalent of maven's build.finalName
+            ),
+        ),
         kotlin = KotlinConfiguration(
             enabled = true
         ),
@@ -43,7 +51,6 @@ fun main(args: Array<String>) {
                 )
             ),
         ),
-        mainScript = MainScriptConfiguration(),
         maven = MavenConfiguration(
             enabled = true
         ),
@@ -57,11 +64,10 @@ fun main(args: Array<String>) {
         )
     )
 
-    val generators = CodeGenerators()
+    val generators = CodeGenerators(codegenConfiguration)
 
     if (buildCommand == args[0]) {
         generators.execute(codegenConfiguration)
-        initMainScript(codegenConfiguration)
         return
     }
 
@@ -79,8 +85,6 @@ fun showHelp(buildCommand: String) {
     )
     return
 }
-
-//TODO inject templating engine and create it from the jte generator instead of global access
 
 //TODO read configuration from a file
 //TODO setup tests to start TDD loops => require Maven (JUnit)

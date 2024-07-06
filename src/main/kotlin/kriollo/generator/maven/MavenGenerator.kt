@@ -1,12 +1,11 @@
 package kriollo.generator.maven
 
+import gg.jte.TemplateEngine
 import gg.jte.output.StringOutput
-import kriollo.Kriollo
 import kriollo.configuration.CodegenConfiguration
 import kriollo.configuration.JavaArtifact
 import kriollo.generator.Generator
-import kriollo.generator.utils.createDirectories
-import kriollo.generator.utils.initFile
+import kriollo.generator.utils.ServiceProvider
 
 class MavenGenerator : Generator {
 
@@ -14,23 +13,15 @@ class MavenGenerator : Generator {
         return configuration.maven.enabled
     }
 
-    override fun execute(configuration: CodegenConfiguration) {
-        createPomFile(configuration)
-        createDirectories(
-            "./src/main/kotlin",
-            "./src/test/kotlin",
-        )
+    override fun execute(configuration: CodegenConfiguration, serviceProvider: ServiceProvider) {
+        serviceProvider.fileSystem.createFile("pom.xml", generateContent(configuration, serviceProvider.templateEngine))
+        serviceProvider.fileSystem.createDirectory("./src/main/kotlin")
+        serviceProvider.fileSystem.createDirectory("./src/test/kotlin")
     }
 
-    private fun createPomFile(configuration: CodegenConfiguration) {
-        val pomTemplate = generateWithJte(configuration)
-
-        initFile("pom.xml", pomTemplate)
-    }
-
-    private fun generateWithJte(configuration: CodegenConfiguration): String {
+    private fun generateContent(configuration: CodegenConfiguration, templateEngine: TemplateEngine): String {
         val output = StringOutput()
-        Kriollo.templateEngine.render( // TODO Inject the template engine
+        templateEngine.render(
             "generator/maven/pom.kte",
             PomModel(
                 configuration.project.mainClass,
