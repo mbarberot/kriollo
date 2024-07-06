@@ -1,11 +1,10 @@
 package kriollo.generator.maven
 
-import gg.jte.TemplateEngine
-import gg.jte.output.StringOutput
 import kriollo.configuration.CodegenConfiguration
 import kriollo.configuration.JavaArtifact
 import kriollo.generator.Generator
 import kriollo.generator.utils.ServiceProvider
+import kriollo.generator.utils.TemplatingService
 
 class MavenGenerator : Generator {
 
@@ -14,28 +13,25 @@ class MavenGenerator : Generator {
     }
 
     override fun execute(configuration: CodegenConfiguration, serviceProvider: ServiceProvider) {
-        serviceProvider.fileSystem.createFile("pom.xml", generateContent(configuration, serviceProvider.templateEngine))
+        serviceProvider.fileSystem.createFile("pom.xml", generateContent(configuration, serviceProvider.templatingService))
         serviceProvider.fileSystem.createDirectory("./src/main/kotlin")
         serviceProvider.fileSystem.createDirectory("./src/test/kotlin")
     }
 
-    private fun generateContent(configuration: CodegenConfiguration, templateEngine: TemplateEngine): String {
-        val output = StringOutput()
-        templateEngine.render(
-            "generator/maven/pom.kte",
-            PomModel(
-                configuration.project.mainClass,
-                findDependencies(configuration),
-                JteModel(
-                    // TODO : do not hardcode plugins
-                    configuration.templating.jte.version,
-                    configuration.templating.jte.sourceDirectory,
-                    configuration.templating.jte.contentType,
-                )
-            ),
-            output
+    private fun generateContent(configuration: CodegenConfiguration, templatingService: TemplatingService): String {
+        val templatePath = "generator/maven/pom.kte"
+        val templateData = PomModel(
+            configuration.project.mainClass,
+            findDependencies(configuration),
+            JteModel(
+                // TODO : do not hardcode plugins
+                configuration.templating.jte.version,
+                configuration.templating.jte.sourceDirectory,
+                configuration.templating.jte.contentType,
+            )
         )
-        return output.toString()
+
+        return templatingService.renderToString(templatePath, templateData)
     }
 
     private fun findDependencies(configuration: CodegenConfiguration): List<JavaArtifact> {

@@ -1,7 +1,5 @@
 package kriollo
 
-import gg.jte.ContentType
-import gg.jte.TemplateEngine
 import kriollo.configuration.*
 import kriollo.generator.CodeGenerators
 
@@ -92,11 +90,4 @@ fun showHelp(buildCommand: String) {
 //TODO use picocli
 //TODO handle file deletion => probably need to track generated files
 //TODO -lock file to track generated files
-
-//TODO template engine must be abstracted
 //TODO move kotlin elements from the pom into the pom generation
-
-object Kriollo {
-    val templateEngine: TemplateEngine = TemplateEngine.createPrecompiled(ContentType.Plain)
-}
-

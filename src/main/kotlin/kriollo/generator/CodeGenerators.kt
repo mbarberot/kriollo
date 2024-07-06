@@ -11,12 +11,15 @@ import kriollo.generator.cli.script.MainScriptGenerator
 import kriollo.generator.templating.JteGenerator
 import kriollo.generator.utils.FilesytemService
 import kriollo.generator.utils.ServiceProvider
+import kriollo.generator.utils.TemplatingService
 
 class CodeGenerators(configuration: CodegenConfiguration) {
 
     private val serviceProvider: ServiceProvider = ServiceProvider(
-        TemplateEngine.createPrecompiled(ContentType.valueOf(configuration.templating.jte.contentType)),
         FilesytemService(),
+        TemplatingService(
+            TemplateEngine.createPrecompiled(ContentType.valueOf(configuration.templating.jte.contentType)),
+        )
     )
 
     private val generators: List<Generator> = listOf(
