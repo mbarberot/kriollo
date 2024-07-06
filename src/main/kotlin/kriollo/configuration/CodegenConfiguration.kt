@@ -2,6 +2,7 @@ package kriollo.configuration
 
 data class CodegenConfiguration(
     val project: ProjectConfiguration,
+    val kotlin: KotlinConfiguration = KotlinConfiguration(),
     val nix: NixConfiguration = NixConfiguration(),
     val git: GitConfiguration = GitConfiguration(),
     val mainScript: MainScriptConfiguration = MainScriptConfiguration(),
@@ -12,6 +13,10 @@ data class CodegenConfiguration(
 
 data class ProjectConfiguration(
     val mainClass: String
+)
+
+data class KotlinConfiguration(
+    val enabled: Boolean = false
 )
 
 data class NixConfiguration(
@@ -46,9 +51,16 @@ data class JteConfiguration(
     val enabled: Boolean = false,
     val groupId: String = "gg.jte",
     val artifactId: String = "jte",
-    val version: String = ""
+    val version: String = "",
+    val sourceDirectory: String = "src/main/jte",
 ) {
-    fun getArtifact(): JavaArtifact {
-        return JavaArtifact(groupId, artifactId, version)
+    fun getArtifacts(configuration: CodegenConfiguration): List<JavaArtifact> {
+        return buildList {
+            add(JavaArtifact(groupId, artifactId, version))
+
+            if(configuration.kotlin.enabled) {
+                add(JavaArtifact(groupId, "jte-kotlin", version, "compile"))
+            }
+        }
     }
 }

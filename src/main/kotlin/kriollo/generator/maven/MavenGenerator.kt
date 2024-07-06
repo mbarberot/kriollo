@@ -1,5 +1,7 @@
 package kriollo.generator.maven
 
+import gg.jte.output.StringOutput
+import kriollo.Kriollo
 import kriollo.configuration.CodegenConfiguration
 import kriollo.configuration.JavaArtifact
 import kriollo.generator.utils.createDirectories
@@ -14,6 +16,14 @@ fun initMaven(configuration: CodegenConfiguration) {
 }
 
 fun createPomFile(configuration: CodegenConfiguration) {
+    val pomTemplate = generateWithJte(configuration)
+//     val pomTemplate = generateWithKotlin(configuration)
+
+    initFile("pom.xml", pomTemplate)
+}
+
+private fun generateWithKotlin(configuration: CodegenConfiguration): String {
+    val mainClass = configuration.project.mainClass
     val dependencies = findDependencies(configuration).joinToString { generateDependency(it) }
 
     val pomTemplate = """
@@ -63,6 +73,29 @@ fun createPomFile(configuration: CodegenConfiguration) {
                             </execution>
                         </executions>
                     </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                                <configuration>
+                                    <archive>
+                                        <manifest>
+                                            <mainClass>$mainClass</mainClass>
+                                        </manifest>
+                                    </archive>
+                                    <descriptorRefs>
+                                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                                    </descriptorRefs>
+                                    <appendAssemblyId>false</appendAssemblyId>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
                 </plugins>
             </build>
             
@@ -76,25 +109,37 @@ fun createPomFile(configuration: CodegenConfiguration) {
             </dependencies>
         </project>
     """.trimIndent()
+    return pomTemplate
+}
 
-    initFile("pom.xml", pomTemplate)
+private fun generateWithJte(configuration: CodegenConfiguration): String {
+    val output = StringOutput()
+    Kriollo.templateEngine.render(
+        "generator/maven/pom.kte",
+        PomModel(
+            configuration.project.mainClass,
+            findDependencies(configuration),
+        ),
+        output
+    )
+    return output.toString()
 }
 
 fun findDependencies(configuration: CodegenConfiguration): List<JavaArtifact> {
     return buildList {
         val jte = configuration.templating.jte
         if(jte.enabled) {
-            add(jte.getArtifact())
+            addAll(jte.getArtifacts(configuration))
         }
     }
 }
 
 fun generateDependency(javaArtifact: JavaArtifact): String {
     return """
-       <dependency>
-            <groupId>${javaArtifact.groupId}</groupId>
-            <artifactId>${javaArtifact.artifactId}</artifactId>
-            <version>${javaArtifact.version}</version>
-        </dependency> 
-    """.trimIndent()
+                <dependency>
+                    <groupId>${javaArtifact.groupId}</groupId>
+                    <artifactId>${javaArtifact.artifactId}</artifactId>
+                    <version>${javaArtifact.version}</version>
+                </dependency> 
+    """
 }

@@ -1,11 +1,16 @@
 package kriollo
 
+import gg.jte.ContentType
+import gg.jte.TemplateEngine
+import gg.jte.resolve.DirectoryCodeResolver
 import kriollo.configuration.*
-import kriollo.generator.script.initBuild
 import kriollo.generator.git.initGit
 import kriollo.generator.maven.initMaven
 import kriollo.generator.nix.initNixFile
+import kriollo.generator.script.initBuild
 import kriollo.generator.script.initMainScript
+import kriollo.generator.templating.initJte
+import java.nio.file.Path
 
 fun main(args: Array<String>) {
 
@@ -27,6 +32,9 @@ fun main(args: Array<String>) {
     val codegenConfiguration = CodegenConfiguration(
         project = ProjectConfiguration(
             mainClass = "kriollo.KriolloKt"
+        ),
+        kotlin = KotlinConfiguration(
+            enabled = true
         ),
         nix = NixConfiguration(
             enabled = true
@@ -57,16 +65,20 @@ fun main(args: Array<String>) {
         initBuild(codegenConfiguration)
         initMainScript(codegenConfiguration)
 
-        if(codegenConfiguration.nix.enabled) {
+        if (codegenConfiguration.nix.enabled) {
             initNixFile()
         }
 
-        if(codegenConfiguration.git.enabled) {
+        if (codegenConfiguration.git.enabled) {
             initGit()
         }
 
-        if(codegenConfiguration.maven.enabled) {
+        if (codegenConfiguration.maven.enabled) {
             initMaven(codegenConfiguration)
+        }
+
+        if (codegenConfiguration.templating.jte.enabled) {
+            initJte(codegenConfiguration)
         }
 
         return
@@ -87,7 +99,9 @@ fun showHelp(buildCommand: String) {
     return
 }
 
-//TODO setup first codegen
+//TODO configure jte-classes to go in target/ or add it to the gitignoreGenerator
+//TODO inject templating engine and create it from the jte generator instead of global access
+
 //TODO read configuration from a file
 //TODO setup tests to start TDD loops => require Maven (JUnit)
 //TODO setup logging instead of println
@@ -95,4 +109,14 @@ fun showHelp(buildCommand: String) {
 //TODO handle file deletion => probably need to track generated files
 //TODO -lock file to track generated files
 
+//TODO template engine must be abstracted
+//TODO move kotlin elements from the pom into the pom generation
+//TODO remove old pom generation
+
+object Kriollo {
+    val templateEngine: TemplateEngine = TemplateEngine.create(
+        DirectoryCodeResolver(Path.of("src/main/jte")),
+        ContentType.Plain
+    )
+}
 

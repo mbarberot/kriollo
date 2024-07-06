@@ -1,3 +1,5 @@
+@import kriollo.generator.maven.PomModel
+@param model: PomModel
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -55,7 +57,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>kriollo.KriolloKt</mainClass>
+                                    <mainClass>${model.mainClass}</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>
@@ -75,20 +77,8 @@
             <artifactId>kotlin-stdlib</artifactId>
             <version>1.9.21</version>
         </dependency>
-        
-                    <dependency>
-            <groupId>gg.jte</groupId>
-            <artifactId>jte</artifactId>
-            <version>3.1.12</version>
-            
-        </dependency>
-        
-                    <dependency>
-            <groupId>gg.jte</groupId>
-            <artifactId>jte-kotlin</artifactId>
-            <version>3.1.12</version>
-            <scope>compile</scope>
-        </dependency>
-        
+        @for(artifact in model.dependencies)
+            @template.generator.maven.dependency(artifact)
+        @endfor
     </dependencies>
 </project>
