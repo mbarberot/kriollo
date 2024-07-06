@@ -42,6 +42,13 @@ fun main(args: Array<String>) {
         ),
         maven = MavenConfiguration(
             enabled = true
+        ),
+        templating = TemplatingConfiguration(
+            enabled = true,
+            jte = JteConfiguration(
+                enabled = true,
+                version = "3.1.12"
+            )
         )
     )
 
@@ -59,7 +66,7 @@ fun main(args: Array<String>) {
         }
 
         if(codegenConfiguration.maven.enabled) {
-            initMaven()
+            initMaven(codegenConfiguration)
         }
 
         return
@@ -79,8 +86,6 @@ fun showHelp(buildCommand: String) {
     )
     return
 }
-
-//TODO use template engine
 
 //TODO setup first codegen
 //TODO read configuration from a file

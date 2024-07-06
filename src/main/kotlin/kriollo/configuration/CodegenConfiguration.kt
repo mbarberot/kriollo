@@ -2,11 +2,12 @@ package kriollo.configuration
 
 data class CodegenConfiguration(
     val project: ProjectConfiguration,
-    val nix: NixConfiguration,
-    val git: GitConfiguration,
-    val mainScript: MainScriptConfiguration,
-    val buildScript: BuildScriptConfiguration,
-    val maven: MavenConfiguration
+    val nix: NixConfiguration = NixConfiguration(),
+    val git: GitConfiguration = GitConfiguration(),
+    val mainScript: MainScriptConfiguration = MainScriptConfiguration(),
+    val buildScript: BuildScriptConfiguration = BuildScriptConfiguration(),
+    val maven: MavenConfiguration = MavenConfiguration(),
+    val templating: TemplatingConfiguration = TemplatingConfiguration(),
 )
 
 data class ProjectConfiguration(
@@ -32,6 +33,22 @@ data class BuildScriptCustomStepConfiguration(
     val command: String
 )
 
-class MavenConfiguration(
+data class MavenConfiguration(
     val enabled: Boolean = false
 )
+
+data class TemplatingConfiguration(
+    val enabled: Boolean = false,
+    val jte: JteConfiguration = JteConfiguration()
+)
+
+data class JteConfiguration(
+    val enabled: Boolean = false,
+    val groupId: String = "gg.jte",
+    val artifactId: String = "jte",
+    val version: String = ""
+) {
+    fun getArtifact(): JavaArtifact {
+        return JavaArtifact(groupId, artifactId, version)
+    }
+}

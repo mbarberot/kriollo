@@ -1,17 +1,21 @@
 package kriollo.generator.maven
 
+import kriollo.configuration.CodegenConfiguration
+import kriollo.configuration.JavaArtifact
 import kriollo.generator.utils.createDirectories
 import kriollo.generator.utils.initFile
 
-fun initMaven() {
-    createPomFile()
+fun initMaven(configuration: CodegenConfiguration) {
+    createPomFile(configuration)
     createDirectories(
         "./src/main/kotlin",
         "./src/test/kotlin",
     )
 }
 
-fun createPomFile() {
+fun createPomFile(configuration: CodegenConfiguration) {
+    val dependencies = findDependencies(configuration).joinToString { generateDependency(it) }
+
     val pomTemplate = """
         <?xml version="1.0" encoding="UTF-8"?>
         <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"
@@ -68,9 +72,29 @@ fun createPomFile() {
                     <artifactId>kotlin-stdlib</artifactId>
                     <version>1.9.21</version>
                 </dependency>
+                $dependencies
             </dependencies>
         </project>
     """.trimIndent()
 
     initFile("pom.xml", pomTemplate)
+}
+
+fun findDependencies(configuration: CodegenConfiguration): List<JavaArtifact> {
+    return buildList {
+        val jte = configuration.templating.jte
+        if(jte.enabled) {
+            add(jte.getArtifact())
+        }
+    }
+}
+
+fun generateDependency(javaArtifact: JavaArtifact): String {
+    return """
+       <dependency>
+            <groupId>${javaArtifact.groupId}</groupId>
+            <artifactId>${javaArtifact.artifactId}</artifactId>
+            <version>${javaArtifact.version}</version>
+        </dependency> 
+    """.trimIndent()
 }
