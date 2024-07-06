@@ -73,17 +73,14 @@
                 <artifactId>jte-maven-plugin</artifactId>
                 <version>${model.jte.version}</version>
                 <configuration>
-                    <!-- This is the directory where your .jte files are located. -->
                     <sourceDirectory>${"$"}{project.basedir}/${model.jte.sourceDirectory}</sourceDirectory>
-                    <!-- This is the directory where compiled templates are located. -->
-                    <targetDirectory>${"$"}{project.build.directory}/jte-classes</targetDirectory>
                     <contentType>${model.jte.contentType}</contentType>
                 </configuration>
                 <executions>
                     <execution>
-                        <phase>process-classes</phase>
+                        <phase>generate-sources</phase>
                         <goals>
-                            <goal>precompile</goal>
+                            <goal>generate</goal>
                         </goals>
                     </execution>
                 </executions>

@@ -1,12 +1,13 @@
 package kriollo.configuration
 
+
 data class CodegenConfiguration(
     val project: ProjectConfiguration,
     val kotlin: KotlinConfiguration = KotlinConfiguration(),
     val nix: NixConfiguration = NixConfiguration(),
     val git: GitConfiguration = GitConfiguration(),
+    val scripts: ScriptsConfiguration = ScriptsConfiguration(),
     val mainScript: MainScriptConfiguration = MainScriptConfiguration(),
-    val buildScript: BuildScriptConfiguration = BuildScriptConfiguration(),
     val maven: MavenConfiguration = MavenConfiguration(),
     val templating: TemplatingConfiguration = TemplatingConfiguration(),
 )
@@ -27,9 +28,14 @@ data class GitConfiguration(
     val enabled: Boolean = false
 )
 
+data class ScriptsConfiguration(
+    val build: BuildScriptConfiguration = BuildScriptConfiguration()
+)
+
 class MainScriptConfiguration
 
 data class BuildScriptConfiguration(
+    val enabled: Boolean = false,
     val customSteps: List<BuildScriptCustomStepConfiguration> = listOf()
 )
 

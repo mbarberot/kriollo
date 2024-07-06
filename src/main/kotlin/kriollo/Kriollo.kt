@@ -2,14 +2,9 @@ package kriollo
 
 import gg.jte.ContentType
 import gg.jte.TemplateEngine
-import gg.jte.resolve.DirectoryCodeResolver
 import kriollo.configuration.*
 import kriollo.generator.CodeGenerators
-import kriollo.generator.git.initGit
-import kriollo.generator.maven.initMaven
-import kriollo.generator.script.initBuild
 import kriollo.generator.script.initMainScript
-import java.nio.file.Path
 
 fun main(args: Array<String>) {
 
@@ -41,12 +36,14 @@ fun main(args: Array<String>) {
         git = GitConfiguration(
             enabled = true
         ),
-        mainScript = MainScriptConfiguration(),
-        buildScript = BuildScriptConfiguration(
-            customSteps = listOf(
-                BuildScriptCustomStepConfiguration("Copy jar into codegen dir", "cp target/kriollo.jar codegen/")
-            )
+        scripts = ScriptsConfiguration(
+            build = BuildScriptConfiguration(
+                customSteps = listOf(
+                    BuildScriptCustomStepConfiguration("Copy jar into codegen dir", "cp target/kriollo.jar codegen/")
+                )
+            ),
         ),
+        mainScript = MainScriptConfiguration(),
         maven = MavenConfiguration(
             enabled = true
         ),
@@ -63,21 +60,8 @@ fun main(args: Array<String>) {
     val generators = CodeGenerators()
 
     if (buildCommand == args[0]) {
-
         generators.execute(codegenConfiguration)
-
-        initBuild(codegenConfiguration)
         initMainScript(codegenConfiguration)
-
-
-        if (codegenConfiguration.git.enabled) {
-            initGit()
-        }
-
-        if (codegenConfiguration.maven.enabled) {
-            initMaven(codegenConfiguration)
-        }
-
         return
     }
 
@@ -96,7 +80,6 @@ fun showHelp(buildCommand: String) {
     return
 }
 
-//TODO configure jte-classes to go in target/ or add it to the gitignoreGenerator
 //TODO inject templating engine and create it from the jte generator instead of global access
 
 //TODO read configuration from a file
@@ -108,12 +91,8 @@ fun showHelp(buildCommand: String) {
 
 //TODO template engine must be abstracted
 //TODO move kotlin elements from the pom into the pom generation
-//TODO remove old pom generation
 
 object Kriollo {
-    val templateEngine: TemplateEngine = TemplateEngine.create(
-        DirectoryCodeResolver(Path.of("src/main/jte")),
-        ContentType.Plain
-    )
+    val templateEngine: TemplateEngine = TemplateEngine.createPrecompiled(ContentType.Plain)
 }
 
