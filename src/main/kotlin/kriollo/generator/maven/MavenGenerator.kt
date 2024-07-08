@@ -23,7 +23,10 @@ class MavenGenerator : Generator {
         val templateData = PomModel(
             configuration.project.mainClass,
             findDependencies(configuration),
-            JteModel(
+            kotlin = KotlinModel(
+                configuration.kotlin.version
+            ),
+            jte = JteModel(
                 // TODO : do not hardcode plugins
                 configuration.templating.jte.version,
                 configuration.templating.jte.sourceDirectory,
@@ -36,10 +39,17 @@ class MavenGenerator : Generator {
 
     private fun findDependencies(configuration: CodegenConfiguration): List<JavaArtifact> {
         return buildList {
+            val kotlin = configuration.kotlin
+            if(kotlin.enabled) {
+            addAll(kotlin.getArtifacts(configuration))
+            }
+
             val jte = configuration.templating.jte
             if (jte.enabled) {
                 addAll(jte.getArtifacts(configuration))
             }
+
+            addAll(configuration.project.dependencies)
         }
     }
 }

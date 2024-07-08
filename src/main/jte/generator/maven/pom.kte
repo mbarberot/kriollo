@@ -27,7 +27,7 @@
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
-                <version>1.9.21</version>
+                <version>${model.kotlin.version}</version>
                 <executions>
                     <execution>
                         <id>compile</id>
@@ -75,6 +75,7 @@
                 <configuration>
                     <sourceDirectory>${"$"}{project.basedir}/${model.jte.sourceDirectory}</sourceDirectory>
                     <contentType>${model.jte.contentType}</contentType>
+                    <trimControlStructures>true</trimControlStructures>
                 </configuration>
                 <executions>
                     <execution>
@@ -89,13 +90,8 @@
     </build>
 
     <dependencies>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib</artifactId>
-            <version>1.9.21</version>
-        </dependency>
         @for(artifact in model.dependencies)
-            @template.generator.maven.dependency(artifact)
+            @template.generator.maven.dependency(artifact = artifact)
         @endfor
     </dependencies>
 </project>

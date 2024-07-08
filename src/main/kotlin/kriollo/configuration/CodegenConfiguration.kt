@@ -13,7 +13,8 @@ data class CodegenConfiguration(
 )
 
 data class ProjectConfiguration(
-    val mainClass: String // TODO add artifact informations and finalName
+    val mainClass: String, // TODO add artifact informations and finalName
+    val dependencies: List<JavaArtifact> = listOf()
 )
 
 data class CliConfiguration(
@@ -29,8 +30,15 @@ data class MainScriptConfiguration(
 )
 
 data class KotlinConfiguration(
-    val enabled: Boolean = false // TODO use this to generate kotlin configuration in the pom
-)
+    val enabled: Boolean = false, // TODO use this to generate kotlin configuration in the pom
+    val version: String = "",
+) {
+    fun getArtifacts(configuration: CodegenConfiguration): List<JavaArtifact> {
+        return buildList {
+            add(JavaArtifact("org.jetbrains.kotlin", "kotlin-stdlib", version))
+        }
+    }
+}
 
 data class NixConfiguration(
     val enabled: Boolean = false

@@ -22,7 +22,9 @@ fun main(args: Array<String>) {
 
     val codegenConfiguration = CodegenConfiguration(
         project = ProjectConfiguration(
-            mainClass = "kriollo.KriolloKt"
+            mainClass = "kriollo.KriolloKt",
+            dependencies = listOf(
+            )
         ),
         cli = CliConfiguration(
             enabled = true,
@@ -34,7 +36,8 @@ fun main(args: Array<String>) {
             ),
         ),
         kotlin = KotlinConfiguration(
-            enabled = true
+            enabled = true,
+            version = "1.9.24",
         ),
         nix = NixConfiguration(
             enabled = true
