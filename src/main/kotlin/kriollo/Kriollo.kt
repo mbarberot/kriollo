@@ -1,7 +1,17 @@
 package kriollo
 
-import kriollo.configuration.*
+import com.fasterxml.jackson.dataformat.toml.TomlMapper
+import com.fasterxml.jackson.module.kotlin.kotlinModule
+import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.CodeGenerators
+import kriollo.generator.CoreModules
+import java.io.File
+
+private fun readConfiguration(configurationFilePath: String): CodegenConfiguration {
+    val mapper = TomlMapper()
+    mapper.registerModule(kotlinModule())
+    return mapper.readValue(File(configurationFilePath), CodegenConfiguration::class.java)
+}
 
 fun main(args: Array<String>) {
 
@@ -13,6 +23,8 @@ fun main(args: Array<String>) {
     """.trimIndent()
     )
 
+    val codegenConfiguration = readConfiguration("./codegen/codegen.toml")
+
     val buildCommand = "build"
 
     if (args.isEmpty()) {
@@ -20,52 +32,12 @@ fun main(args: Array<String>) {
         return
     }
 
-    val codegenConfiguration = CodegenConfiguration(
-        project = ProjectConfiguration(
-            mainClass = "kriollo.KriolloKt",
-            dependencies = listOf(
-            )
-        ),
-        cli = CliConfiguration(
-            enabled = true,
-            script = MainScriptConfiguration(
-                enabled = true,
-                fileName = "kriollo",
-                targetDirectory = "codegen",
-                jarLocation = "codegen/kriollo.jar" // TODO : get jar name from project equivalent of maven's build.finalName
-            ),
-        ),
-        kotlin = KotlinConfiguration(
-            enabled = true,
-            version = "1.9.24",
-        ),
-        nix = NixConfiguration(
-            enabled = true
-        ),
-        git = GitConfiguration(
-            enabled = true
-        ),
-        scripts = ScriptsConfiguration(
-            build = BuildScriptConfiguration(
-                customSteps = listOf(
-                    BuildScriptCustomStepConfiguration("Copy jar into codegen dir", "cp target/kriollo.jar codegen/")
-                )
-            ),
-        ),
-        maven = MavenConfiguration(
-            enabled = true
-        ),
-        templating = TemplatingConfiguration(
-            enabled = true,
-            jte = JteConfiguration(
-                enabled = true,
-                version = "3.1.12",
-                contentType = "Plain"
-            )
-        )
+    val generators = CodeGenerators(
+        codegenConfiguration,
+        buildList {
+            CoreModules().getModules(codegenConfiguration)
+        }
     )
-
-    val generators = CodeGenerators(codegenConfiguration)
 
     if (buildCommand == args[0]) {
         generators.execute(codegenConfiguration)
@@ -87,7 +59,6 @@ fun showHelp(buildCommand: String) {
     return
 }
 
-//TODO read configuration from a file
 //TODO setup tests to start TDD loops => require Maven (JUnit)
 //TODO setup logging instead of println
 //TODO use picocli

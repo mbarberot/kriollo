@@ -4,7 +4,7 @@ import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.Generator
 import kriollo.generator.utils.ServiceProvider
 
-class JteGenerator: Generator {
+class JteGenerator: Generator() {
 
     override fun isActivated(configuration: CodegenConfiguration): Boolean {
         return configuration.templating.jte.enabled

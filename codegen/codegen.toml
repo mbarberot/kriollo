@@ -1,0 +1,42 @@
+[project]
+mainClass = "kriollo.KriolloKt"
+dependencies = []
+
+[cli]
+enabled = true
+
+[cli.script]
+enabled = true
+fileName = "kriollo"
+targetDirectory = "codegen"
+jarLocation = "codegen/kriollo.jar" # TODO : get jar name from project equivalent of maven's build.finalName
+
+[kotlin]
+enabled = true
+version = "1.9.24"
+
+[nix]
+enabled = true
+
+[git]
+enabled = true
+
+[scripts.build]
+customSteps = [
+    { name = "Copy jar into codegen dir", command = "cp target/kriollo.jar codegen/" },
+]
+
+[maven]
+enabled = true
+
+[templating]
+enabled = true
+
+[templating.jte]
+enabled = true
+version = "3.1.12"
+contentType = "Plain"
+
+[libs.jackson]
+version = "2.13.0"
+dataformats = [ "toml" ]

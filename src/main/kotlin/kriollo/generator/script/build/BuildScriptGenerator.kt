@@ -4,7 +4,7 @@ import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.Generator
 import kriollo.generator.utils.ServiceProvider
 
-class BuildScriptGenerator: Generator {
+class BuildScriptGenerator: Generator() {
 
     override fun isActivated(configuration: CodegenConfiguration): Boolean {
         return configuration.scripts.build.enabled
