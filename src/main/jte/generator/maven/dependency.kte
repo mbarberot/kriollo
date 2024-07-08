@@ -1,8 +1,0 @@
-@import kriollo.configuration.JavaArtifact
-@param artifact: JavaArtifact
-<dependency>
-        <groupId>${artifact.groupId}</groupId>
-        <artifactId>${artifact.artifactId}</artifactId>
-        <version>${artifact.version}</version>
-        @if(artifact.scope != null)<scope>${artifact.scope}</scope>@endif
-    </dependency>

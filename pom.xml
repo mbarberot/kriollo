@@ -14,7 +14,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.code.style>official</kotlin.code.style>
-        <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
+        <kotlin.compiler.jvmTarget>21</kotlin.compiler.jvmTarget>
     </properties>
 
     <build>
@@ -72,6 +72,7 @@
                 <version>3.1.12</version>
                 <configuration>
                     <sourceDirectory>${project.basedir}/src/main/jte</sourceDirectory>
+                    <targetDirectory>${project.build.directory}/generated-sources/jte</targetDirectory>
                     <contentType>Plain</contentType>
                     <trimControlStructures>true</trimControlStructures>
                 </configuration>

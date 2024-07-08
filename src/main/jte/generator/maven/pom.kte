@@ -16,7 +16,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.code.style>official</kotlin.code.style>
-        <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
+        <kotlin.compiler.jvmTarget>21</kotlin.compiler.jvmTarget>
     </properties>
 
     <build>
@@ -74,6 +74,7 @@
                 <version>${model.jte.version}</version>
                 <configuration>
                     <sourceDirectory>${"$"}{project.basedir}/${model.jte.sourceDirectory}</sourceDirectory>
+                    <targetDirectory>${"$"}{project.build.directory}/generated-sources/jte</targetDirectory>
                     <contentType>${model.jte.contentType}</contentType>
                     <trimControlStructures>true</trimControlStructures>
                 </configuration>
@@ -91,7 +92,14 @@
 
     <dependencies>
         @for(artifact in model.dependencies)
-            @template.generator.maven.dependency(artifact = artifact)
+        <dependency>
+            <groupId>${artifact.groupId}</groupId>
+            <artifactId>${artifact.artifactId}</artifactId>
+            <version>${artifact.version}</version>
+            @if(artifact.scope != null)
+                <scope>${artifact.scope}</scope>
+            @endif
+        </dependency>
         @endfor
     </dependencies>
 </project>
