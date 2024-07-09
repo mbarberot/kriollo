@@ -5,10 +5,6 @@ import kriollo.generator.base.TemplatedFileGenerator
 
 class BuildScriptGenerator(val configuration: CodegenConfiguration) : TemplatedFileGenerator() {
 
-    override fun isActivated(configuration: CodegenConfiguration): Boolean {
-        return configuration.scripts.build.enabled
-    }
-
     override fun getFilePath(configuration: CodegenConfiguration) = "./build/build.sh"
 
     override fun isScript() = true

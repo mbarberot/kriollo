@@ -5,7 +5,6 @@ import kriollo.generator.base.extensions.JavaDependenciesGeneratorExtensions
 import kriollo.generator.utils.ServiceProvider
 
 abstract class Generator {
-    abstract fun isActivated(configuration: CodegenConfiguration): Boolean // TODO => dans les modules
     abstract fun execute(configuration: CodegenConfiguration, serviceProvider: ServiceProvider)
 
     open fun registerExtension(extension: JavaDependenciesGeneratorExtensions) {

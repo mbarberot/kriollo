@@ -6,10 +6,6 @@ import kriollo.generator.utils.ServiceProvider
 
 class DefaultNixFileGenerator(val configuration: CodegenConfiguration) : FileGenerator() {
 
-    override fun isActivated(configuration: CodegenConfiguration): Boolean {
-        return configuration.nix.enabled
-    }
-
     override fun getFilePath(configuration: CodegenConfiguration): String = "default.nix"
 
     override fun getContent(configuration: CodegenConfiguration, serviceProvider: ServiceProvider): String =

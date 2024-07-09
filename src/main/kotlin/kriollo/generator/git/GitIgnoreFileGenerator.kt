@@ -6,10 +6,6 @@ import kriollo.generator.utils.ServiceProvider
 
 class GitIgnoreFileGenerator(val configuration: CodegenConfiguration) : FileGenerator() {
 
-    override fun isActivated(configuration: CodegenConfiguration): Boolean {
-        return configuration.git.enabled
-    }
-
     override fun getContent(configuration: CodegenConfiguration, serviceProvider: ServiceProvider) =
         """
             # /!\ Warning

@@ -9,10 +9,6 @@ class MavenPomGenerator(val configuration: CodegenConfiguration) : TemplatedFile
 
     private val extensions = mutableListOf<JavaDependenciesGeneratorExtensions>()
 
-    override fun isActivated(configuration: CodegenConfiguration): Boolean {
-        return configuration.maven.enabled
-    }
-
     override fun getFilePath(configuration: CodegenConfiguration) = "pom.xml"
 
     override fun getTemplatePath() = "generator/maven/pom.xml.kte"
