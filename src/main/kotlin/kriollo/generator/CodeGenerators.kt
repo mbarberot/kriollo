@@ -1,20 +1,12 @@
 package kriollo.generator
 
-import gg.jte.ContentType
-import gg.jte.TemplateEngine
 import kriollo.configuration.CodegenConfiguration
-import kriollo.generator.utils.FilesytemService
 import kriollo.generator.utils.ServiceProvider
-import kriollo.generator.utils.TemplatingService
 
-class CodeGenerators(configuration: CodegenConfiguration, modules: List<CodegenModule>) {
+class CodeGenerators(
+    modules: List<CodegenModule>,
+) {
 
-    private val serviceProvider: ServiceProvider = ServiceProvider(
-        FilesytemService(),
-        TemplatingService(
-            TemplateEngine.createPrecompiled(ContentType.valueOf(configuration.templating.jte.contentType)),
-        )
-    )
 
     private val generators: List<Generator> = buildList {
         modules.forEach { module ->
@@ -31,7 +23,7 @@ class CodeGenerators(configuration: CodegenConfiguration, modules: List<CodegenM
 
     }
 
-    fun execute(configuration: CodegenConfiguration) {
+    fun execute(configuration: CodegenConfiguration, serviceProvider: ServiceProvider) {
         generators.forEach { it.execute(configuration, serviceProvider) }
     }
 }

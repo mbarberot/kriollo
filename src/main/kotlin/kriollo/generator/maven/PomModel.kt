@@ -5,6 +5,7 @@ import kriollo.configuration.JavaArtifact
 data class PomModel(
     val mainClass: String,
     val dependencies: List<JavaArtifact>,
+    val plugins: List<String>,
     val jte: JteModel,
     val kotlin: KotlinModel,
 )

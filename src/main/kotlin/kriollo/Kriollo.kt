@@ -2,9 +2,14 @@ package kriollo
 
 import com.fasterxml.jackson.dataformat.toml.TomlMapper
 import com.fasterxml.jackson.module.kotlin.kotlinModule
+import gg.jte.ContentType
+import gg.jte.TemplateEngine
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.CodeGenerators
 import kriollo.generator.CoreModules
+import kriollo.generator.utils.FilesytemService
+import kriollo.generator.utils.ServiceProvider
+import kriollo.generator.utils.TemplatingService
 import java.io.File
 
 private fun readConfiguration(configurationFilePath: String): CodegenConfiguration {
@@ -32,15 +37,22 @@ fun main(args: Array<String>) {
         return
     }
 
+    val serviceProvider = ServiceProvider(
+        // TODO : add configuration service to allow a global access to the configuration and unify signatures
+        FilesytemService(),
+        TemplatingService(
+            TemplateEngine.createPrecompiled(ContentType.valueOf(codegenConfiguration.templating.jte.contentType)),
+        )
+    )
+
     val generators = CodeGenerators(
-        codegenConfiguration,
         buildList {
-            addAll(CoreModules().getModules(codegenConfiguration))
-        }
+            addAll(CoreModules().getModules(codegenConfiguration, serviceProvider))
+        },
     )
 
     if (buildCommand == args[0]) {
-        generators.execute(codegenConfiguration)
+        generators.execute(codegenConfiguration, serviceProvider);
         return
     }
 

@@ -1,4 +1,4 @@
-package kriollo.generator.templating
+package kriollo.generator.templating.jte
 
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.base.FileGenerator

@@ -2,11 +2,11 @@ package kriollo.generator.kotlin
 
 import kriollo.configuration.CodegenConfiguration
 import kriollo.configuration.JavaArtifact
-import kriollo.generator.base.extensions.JavaDependenciesGeneratorExtensions
+import kriollo.generator.base.extensions.JavaDependencyExtension
 
 class KotlinJavaDependenciesExtension(
     val configuration: CodegenConfiguration
-) : JavaDependenciesGeneratorExtensions {
+) : JavaDependencyExtension {
 
     override fun provideDependencies(): List<JavaArtifact> {
         return listOf(

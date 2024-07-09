@@ -2,9 +2,9 @@ package kriollo.generator.libs
 
 import kriollo.configuration.CodegenConfiguration
 import kriollo.configuration.JavaArtifact
-import kriollo.generator.base.extensions.JavaDependenciesGeneratorExtensions
+import kriollo.generator.base.extensions.JavaDependencyExtension
 
-class JacksonJavaDependenciesExtension(val configuration: CodegenConfiguration) : JavaDependenciesGeneratorExtensions {
+class JacksonJavaDependenciesExtension(val configuration: CodegenConfiguration) : JavaDependencyExtension {
     override fun provideDependencies(): List<JavaArtifact> {
         val (version, dataformats) = configuration.libs.jackson
 

@@ -68,25 +68,9 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>gg.jte</groupId>
-                <artifactId>jte-maven-plugin</artifactId>
-                <version>${model.jte.version}</version>
-                <configuration>
-                    <sourceDirectory>${"$"}{project.basedir}/${model.jte.sourceDirectory}</sourceDirectory>
-                    <targetDirectory>${"$"}{project.build.directory}/generated-sources/jte</targetDirectory>
-                    <contentType>${model.jte.contentType}</contentType>
-                    <trimControlStructures>true</trimControlStructures>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+            @for(plugin in model.plugins)
+                ${plugin}
+            @endfor
         </plugins>
     </build>
 

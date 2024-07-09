@@ -1,0 +1,21 @@
+@import kriollo.generator.templating.jte.JteMavenPluginModel
+@param model: JteMavenPluginModel
+<plugin>
+                <groupId>gg.jte</groupId>
+                <artifactId>jte-maven-plugin</artifactId>
+                <version>${model.version}</version>
+                <configuration>
+                    <sourceDirectory>${"$"}{project.basedir}/${model.sourceDirectory}</sourceDirectory>
+                    <targetDirectory>${"$"}{project.build.directory}/generated-sources/jte</targetDirectory>
+                    <contentType>${model.contentType}</contentType>
+                    <trimControlStructures>true</trimControlStructures>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
