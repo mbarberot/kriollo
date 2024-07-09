@@ -35,7 +35,7 @@ fun main(args: Array<String>) {
     val generators = CodeGenerators(
         codegenConfiguration,
         buildList {
-            CoreModules().getModules(codegenConfiguration)
+            addAll(CoreModules().getModules(codegenConfiguration))
         }
     )
 

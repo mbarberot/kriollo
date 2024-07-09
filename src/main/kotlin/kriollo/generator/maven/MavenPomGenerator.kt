@@ -15,7 +15,7 @@ class MavenPomGenerator(val configuration: CodegenConfiguration) : TemplatedFile
 
     override fun getFilePath(configuration: CodegenConfiguration) = "pom.xml"
 
-    override fun getTemplatePath() = "generator/maven/pom.kte"
+    override fun getTemplatePath() = "generator/maven/pom.xml.kte"
 
     override fun getTemplateData() = PomModel(
         configuration.project.mainClass,
@@ -33,20 +33,9 @@ class MavenPomGenerator(val configuration: CodegenConfiguration) : TemplatedFile
 
     private fun findDependencies(configuration: CodegenConfiguration): List<JavaArtifact> {
         return buildList {
-
-            extensions.map { extension -> extension.provideDependencies() }
+            extensions
+                .map { extension -> extension.provideDependencies() }
                 .forEach { dependencies -> addAll(dependencies) }
-
-
-            // TODO : leverage the extension system to get these dependencies
-            val jte = configuration.templating.jte
-            if (jte.enabled) {
-                addAll(jte.getArtifacts(configuration))
-            }
-
-            addAll(configuration.libs.getArtifacts(configuration))
-
-            addAll(configuration.project.dependencies)
         }
     }
 

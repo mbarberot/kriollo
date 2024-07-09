@@ -1,10 +1,10 @@
 package kriollo.generator.cli.script
 
 import kriollo.configuration.CodegenConfiguration
-import kriollo.generator.base.ScriptGenerator
+import kriollo.generator.base.FileGenerator
 import kriollo.generator.utils.ServiceProvider
 
-class MainScriptFileGenerator(val configuration: CodegenConfiguration) : ScriptGenerator() {
+class MainScriptFileGenerator(val configuration: CodegenConfiguration) : FileGenerator() {
 
     override fun isActivated(configuration: CodegenConfiguration): Boolean {
         return configuration.cli.enabled && configuration.cli.script.enabled
@@ -15,6 +15,8 @@ class MainScriptFileGenerator(val configuration: CodegenConfiguration) : ScriptG
 
         return "./${scriptConfiguration.targetDirectory}/${scriptConfiguration.fileName}"
     }
+
+    override fun isScript(): Boolean = true
 
     override fun getContent(configuration: CodegenConfiguration, serviceProvider: ServiceProvider): String {
         return """

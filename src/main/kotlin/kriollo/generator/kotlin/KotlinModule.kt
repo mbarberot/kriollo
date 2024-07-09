@@ -14,6 +14,6 @@ class KotlinModule(configuration: CodegenConfiguration) : CodegenModule(configur
     )
 
     override fun provideExtensions(generator: Generator) {
-        generator.registerExtension(KotlinJavaDependenciesGeneratorExtension(configuration))
+        generator.registerExtension(KotlinJavaDependenciesExtension(configuration))
     }
 }

@@ -1,6 +1,23 @@
+# [justfile] # TODO : justfile
+# enabled = true
+
+# [readme] # TODO : readme
+# enabled = true
+# title = "Kriollo"
+# description = "Insert a short description here"
+#
+# [readme.sections]
+# build = true
+
+# [dockerfile] # TODO : dockerfile
+# enable = true 
+# baseImage = jdk21-temurin
+
+
 [project]
 mainClass = "kriollo.KriolloKt"
 dependencies = []
+# TODO : jdk = 21
 
 [cli]
 enabled = true

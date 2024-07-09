@@ -4,15 +4,17 @@ import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.Generator
 import kriollo.generator.utils.ServiceProvider
 
-abstract class FileGenerator(val isScript: Boolean = false): Generator() {
+abstract class FileGenerator: Generator() {
     override fun execute(configuration: CodegenConfiguration, serviceProvider: ServiceProvider) {
         serviceProvider.fileSystem.createFile(
             getFilePath(configuration),
             getContent(configuration, serviceProvider),
-            isScript
+            isScript()
         )
     }
 
     abstract fun getFilePath(configuration: CodegenConfiguration): String
     abstract fun getContent(configuration: CodegenConfiguration, serviceProvider: ServiceProvider): String
+
+    open fun isScript(): Boolean = false
 }

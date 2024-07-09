@@ -4,7 +4,7 @@ import kriollo.configuration.CodegenConfiguration
 import kriollo.configuration.JavaArtifact
 import kriollo.generator.base.extensions.JavaDependenciesGeneratorExtensions
 
-class KotlinJavaDependenciesGeneratorExtension(
+class KotlinJavaDependenciesExtension(
     val configuration: CodegenConfiguration
 ) : JavaDependenciesGeneratorExtensions {
 
