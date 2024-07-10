@@ -2,6 +2,8 @@ package kriollo.configuration
 
 import kriollo.generator.components.ComponentsConfiguration
 import kriollo.generator.git.GitConfiguration
+import kriollo.generator.java.JavaConfiguration
+import kriollo.generator.jetbrains.JetbrainsConfiguration
 
 // TODO : move configuration classes into their generator package like for components
 // TODO : add configuration generation for components.kriollo ?
@@ -9,6 +11,8 @@ import kriollo.generator.git.GitConfiguration
 data class CodegenConfiguration(
     val project: ProjectConfiguration,
     val cli: CliConfiguration = CliConfiguration(),
+    val jetbrains: JetbrainsConfiguration = JetbrainsConfiguration(),
+    val java: JavaConfiguration = JavaConfiguration(),
     val kotlin: KotlinConfiguration = KotlinConfiguration(),
     val nix: NixConfiguration = NixConfiguration(),
     val git: GitConfiguration = GitConfiguration(),
