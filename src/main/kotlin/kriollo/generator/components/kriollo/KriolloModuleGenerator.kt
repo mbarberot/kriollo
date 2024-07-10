@@ -13,11 +13,11 @@ class KriolloModuleGenerator(
     }
 
     override fun getTemplateData(): Any {
-        val (path, _, activationKey, generators, extensions) = moduleConfiguration
+        val (_, _, _, activationKey, generators, extensions) = moduleConfiguration
 
         return KriolloModuleModel(
-            namespace = path.replace("/", "."),
-            name = getClassName(),
+            namespace = moduleConfiguration.getNamespace(),
+            name = moduleConfiguration.getClassName(),
             activation = if (activationKey == "-") "true" else "configuration.$activationKey",
             generators = generators.map { generator -> generator.name },
             extensions = extensions.map { extension -> extension.name },
@@ -25,8 +25,6 @@ class KriolloModuleGenerator(
     }
 
     override fun getFilePath(configuration: CodegenConfiguration): String {
-        return "src/main/kotlin/${moduleConfiguration.path}/${getClassName()}.kt"
+        return "src/main/kotlin/${moduleConfiguration.path}/${moduleConfiguration.getClassName()}.kt"
     }
-
-    private fun getClassName() = moduleConfiguration.name.replaceFirstChar(Char::titlecaseChar) + "Module"
 }

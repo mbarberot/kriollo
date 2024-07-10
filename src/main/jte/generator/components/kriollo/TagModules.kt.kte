@@ -1,0 +1,23 @@
+@import kriollo.generator.components.kriollo.KriolloTagModulesModel
+@param model: KriolloTagModulesModel
+package ${model.namespace}
+
+${model.javaWarning()}
+
+import kriollo.configuration.CodegenConfiguration
+@for(component in model.components)
+    import ${component.namespace}.${component.className}
+@endfor
+import kriollo.generator.utils.ServiceProvider
+${model.generatedAnnotationImport()}
+
+${model.generatedAnnotation()}
+class ${model.className} {
+    fun getModules(configuration: CodegenConfiguration, serviceProvider: ServiceProvider): List<CodegenModule> {
+        return listOf(
+            @for(component in model.components)
+                ${component.className}(configuration, serviceProvider),
+            @endfor
+        )
+    }
+}

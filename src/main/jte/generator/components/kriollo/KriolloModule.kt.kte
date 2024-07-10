@@ -8,9 +8,9 @@ import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.CodegenModule
 import kriollo.generator.Generator
 import kriollo.generator.utils.ServiceProvider
-import javax.annotation.processing.Generated
+${model.generatedAnnotationImport()}
 
-@Generated("${model.generatedBy}")
+${model.generatedAnnotation()}
 class ${model.name}(
     configuration: CodegenConfiguration,
     val serviceProvider: ServiceProvider,
