@@ -20,7 +20,7 @@ private fun readConfiguration(configurationFilePath: String): CodegenConfigurati
 }
 
 object Kriollo {
-    val version = "0.1.0" // TODO inject through idk ?
+    val version = "0.1.0" // TODO inject this at build time
 }
 
 fun main(args: Array<String>) {
@@ -82,4 +82,23 @@ fun showHelp(buildCommand: String) {
 //TODO use picocli
 //TODO handle file deletion => probably need to track generated files
 //TODO -lock file to track generated files
-//TODO move kotlin elements from the pom into the pom generation
+//TODO pom : source and test directories => how ?
+//TODO pom : final name => config.project
+//TODO pom : properties => extension => create the new extension code generator to make it easier to add an extension from toml file
+//TODO config : the configuration file is getting pretty long, see if we can split it ? like a kind of inclusion, either built-in or home-made
+/*
+ * TODO config : generate the main configuration class => may require a lot of work to gather different classes all around
+ * Maybe : move *Configuration into the same package to avoid the kinda hard import block generation
+ * though it still requires to gather the configuration files
+ */
+
+/*
+ * TODO : generate Generator base class and the extension
+ *
+ * [[components.kriollo-extensions]]
+ * path: "kriollo/generator/base/extensions
+ * availableExtensions: [
+ *  { name = "GitIgnoreExtension", provides = "GitIgnoreRule", for = "kriollo.generator.git" },
+ *  # ... and so on
+ * ]
+ */

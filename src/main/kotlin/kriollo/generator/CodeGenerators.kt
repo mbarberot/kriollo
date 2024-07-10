@@ -7,11 +7,12 @@ class CodeGenerators(
     modules: List<CodegenModule>,
 ) {
 
-
     private val generators: List<Generator> = buildList {
-        modules.forEach { module ->
-            addAll(module.provideGenerators())
-        }
+        modules
+            .filter { it.isActivated() }
+            .forEach { module ->
+                addAll(module.provideGenerators())
+            }
     }
 
     init {

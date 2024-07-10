@@ -13,7 +13,6 @@ import kriollo.generator.project.ProjectConfiguration
 import kriollo.generator.script.ScriptsConfiguration
 import kriollo.generator.templating.TemplatingConfiguration
 
-// TODO generate me ?
 data class CodegenConfiguration(
     val project: ProjectConfiguration,
     val cli: CliConfiguration = CliConfiguration(),

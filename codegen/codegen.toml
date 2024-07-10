@@ -16,8 +16,8 @@
 
 [project]
 mainClass = "kriollo.KriolloKt"
+# TODO set finalName here
 dependencies = []
-# TODO : jdk = 21
 
 [cli]
 enabled = true
@@ -26,7 +26,11 @@ enabled = true
 enabled = true
 fileName = "kriollo"
 targetDirectory = "codegen"
-jarLocation = "codegen/kriollo.jar" # TODO : get jar name from project equivalent of maven's build.finalName
+jarLocation = "codegen/kriollo.jar" # TODO : get "kriollo.jar" from from project equivalent of maven's build.finalName
+
+[java]
+enabled = true
+# TODO : setup jdk here
 
 [kotlin]
 enabled = true
@@ -37,6 +41,7 @@ enabled = true
 
 [git]
 enabled = true
+# TODO : add pre-commit hook for conventional commits
 
 [scripts.build]
 enabled = true
