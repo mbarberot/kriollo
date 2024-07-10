@@ -85,6 +85,9 @@ activationKey = "maven.enabled"
 generators = [
     { name = "MavenPomGenerator" }
 ]
+extensions = [
+    { name = "MavenGitIgnoreExtension" }
+]
 
 [[components.kriollo]]
 path = "kriollo/generator/git"
@@ -95,12 +98,28 @@ generators = [
 ]
 
 [[components.kriollo]]
+path = "kriollo/generator/jetbrains"
+name = "Jetbrains"
+activationKey = "jetbrains.enabled"
+extensions = [
+    { name = "JetbrainsGitIgnoreExtension" }
+]
+
+[[components.kriollo]]
 path = "kriollo/generator/cli/script"
 name = "MainScript"
 activationKey = "cli.script.enabled"
 generators = [
     { name = "MainScriptDirectoryGenerator" },
     { name = "MainScriptFileGenerator" },
+]
+
+[[components.kriollo]]
+path = "kriollo/generator/java"
+name = "Java"
+activationKey = "java.enabled"
+extensions = [
+    { name = "JavaGitIgnoreExtension" }
 ]
 
 [[components.kriollo]]
@@ -149,5 +168,15 @@ path = "kriollo/generator/components/kriollo"
 name = "Kriollo"
 activationKey = "components.kriollo.isNotEmpty()"
 generators = [
-    { name = "KriolloModulesGenerator" }
+    { name = "KriolloModulesGenerator" },
+#    { name = "KriolloExtensionsGenerator" },
+#    { name = "KriolloBaseGeneratorGenerator" }
 ]
+
+#[[components.kriollo-extensions]]
+#path = "kriollo/generator/base/extensions"
+#extensions = [
+#    { name = "JavaDependencyExtension", provide = "kriollo.generator.java.JavaArtifact" },
+#    { name = "GitIgnoreExtension", provide = "kriollo.generator.git.GitIgnoreRules" },
+#    { name = "MavenPluginExtension", provide = "String" },
+#]

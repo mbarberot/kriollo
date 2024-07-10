@@ -1,6 +1,10 @@
 package kriollo.configuration
 
 import kriollo.generator.components.ComponentsConfiguration
+import kriollo.generator.git.GitConfiguration
+
+// TODO : move configuration classes into their generator package like for components
+// TODO : add configuration generation for components.kriollo ?
 
 data class CodegenConfiguration(
     val project: ProjectConfiguration,
@@ -39,10 +43,6 @@ data class KotlinConfiguration(
 
 data class NixConfiguration(
     val enabled: Boolean = false
-)
-
-data class GitConfiguration(
-    val enabled: Boolean = false // TODO inject conventionnal commit in pre-commit hook
 )
 
 data class ScriptsConfiguration(

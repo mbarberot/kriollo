@@ -1,6 +1,6 @@
 package kriollo.generator.components.kriollo
 
-import kriollo.generator.components.BaseComponentModel
+import kriollo.generator.utils.BaseModel
 
 data class KriolloModuleModel(
     val namespace: String,
@@ -8,4 +8,4 @@ data class KriolloModuleModel(
     val activation: String,
     val generators: List<String>,
     val extensions: List<String>,
-): BaseComponentModel()
+): BaseModel()
