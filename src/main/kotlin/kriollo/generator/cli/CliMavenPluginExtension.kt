@@ -1,21 +1,23 @@
-package kriollo.generator.templating.jte
+package kriollo.generator.cli
 
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.base.extensions.MavenPluginExtension
 import kriollo.generator.base.extensions.TemplatedExtension
 import kriollo.generator.utils.ServiceProvider
 
-class JteMavenPluginExtension(
+class CliMavenPluginExtension(
     val configuration: CodegenConfiguration,
     serviceProvider: ServiceProvider,
 ) : MavenPluginExtension, TemplatedExtension(serviceProvider) {
 
-    override fun getTemplatePath(): String = "generator/templating/jte/maven-plugin.kte"
+    override fun getTemplatePath(): String {
+        return "generator/cli/maven-plugin.kte"
+    }
 
     override fun getAllTemplateData(): List<Any> {
-        val (_, _, _, version, sourceDirectory, contentType) = configuration.templating.jte
         return listOf(
-            JteMavenPluginModel(version, sourceDirectory, contentType)
+            CliMavenPluginModel(mainClass = configuration.project.mainClass)
         )
     }
+
 }

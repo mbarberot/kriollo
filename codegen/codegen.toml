@@ -106,6 +106,14 @@ extensions = [
 ]
 
 [[components.kriollo]]
+path = "kriollo/generator/cli"
+name = "cli"
+activationKey = "cli.enabled"
+extensions = [
+    { name = "CliMavenPluginExtension" }
+]
+
+[[components.kriollo]]
 path = "kriollo/generator/cli/script"
 name = "MainScript"
 activationKey = "cli.script.enabled"
@@ -132,6 +140,7 @@ generators = [
 ]
 extensions = [
     { name = "KotlinJavaDependenciesExtension" },
+    { name = "KotlinMavenPluginExtension" },
 ]
 
 [[components.kriollo]]

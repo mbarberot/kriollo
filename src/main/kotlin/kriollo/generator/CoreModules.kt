@@ -1,6 +1,7 @@
 package kriollo.generator
 
 import kriollo.configuration.CodegenConfiguration
+import kriollo.generator.cli.CliModule
 import kriollo.generator.cli.script.MainScriptModule
 import kriollo.generator.git.GitModule
 import kriollo.generator.java.JavaModule
@@ -25,6 +26,7 @@ class CoreModules {
         return listOf(
             NixModule(configuration, serviceProvider),
             JetbrainsModule(configuration, serviceProvider),
+            CliModule(configuration, serviceProvider),
             MainScriptModule(configuration, serviceProvider),
             BuildScriptModule(configuration, serviceProvider),
             GitModule(configuration, serviceProvider),

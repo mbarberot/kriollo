@@ -1,5 +1,5 @@
 package kriollo.generator.base.extensions
 
-fun interface MavenPluginExtension {
-    fun providePlugins(): List<String>
-}
+import kriollo.generator.CodegenExtension
+
+fun interface MavenPluginExtension: CodegenExtension<String>
