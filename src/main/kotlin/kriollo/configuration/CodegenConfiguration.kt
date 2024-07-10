@@ -1,5 +1,7 @@
 package kriollo.configuration
 
+import kriollo.generator.components.ComponentsConfiguration
+
 data class CodegenConfiguration(
     val project: ProjectConfiguration,
     val cli: CliConfiguration = CliConfiguration(),
@@ -10,6 +12,7 @@ data class CodegenConfiguration(
     val maven: MavenConfiguration = MavenConfiguration(),
     val templating: TemplatingConfiguration = TemplatingConfiguration(),
     val libs: JavaLibConfiguration = JavaLibConfiguration(),
+    val components: ComponentsConfiguration = ComponentsConfiguration(),
 )
 
 data class ProjectConfiguration(

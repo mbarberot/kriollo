@@ -1,0 +1,34 @@
+@import kriollo.generator.components.kriollo.KriolloModuleModel
+@param model: KriolloModuleModel
+package ${model.namespace}
+
+${model.warning}
+
+import kriollo.configuration.CodegenConfiguration
+import kriollo.generator.CodegenModule
+import kriollo.generator.Generator
+import kriollo.generator.utils.ServiceProvider
+import javax.annotation.processing.Generated
+
+@Generated("${model.generatedBy}")
+class ${model.name}(
+    configuration: CodegenConfiguration,
+    val serviceProvider: ServiceProvider,
+) : CodegenModule(configuration) {
+
+    override fun isActivated(): Boolean = ${model.activation}
+
+    override fun provideGenerators(): List<Generator> = listOf(
+        @for(generator in model.generators)
+            ${generator}(configuration),
+        @endfor
+    )
+
+    @if(model.extensions.isNotEmpty())
+    override fun provideExtensions(generator: Generator) {
+        @for(extension in model.extensions)
+            generator.registerExtension(${extension}(configuration, serviceProvider))
+        @endfor
+    }
+    @endif
+}

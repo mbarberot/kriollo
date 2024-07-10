@@ -3,9 +3,11 @@ package kriollo.generator.kotlin
 import kriollo.configuration.CodegenConfiguration
 import kriollo.configuration.JavaArtifact
 import kriollo.generator.base.extensions.JavaDependencyExtension
+import kriollo.generator.utils.ServiceProvider
 
 class KotlinJavaDependenciesExtension(
-    val configuration: CodegenConfiguration
+    val configuration: CodegenConfiguration,
+    serviceProvider: ServiceProvider
 ) : JavaDependencyExtension {
 
     override fun provideDependencies(): List<JavaArtifact> {

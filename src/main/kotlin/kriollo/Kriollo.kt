@@ -7,6 +7,7 @@ import gg.jte.TemplateEngine
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.CodeGenerators
 import kriollo.generator.CoreModules
+import kriollo.generator.KriolloModules
 import kriollo.generator.utils.FilesytemService
 import kriollo.generator.utils.ServiceProvider
 import kriollo.generator.utils.TemplatingService
@@ -16,6 +17,10 @@ private fun readConfiguration(configurationFilePath: String): CodegenConfigurati
     val mapper = TomlMapper()
     mapper.registerModule(kotlinModule())
     return mapper.readValue(File(configurationFilePath), CodegenConfiguration::class.java)
+}
+
+object Kriollo {
+    val version = "0.1.0" // TODO inject through idk ?
 }
 
 fun main(args: Array<String>) {
@@ -48,6 +53,7 @@ fun main(args: Array<String>) {
     val generators = CodeGenerators(
         buildList {
             addAll(CoreModules().getModules(codegenConfiguration, serviceProvider))
+            addAll(KriolloModules().getModules(codegenConfiguration, serviceProvider))
         },
     )
 

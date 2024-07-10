@@ -39,6 +39,7 @@ enabled = true
 enabled = true
 
 [scripts.build]
+enabled = true
 customSteps = [
     { name = "Copy jar into codegen dir", command = "cp target/kriollo.jar codegen/" },
 ]
@@ -56,4 +57,97 @@ contentType = "Plain"
 
 [libs.jackson]
 version = "2.13.0"
-dataformats = [ "toml" ]
+dataformats = ["toml"]
+
+[components]
+
+[[components.kriollo]]
+path = "kriollo/generator/nix"
+name = "nix"
+activationKey = "nix.enabled"
+generators = [
+    { name = "DefaultNixFileGenerator" },
+]
+
+[[components.kriollo]]
+path = "kriollo/generator/script/build"
+name = "BuildScript"
+activationKey = "scripts.build.enabled"
+generators = [
+    { name = "BuildScriptDirectoryGenerator" },
+    { name = "BuildScriptGenerator" },
+]
+
+[[components.kriollo]]
+path = "kriollo/generator/maven"
+name = "Maven"
+activationKey = "maven.enabled"
+generators = [
+    { name = "MavenPomGenerator" }
+]
+
+[[components.kriollo]]
+path = "kriollo/generator/git"
+name = "Git"
+activationKey = "git.enabled"
+generators = [
+    { name = "GitIgnoreFileGenerator" }
+]
+
+[[components.kriollo]]
+path = "kriollo/generator/cli/script"
+name = "MainScript"
+activationKey = "cli.script.enabled"
+generators = [
+    { name = "MainScriptDirectoryGenerator" },
+    { name = "MainScriptFileGenerator" },
+]
+
+[[components.kriollo]]
+path = "kriollo/generator/kotlin"
+name = "Kotlin"
+activationKey = "kotlin.enabled"
+generators = [
+    { name = "KotlinSourceDirectoryGenerator" },
+    { name = "KotlinTestDirectoryGenerator" },
+]
+extensions = [
+    { name = "KotlinJavaDependenciesExtension" },
+]
+
+[[components.kriollo]]
+path = "kriollo/generator/templating/jte"
+name = "Jte"
+activationKey = "templating.jte.enabled"
+generators = [
+    { name = "JteDirectoryGenerator" },
+    { name = "JteRootFileGenerator" },
+]
+extensions = [
+    { name = "JteJavaDependenciesExtension" },
+    { name = "JteMavenPluginExtension" },
+]
+
+[[components.kriollo]]
+path = "kriollo/generator/project"
+name = "Project"
+activationKey = "-"
+extensions = [
+    { name = "ProjectJavaDependenciesExtension" }
+]
+
+[[components.kriollo]]
+path = "kriollo/generator/libs"
+name = "Libraries"
+activationKey = "-"
+extensions = [
+    { name = "JacksonJavaDependenciesExtension" }
+]
+
+[[components.kriollo]]
+path = "kriollo/generator/components/kriollo"
+name = "Kriollo"
+activationKey = "components.kriollo.isNotEmpty()"
+generators = [
+    { name = "KriolloModulesGenerator" }
+]

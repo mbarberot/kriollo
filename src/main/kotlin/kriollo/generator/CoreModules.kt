@@ -15,15 +15,15 @@ import kriollo.generator.utils.ServiceProvider
 class CoreModules {
     fun getModules(configuration: CodegenConfiguration, serviceProvider: ServiceProvider): List<CodegenModule> {
         return listOf(
-            NixModule(configuration),
-            MainScriptModule(configuration),
-            BuildScriptModule(configuration),
-            GitModule(configuration),
-            MavenModule(configuration),
-            ProjectModule(configuration),
-            KotlinModule(configuration),
+            NixModule(configuration, serviceProvider),
+            MainScriptModule(configuration, serviceProvider),
+            BuildScriptModule(configuration, serviceProvider),
+            GitModule(configuration, serviceProvider),
+            MavenModule(configuration, serviceProvider),
+            ProjectModule(configuration, serviceProvider),
+            KotlinModule(configuration, serviceProvider),
             JteModule(configuration, serviceProvider),
-            LibrariesModule(configuration),
+            LibrariesModule(configuration, serviceProvider),
         )
     }
 }
