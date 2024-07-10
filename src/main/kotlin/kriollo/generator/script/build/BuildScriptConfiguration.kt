@@ -1,5 +1,6 @@
 package kriollo.generator.script.build
 
-data class BuildScriptModel(
+data class BuildScriptConfiguration(
+    val enabled: Boolean = false,
     val customSteps: List<BuildScriptCustomStepConfiguration> = listOf()
 )
