@@ -96,6 +96,10 @@ generators = [
 extensions = [
     { name = "MavenGitIgnoreExtension" }
 ]
+provideExtensions = [
+    { name = "MavenPropertiesExtension", provideType = "Map<String,String>" },
+    { name = "MavenPluginExtension", provideType = "String"},
+]
 
 [[components.kriollo]]
 path = "kriollo/generator/git"
@@ -104,6 +108,9 @@ tag = "core"
 activationKey = "git.enabled"
 generators = [
     { name = "GitIgnoreFileGenerator" }
+]
+provideExtensions = [
+    { name = "GitIgnoreExtension", provideType = "kriollo.generator.git.GitIgnoreRules"}
 ]
 
 [[components.kriollo]]
@@ -197,7 +204,7 @@ activationKey = "components.kriollo.isNotEmpty()"
 generators = [
     { name = "KriolloModulesGenerator" },
     { name = "KriolloAggregatorsGenerator" },
-#    { name = "KriolloExtensionsGenerator" },
+    { name = "KriolloExtensionsGenerator" },
 #    { name = "KriolloBaseGeneratorGenerator" }
 ]
 

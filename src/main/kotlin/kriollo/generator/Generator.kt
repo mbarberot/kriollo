@@ -2,8 +2,8 @@ package kriollo.generator
 
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.base.extensions.JavaDependencyExtension
-import kriollo.generator.base.extensions.MavenPluginExtension
-import kriollo.generator.base.extensions.GitIgnoreExtension
+import kriollo.generator.maven.MavenPluginExtension
+import kriollo.generator.git.GitIgnoreExtension
 import kriollo.generator.utils.ServiceProvider
 
 abstract class Generator {

@@ -3,7 +3,6 @@ package kriollo.generator.maven
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.base.TemplatedFileGenerator
 import kriollo.generator.base.extensions.JavaDependencyExtension
-import kriollo.generator.base.extensions.MavenPluginExtension
 
 class MavenPomGenerator(val configuration: CodegenConfiguration) : TemplatedFileGenerator() {
 
@@ -15,6 +14,11 @@ class MavenPomGenerator(val configuration: CodegenConfiguration) : TemplatedFile
     override fun getTemplatePath() = "generator/maven/pom.xml.kte"
 
     override fun getTemplateData() = PomModel(
+        properties = mapOf(
+            Pair("project.build.sourceEncoding", "UTF-8"),
+            Pair("kotlin.code.style", "official"),
+            Pair("kotlin.compiler.jvmTarget", "21"),
+        ),
         dependencies = buildList {
             dependencyExtensions
                 .map { extension -> extension.provideDependencies() }

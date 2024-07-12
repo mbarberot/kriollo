@@ -1,7 +1,7 @@
 package kriollo.generator.kotlin
 
 import kriollo.configuration.CodegenConfiguration
-import kriollo.generator.base.extensions.MavenPluginExtension
+import kriollo.generator.maven.MavenPluginExtension
 import kriollo.generator.base.extensions.TemplatedExtension
 import kriollo.generator.utils.ServiceProvider
 

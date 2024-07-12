@@ -7,6 +7,7 @@ data class KriolloComponentConfiguration(
     val activationKey: String,
     val generators: List<KriolloGeneratorConfiguration> = listOf(),
     val extensions: List<KriolloExtensionConfiguration> = listOf(),
+    val provideExtensions: List<KriolloExtensionProviderConfiguration> = listOf()
 ) {
     fun getClassName() = name.replaceFirstChar(Char::titlecaseChar) + "Module"
     fun getNamespace() = path.replace("/", ".")

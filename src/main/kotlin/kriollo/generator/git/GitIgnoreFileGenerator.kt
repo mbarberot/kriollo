@@ -2,7 +2,6 @@ package kriollo.generator.git
 
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.base.TemplatedFileGenerator
-import kriollo.generator.base.extensions.GitIgnoreExtension
 
 class GitIgnoreFileGenerator(val configuration: CodegenConfiguration) : TemplatedFileGenerator() {
 
@@ -19,20 +18,6 @@ class GitIgnoreFileGenerator(val configuration: CodegenConfiguration) : Template
                     .map { extension -> extension.provide() }
                     .forEach { rules -> addAll(rules) }
             }
-//            listOf(
-//                GitIgnoreBlockModel(
-//                    "Intellij files",
-//                    listOf("/.idea/", "*.iml")
-//                ),
-//                GitIgnoreBlockModel(
-//                    "Java artifacts",
-//                    listOf("*.jar")
-//                ),
-//                GitIgnoreBlockModel(
-//                    "Maven working directories",
-//                    listOf("target/")
-//                )
-//            )
         )
     }
 

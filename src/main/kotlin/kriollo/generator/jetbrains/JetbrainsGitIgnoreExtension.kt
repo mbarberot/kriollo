@@ -1,7 +1,7 @@
 package kriollo.generator.jetbrains
 
 import kriollo.configuration.CodegenConfiguration
-import kriollo.generator.base.extensions.GitIgnoreExtension
+import kriollo.generator.git.GitIgnoreExtension
 import kriollo.generator.git.GitIgnoreRules
 import kriollo.generator.utils.ServiceProvider
 

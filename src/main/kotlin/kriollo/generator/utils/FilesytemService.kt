@@ -9,8 +9,10 @@ import kotlin.io.path.notExists
 
 class FilesytemService {
     fun createFile(filename: String, content: String = "", isScript: Boolean = false) {
-        val directoryPath = filename.substringBeforeLast("/")
-        createDirectory(directoryPath)
+        val directoryPath = filename.substringBeforeLast("/", "")
+        if(directoryPath.isNotEmpty()) {
+            createDirectory(directoryPath)
+        }
 
         println("> Generating $filename file")
         val fileToCreate = File(filename)

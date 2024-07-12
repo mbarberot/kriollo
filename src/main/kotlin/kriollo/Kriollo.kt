@@ -91,7 +91,6 @@ fun showHelp(buildCommand: String) {
  * Maybe : move *Configuration into the same package to avoid the kinda hard import block generation
  * though it still requires to gather the configuration files
  */
-
 /*
  * TODO : generate Generator base class and the extension
  *
@@ -102,3 +101,4 @@ fun showHelp(buildCommand: String) {
  *  # ... and so on
  * ]
  */
+//TODO: refactor java class generation => base template with import, package and className

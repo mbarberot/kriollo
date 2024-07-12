@@ -20,6 +20,7 @@ class KriolloModule(
     override fun provideGenerators(): List<Generator> = listOf(
         KriolloModulesGenerator(configuration),
         KriolloAggregatorsGenerator(configuration),
+        KriolloExtensionsGenerator(configuration),
     )
 
 }
