@@ -15,11 +15,11 @@ class MavenPomGenerator(val configuration: CodegenConfiguration) : TemplatedFile
     override fun getTemplatePath() = "generator/maven/pom.xml.kte"
 
     override fun getTemplateData() = PomModel(
-        properties = mapOf( // TODO PropertyExtension
-            Pair("project.build.sourceEncoding", "UTF-8"),
-            Pair("kotlin.code.style", "official"),
-            Pair("kotlin.compiler.jvmTarget", "21"),
-        ),
+        properties = buildMap {
+            propertiesExtension
+                .flatMap { it.provide() }
+                .forEach { (key, value) -> put(key, value) }
+        },
         dependencies = buildList {
             dependencyExtensions
                 .map { extension -> extension.provide() }

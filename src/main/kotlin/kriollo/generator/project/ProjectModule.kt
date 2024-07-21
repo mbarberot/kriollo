@@ -22,5 +22,6 @@ class ProjectModule(
 
     override fun provideExtensions(generator: Generator) {
         generator.registerExtension(ProjectJavaDependenciesExtension(configuration, serviceProvider))
+        generator.registerExtension(ProjectMavenPropertiesExtension(configuration, serviceProvider))
     }
 }

@@ -16,6 +16,7 @@
 
 [project]
 mainClass = "kriollo.KriolloKt"
+encoding = "UTF-8"
 # TODO set finalName here
 dependencies = []
 
@@ -97,7 +98,7 @@ extensions = [
     { name = "MavenGitIgnoreExtension" }
 ]
 provideExtensions = [
-    { name = "MavenPropertiesExtension", provideType = "Map<String,String>" },
+    { name = "MavenPropertiesExtension", provideType = "Pair<String,String>" },
     { name = "MavenPluginExtension", provideType = "String"},
 ]
 
@@ -165,6 +166,7 @@ generators = [
 extensions = [
     { name = "KotlinJavaDependenciesExtension" },
     { name = "KotlinMavenPluginExtension" },
+    { name = "KotlinMavenPropertiesExtension" },
 ]
 
 [[components.kriollo]]
@@ -187,7 +189,8 @@ name = "Project"
 tag = "core"
 activationKey = "-"
 extensions = [
-    { name = "ProjectJavaDependenciesExtension" }
+    { name = "ProjectJavaDependenciesExtension" },
+    { name = "ProjectMavenPropertiesExtension" }
 ]
 
 [[components.kriollo]]
