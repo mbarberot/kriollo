@@ -1,4 +1,4 @@
-package kriollo.generator.components.kriollo.configuration
+package kriollo.generator.components.kriollo
 
 data class KriolloComponentConfiguration(
     val path: String,

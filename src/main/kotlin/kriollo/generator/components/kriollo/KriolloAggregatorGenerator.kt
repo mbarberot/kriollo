@@ -2,7 +2,6 @@ package kriollo.generator.components.kriollo
 
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.base.TemplatedFileGenerator
-import kriollo.generator.components.kriollo.configuration.KriolloComponentConfiguration
 
 class KriolloAggregatorGenerator(
     private val tag: String,

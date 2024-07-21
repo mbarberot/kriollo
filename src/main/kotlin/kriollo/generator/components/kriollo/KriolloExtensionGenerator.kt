@@ -2,8 +2,6 @@ package kriollo.generator.components.kriollo
 
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.base.TemplatedFileGenerator
-import kriollo.generator.components.kriollo.configuration.KriolloComponentConfiguration
-import kriollo.generator.components.kriollo.configuration.KriolloExtensionProviderConfiguration
 
 class KriolloExtensionGenerator(
     private val moduleConfiguration: KriolloComponentConfiguration,

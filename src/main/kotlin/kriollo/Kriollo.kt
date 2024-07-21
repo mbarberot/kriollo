@@ -20,7 +20,7 @@ private fun readConfiguration(configurationFilePath: String): CodegenConfigurati
 }
 
 object Kriollo {
-    val version = "0.1.0" // TODO inject this at build time
+    val version = "0.1.0" // TODO: feat(config): handle version
 }
 
 fun main(args: Array<String>) {
@@ -43,7 +43,7 @@ fun main(args: Array<String>) {
     }
 
     val serviceProvider = ServiceProvider(
-        // TODO : add configuration service to allow a global access to the configuration and unify signatures
+        // TODO: refactor(di): add configuration service to allow a global access to the configuration and unify signatures
         FilesytemService(),
         TemplatingService(
             TemplateEngine.createPrecompiled(ContentType.valueOf(codegenConfiguration.templating.jte.contentType)),
@@ -77,28 +77,14 @@ fun showHelp(buildCommand: String) {
     return
 }
 
-//TODO setup tests to start TDD loops => require Maven (JUnit)
-//TODO setup logging instead of println
-//TODO use picocli
-//TODO handle file deletion => probably need to track generated files
-//TODO -lock file to track generated files
-//TODO pom : source and test directories => how ?
-//TODO pom : final name => config.project
-//TODO pom : properties => extension => create the new extension code generator to make it easier to add an extension from toml file
-//TODO config : the configuration file is getting pretty long, see if we can split it ? like a kind of inclusion, either built-in or home-made
-/*
- * TODO config : generate the main configuration class => may require a lot of work to gather different classes all around
- * Maybe : move *Configuration into the same package to avoid the kinda hard import block generation
- * though it still requires to gather the configuration files
- */
-/*
- * TODO : generate Generator base class and the extension
- *
- * [[components.kriollo-extensions]]
- * path: "kriollo/generator/base/extensions
- * availableExtensions: [
- *  { name = "GitIgnoreExtension", provides = "GitIgnoreRule", for = "kriollo.generator.git" },
- *  # ... and so on
- * ]
- */
-//TODO: refactor java class generation => base template with import, package and className
+//TODO: feat(tests): add JUnit
+//TODO: feat(logs): add Logging framework
+//TODO: feat(cli): use picocli
+//TODO: feat(generator): track generated files (kind of -lock file)
+//TODO: feat(generator): handle old obsolete files using the -lock file
+//TODO: feat(maven): set source and test directories using an extension (only one || error)
+//TODO: feat(maven): artifact coordinates
+//TODO: feat(maven): use ${config.project.name} for the final name
+//TODO: refactor(jte): use a base template for java classes
+//TODO: feat(config): check configuration (ie: JUnit requires Maven or Gradle, ...)
+//TODO: feat(config): split configuration file
