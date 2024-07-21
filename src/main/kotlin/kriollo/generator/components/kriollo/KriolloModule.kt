@@ -21,6 +21,7 @@ class KriolloModule(
         KriolloModulesGenerator(configuration),
         KriolloAggregatorsGenerator(configuration),
         KriolloExtensionsGenerator(configuration),
+        KriolloBaseGeneratorGenerator(configuration),
     )
 
 }

@@ -1,8 +1,8 @@
 package kriollo.generator.kotlin
 
 import kriollo.configuration.CodegenConfiguration
-import kriollo.configuration.JavaArtifact
-import kriollo.generator.base.extensions.JavaDependencyExtension
+import kriollo.generator.java.JavaArtifact
+import kriollo.generator.java.JavaDependencyExtension
 import kriollo.generator.utils.ServiceProvider
 
 class KotlinJavaDependenciesExtension(
@@ -10,7 +10,7 @@ class KotlinJavaDependenciesExtension(
     serviceProvider: ServiceProvider
 ) : JavaDependencyExtension {
 
-    override fun provideDependencies(): List<JavaArtifact> {
+    override fun provide(): List<JavaArtifact> {
         return listOf(
             JavaArtifact("org.jetbrains.kotlin", "kotlin-stdlib", configuration.kotlin.version)
         )

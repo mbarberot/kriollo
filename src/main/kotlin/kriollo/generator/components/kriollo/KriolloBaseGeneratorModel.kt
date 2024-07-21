@@ -1,8 +1,10 @@
 package kriollo.generator.components.kriollo
 
-class KriolloExtensionModel(
+class KriolloBaseGeneratorModel(
     namespace: String,
     name: String,
     imports: List<String>,
-    val provideType: String,
-) : JavaModel(namespace, name, imports)
+    val extensions: List<String>,
+): JavaModel(namespace, name, imports ) {
+
+}

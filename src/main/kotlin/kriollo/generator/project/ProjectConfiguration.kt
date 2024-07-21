@@ -1,6 +1,6 @@
 package kriollo.generator.project
 
-import kriollo.configuration.JavaArtifact
+import kriollo.generator.java.JavaArtifact
 
 data class ProjectConfiguration(
     val mainClass: String,

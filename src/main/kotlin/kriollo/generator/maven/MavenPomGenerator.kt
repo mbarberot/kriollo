@@ -2,10 +2,11 @@ package kriollo.generator.maven
 
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.base.TemplatedFileGenerator
-import kriollo.generator.base.extensions.JavaDependencyExtension
+import kriollo.generator.java.JavaDependencyExtension
 
 class MavenPomGenerator(val configuration: CodegenConfiguration) : TemplatedFileGenerator() {
 
+    private val propertiesExtension = mutableListOf<MavenPropertiesExtension>()
     private val dependencyExtensions = mutableListOf<JavaDependencyExtension>()
     private val pluginExtensions = mutableListOf<MavenPluginExtension>()
 
@@ -14,14 +15,14 @@ class MavenPomGenerator(val configuration: CodegenConfiguration) : TemplatedFile
     override fun getTemplatePath() = "generator/maven/pom.xml.kte"
 
     override fun getTemplateData() = PomModel(
-        properties = mapOf(
+        properties = mapOf( // TODO PropertyExtension
             Pair("project.build.sourceEncoding", "UTF-8"),
             Pair("kotlin.code.style", "official"),
             Pair("kotlin.compiler.jvmTarget", "21"),
         ),
         dependencies = buildList {
             dependencyExtensions
-                .map { extension -> extension.provideDependencies() }
+                .map { extension -> extension.provide() }
                 .forEach { dependencies -> addAll(dependencies) }
         },
         plugins = buildList {
@@ -38,6 +39,10 @@ class MavenPomGenerator(val configuration: CodegenConfiguration) : TemplatedFile
 
     override fun registerExtension(extension: MavenPluginExtension) {
         pluginExtensions.add(extension)
+    }
+
+    override fun registerExtension(extension: MavenPropertiesExtension) {
+        propertiesExtension.add(extension)
     }
 }
 

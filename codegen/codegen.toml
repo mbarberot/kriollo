@@ -149,6 +149,9 @@ activationKey = "java.enabled"
 extensions = [
     { name = "JavaGitIgnoreExtension" }
 ]
+provideExtensions = [
+    { name = "JavaDependencyExtension", provideType = "kriollo.generator.java.JavaArtifact" }
+]
 
 [[components.kriollo]]
 path = "kriollo/generator/kotlin"
@@ -205,7 +208,7 @@ generators = [
     { name = "KriolloModulesGenerator" },
     { name = "KriolloAggregatorsGenerator" },
     { name = "KriolloExtensionsGenerator" },
-#    { name = "KriolloBaseGeneratorGenerator" }
+    { name = "KriolloBaseGeneratorGenerator" },
 ]
 
 #[[components.kriollo-extensions]]

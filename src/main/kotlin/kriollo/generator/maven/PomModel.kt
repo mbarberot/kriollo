@@ -1,6 +1,6 @@
 package kriollo.generator.maven
 
-import kriollo.configuration.JavaArtifact
+import kriollo.generator.java.JavaArtifact
 
 data class PomModel(
     val dependencies: List<JavaArtifact>,

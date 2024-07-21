@@ -11,7 +11,7 @@ class KriolloExtensionGenerator(
 ) : TemplatedFileGenerator() {
 
     override fun getTemplatePath(): String {
-        return "generator/components/kriollo/KriolloExtension.kt.jte"
+        return "generator/components/kriollo/KriolloExtension.kt.kte"
     }
 
     override fun getTemplateData(): Any {

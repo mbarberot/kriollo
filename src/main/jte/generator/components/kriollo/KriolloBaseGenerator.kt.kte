@@ -1,0 +1,23 @@
+@import kriollo.generator.components.kriollo.KriolloBaseGeneratorModel
+@param model: KriolloBaseGeneratorModel
+package ${model.namespace}
+
+${model.javaWarning()}
+
+@for(import in model.imports())
+    import ${import}
+@endfor
+${model.generatedAnnotationImport()}
+
+${model.generatedAnnotation()}
+abstract class ${model.name} {
+
+    abstract fun execute(configuration: CodegenConfiguration, serviceProvider: ServiceProvider)
+
+    @for(extension in model.extensions)
+        open fun registerExtension(extension: ${extension}) {
+            // Left empty for child classes to implement if needed
+        }
+    @endfor
+
+}

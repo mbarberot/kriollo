@@ -1,4 +1,4 @@
-package kriollo.configuration
+package kriollo.generator.java
 
 data class JavaArtifact(
     val groupId: String,

@@ -5,7 +5,7 @@ package ${model.namespace}
 ${model.javaWarning()}
 
 import kriollo.generator.CodegenExtension
-@for(import in model.imports)
+@for(import in model.imports())
     import ${import}
 @endfor
 ${model.generatedAnnotationImport()}
