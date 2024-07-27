@@ -15,6 +15,7 @@ import kriollo.generator.java.JavaModule
 import kriollo.generator.kotlin.KotlinModule
 import kriollo.generator.templating.jte.JteModule
 import kriollo.generator.project.ProjectModule
+import kriollo.generator.test.TestsModule
 import kriollo.generator.libs.LibrariesModule
 import kriollo.generator.utils.ServiceProvider
 import javax.annotation.processing.Generated
@@ -34,6 +35,7 @@ class CoreModules {
             KotlinModule(configuration, serviceProvider),
             JteModule(configuration, serviceProvider),
             ProjectModule(configuration, serviceProvider),
+            TestsModule(configuration, serviceProvider),
             LibrariesModule(configuration, serviceProvider),
         )
     }

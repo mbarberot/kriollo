@@ -12,6 +12,7 @@ import kriollo.generator.nix.NixConfiguration
 import kriollo.generator.project.ProjectConfiguration
 import kriollo.generator.script.ScriptsConfiguration
 import kriollo.generator.templating.TemplatingConfiguration
+import kriollo.test.TestConfiguration
 
 data class CodegenConfiguration(
     val project: ProjectConfiguration,
@@ -25,6 +26,7 @@ data class CodegenConfiguration(
     val maven: MavenConfiguration = MavenConfiguration(),
     val templating: TemplatingConfiguration = TemplatingConfiguration(),
     val libs: JavaLibConfiguration = JavaLibConfiguration(),
+    val tests: TestConfiguration = TestConfiguration(),
     val components: ComponentsConfiguration = ComponentsConfiguration(),
 )
 

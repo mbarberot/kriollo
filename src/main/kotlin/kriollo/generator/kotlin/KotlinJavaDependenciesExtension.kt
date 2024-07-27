@@ -7,13 +7,17 @@ import kriollo.generator.utils.ServiceProvider
 
 class KotlinJavaDependenciesExtension(
     val configuration: CodegenConfiguration,
-    serviceProvider: ServiceProvider
+    val serviceProvider: ServiceProvider,
 ) : JavaDependencyExtension {
 
     override fun provide(): List<JavaArtifact> {
-        return listOf(
-            JavaArtifact("org.jetbrains.kotlin", "kotlin-stdlib", configuration.kotlin.version)
-        )
+        val kotlinVersion = configuration.kotlin.version
+        return buildList {
+            add(JavaArtifact("org.jetbrains.kotlin", "kotlin-stdlib", kotlinVersion))
+            if (configuration.tests.enabled) {
+                add(JavaArtifact("org.jetbrains.kotlin", "kotlin-test-junit5", kotlinVersion, "test"))
+            }
+        }
     }
 
 }

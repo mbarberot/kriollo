@@ -17,7 +17,9 @@ class CodeGenerators(
 
     init {
         generators.forEach { generator ->
-            modules.forEach { module ->
+            modules
+                .filter { it.isActivated() }
+                .forEach { module ->
                 module.provideExtensions(generator)
             }
         }

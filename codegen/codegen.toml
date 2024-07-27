@@ -40,6 +40,9 @@ version = "1.9.24"
 [nix]
 enabled = true
 
+[jetbrains]
+enabled = true
+
 [git]
 enabled = true
 # TODO : add pre-commit hook for conventional commits
@@ -51,6 +54,9 @@ customSteps = [
 ]
 
 [maven]
+enabled = true
+
+[tests]
 enabled = true
 
 [templating]
@@ -191,6 +197,15 @@ activationKey = "-"
 extensions = [
     { name = "ProjectJavaDependenciesExtension" },
     { name = "ProjectMavenPropertiesExtension" }
+]
+
+[[components.kriollo]]
+path = "kriollo/generator/test"
+name = "tests"
+tag = "core"
+activationKey = "tests.enabled"
+extensions = [
+    { name = "JUnitJavaDependenciesExtension" }
 ]
 
 [[components.kriollo]]
