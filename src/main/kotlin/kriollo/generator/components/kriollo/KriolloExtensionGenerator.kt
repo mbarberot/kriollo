@@ -17,7 +17,11 @@ class KriolloExtensionGenerator(
             namespace = moduleConfiguration.getNamespace(),
             name = extensionConfiguration.name,
             provideType = extensionConfiguration.getProvidedTypeClassName(),
-            imports = listOf()
+            imports = buildList {
+                if (extensionConfiguration.provideType.contains('.')) {
+                    add(extensionConfiguration.provideType)
+                }
+            }
         )
     }
 

@@ -22,5 +22,7 @@ class TestsModule(
 
     override fun provideExtensions(generator: Generator) {
         generator.registerExtension(JUnitJavaDependenciesExtension(configuration, serviceProvider))
+        generator.registerExtension(SurefireMavenPluginExtension(configuration, serviceProvider))
+        generator.registerExtension(JUnitMavenBomExtension(configuration, serviceProvider))
     }
 }

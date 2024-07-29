@@ -6,6 +6,7 @@ package kriollo.generator
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.git.GitIgnoreExtension
 import kriollo.generator.java.JavaDependencyExtension
+import kriollo.generator.maven.MavenBomExtension
 import kriollo.generator.maven.MavenPluginExtension
 import kriollo.generator.maven.MavenPropertiesExtension
 import kriollo.generator.utils.ServiceProvider
@@ -20,6 +21,9 @@ abstract class Generator {
         // Left empty for child classes to implement if needed
     }
     open fun registerExtension(extension: MavenPluginExtension) {
+        // Left empty for child classes to implement if needed
+    }
+    open fun registerExtension(extension: MavenBomExtension) {
         // Left empty for child classes to implement if needed
     }
     open fun registerExtension(extension: GitIgnoreExtension) {

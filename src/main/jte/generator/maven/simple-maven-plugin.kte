@@ -1,0 +1,11 @@
+@import kriollo.generator.maven.SimpleMavenPluginModel
+@param model: SimpleMavenPluginModel
+<plugin>
+                @if(model.groupId != null)
+                    <groupId>${model.groupId}</groupId>
+                @endif
+                <artifactId>${model.artifactId}</artifactId>
+                @if(model.version != null)
+                    <version>${model.version}</version>
+                @endif
+            </plugin>

@@ -77,7 +77,6 @@ fun showHelp(buildCommand: String) {
     return
 }
 
-//TODO: feat(tests): add JUnit
 //TODO: feat(logs): add Logging framework
 //TODO: feat(cli): use picocli
 //TODO: feat(generator): track generated files (kind of -lock file)

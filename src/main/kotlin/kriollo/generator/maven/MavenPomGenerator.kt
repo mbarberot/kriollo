@@ -9,6 +9,7 @@ class MavenPomGenerator(val configuration: CodegenConfiguration) : TemplatedFile
     private val propertiesExtension = mutableListOf<MavenPropertiesExtension>()
     private val dependencyExtensions = mutableListOf<JavaDependencyExtension>()
     private val pluginExtensions = mutableListOf<MavenPluginExtension>()
+    private val bomExtensions = mutableListOf<MavenBomExtension>()
 
     override fun getFilePath(configuration: CodegenConfiguration) = "pom.xml"
 
@@ -30,6 +31,11 @@ class MavenPomGenerator(val configuration: CodegenConfiguration) : TemplatedFile
                 .map { extension -> extension.provide() }
                 .forEach { plugin -> addAll(plugin) }
 
+        },
+        boms = buildList {
+           bomExtensions
+               .map { extension -> extension.provide() }
+               .forEach { bom -> addAll(bom) }
         }
     )
 
@@ -43,6 +49,10 @@ class MavenPomGenerator(val configuration: CodegenConfiguration) : TemplatedFile
 
     override fun registerExtension(extension: MavenPropertiesExtension) {
         propertiesExtension.add(extension)
+    }
+
+    override fun registerExtension(extension: MavenBomExtension) {
+        bomExtensions.add(extension)
     }
 }
 

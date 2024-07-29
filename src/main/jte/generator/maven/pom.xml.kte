@@ -15,8 +15,8 @@
 
     <properties>
         @for(property in model.properties)
-            <${property.key}>${property.value}</${property.key}>
-        @endfor
+        <${property.key}>${property.value}</${property.key}>
+    @endfor
     </properties>
 
     <build>
@@ -30,16 +30,34 @@
         </plugins>
     </build>
 
+    @if(model.boms.isNotEmpty())
+        <dependencyManagement>
+            <dependencies>
+                @for(bom in model.boms)
+                    <dependency>
+                        <groupId>${bom.groupId}</groupId>
+                        <artifactId>${bom.artifactId}</artifactId>
+                        <version>${bom.version}</version>
+                        <type>pom</type>
+                        <scope>import</scope>
+                    </dependency>
+                @endfor
+            </dependencies>
+        </dependencyManagement>
+    @endif
+
     <dependencies>
         @for(artifact in model.dependencies)
-        <dependency>
-            <groupId>${artifact.groupId}</groupId>
-            <artifactId>${artifact.artifactId}</artifactId>
-            <version>${artifact.version}</version>
-            @if(artifact.scope != null)
-                <scope>${artifact.scope}</scope>
-            @endif
-        </dependency>
+            <dependency>
+                <groupId>${artifact.groupId}</groupId>
+                <artifactId>${artifact.artifactId}</artifactId>
+                @if(artifact.version != null)
+                    <version>${artifact.version}</version>
+                @endif
+                @if(artifact.scope != null)
+                    <scope>${artifact.scope}</scope>
+                @endif
+            </dependency>
         @endfor
     </dependencies>
 </project>

@@ -106,6 +106,7 @@ extensions = [
 provideExtensions = [
     { name = "MavenPropertiesExtension", provideType = "Pair<String,String>" },
     { name = "MavenPluginExtension", provideType = "String"},
+    { name = "MavenBomExtension", provideType = "kriollo.generator.java.JavaArtifact"}
 ]
 
 [[components.kriollo]]
@@ -117,7 +118,7 @@ generators = [
     { name = "GitIgnoreFileGenerator" }
 ]
 provideExtensions = [
-    { name = "GitIgnoreExtension", provideType = "kriollo.generator.git.GitIgnoreRules"}
+    { name = "GitIgnoreExtension", provideType = "GitIgnoreRules"}
 ]
 
 [[components.kriollo]]
@@ -157,7 +158,7 @@ extensions = [
     { name = "JavaGitIgnoreExtension" }
 ]
 provideExtensions = [
-    { name = "JavaDependencyExtension", provideType = "kriollo.generator.java.JavaArtifact" }
+    { name = "JavaDependencyExtension", provideType = "JavaArtifact" }
 ]
 
 [[components.kriollo]]
@@ -205,7 +206,9 @@ name = "tests"
 tag = "core"
 activationKey = "tests.enabled"
 extensions = [
-    { name = "JUnitJavaDependenciesExtension" }
+    { name = "JUnitJavaDependenciesExtension" },
+    { name = "SurefireMavenPluginExtension" },
+    { name = "JUnitMavenBomExtension" },
 ]
 
 [[components.kriollo]]
