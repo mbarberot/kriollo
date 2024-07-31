@@ -23,5 +23,6 @@ class MavenModule(
 
     override fun provideExtensions(generator: Generator) {
         generator.registerExtension(MavenGitIgnoreExtension(configuration, serviceProvider))
+        generator.registerExtension(MavenDefaultNixExtension(configuration, serviceProvider))
     }
 }

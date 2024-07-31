@@ -73,14 +73,17 @@ fun showHelp(buildCommand: String) {
             
         """.trimIndent()
     )
-    return
 }
 
-//TODO: refactor(di): add configuration service to allow a global access to the configuration and unify signatures
-//TODO: feat(logs): add Logging framework
-//TODO: feat(cli): use picocli
 //TODO: feat(generator): track generated files (kind of -lock file, may be done by decorating the FS service)
 //TODO: feat(generator): handle old obsolete files using the -lock file
+
+//TODO: feat(cli): use picocli
+//TODO: refactor(di): add configuration service to allow a global access to the configuration and unify signatures
+
+//TODO: feat(plugin): use a ServiceProvider (from JDK) to build dynamic module registration
+//TODO: feat(logs): add Logging framework
+
 //TODO: feat(maven): set source and test directories using an extension (only one || error)
 //TODO: feat(maven): artifact coordinates
 //TODO: feat(maven): use ${config.project.name} for the final name
@@ -88,6 +91,6 @@ fun showHelp(buildCommand: String) {
 //TODO: feat(config): check configuration (ie: JUnit requires Maven or Gradle, ...)
 //TODO: feat(config): split configuration file
 //TODO: feat(justfile): add justfile support
-//TODO: feat(plugin): use a ServiceProvider (from JDK) to build dynamic module registration
 //TODO: feat(config): handle version (maven filtering ? how to handle module/plugins ?)
-//TODO: feat(nix): use extension
+//TODO: feat(readme): add readme support with custom title/description/sections
+//TODO: feat(dockerfile): generate dockerfile

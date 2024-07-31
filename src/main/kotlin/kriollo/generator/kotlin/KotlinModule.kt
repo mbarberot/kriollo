@@ -26,5 +26,6 @@ class KotlinModule(
         generator.registerExtension(KotlinJavaDependenciesExtension(configuration, serviceProvider))
         generator.registerExtension(KotlinMavenPluginExtension(configuration, serviceProvider))
         generator.registerExtension(KotlinMavenPropertiesExtension(configuration, serviceProvider))
+        generator.registerExtension(KotlinDefaultNixExtension(configuration, serviceProvider))
     }
 }

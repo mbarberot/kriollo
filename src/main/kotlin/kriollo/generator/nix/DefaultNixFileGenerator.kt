@@ -15,18 +15,13 @@ class DefaultNixFileGenerator(val configuration: CodegenConfiguration) : Templat
 
     override fun getTemplateData(): Any {
         return DefaultNixFileModel(
-            packages = buildList{
-                addAll(listOf("jdk21", "maven", "kotlin"))
-                extensions
-                    .flatMap { extensions -> extensions.provide() }
-                    .forEach { partialNix -> addAll(partialNix.packages) }
-            },
-            shellHooks = buildList {
-                add("export JAVA_HOME=${'$'}{jdk21.home}")
-                extensions
-                    .flatMap { extensions -> extensions.provide() }
-                    .forEach { partialNix -> add(partialNix.shellHook) }
-            },
+            packages = extensions
+                .flatMap { extensions -> extensions.provide() }
+                .flatMap { partialNix -> partialNix.packages },
+            shellHooks = extensions
+                .flatMap { extensions -> extensions.provide() }
+                .map { partialNix -> partialNix.shellHook }
+                .filter { hook -> hook.isNotEmpty() },
         )
     }
 
