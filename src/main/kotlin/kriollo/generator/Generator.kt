@@ -9,6 +9,7 @@ import kriollo.generator.java.JavaDependencyExtension
 import kriollo.generator.maven.MavenBomExtension
 import kriollo.generator.maven.MavenPluginExtension
 import kriollo.generator.maven.MavenPropertiesExtension
+import kriollo.generator.nix.DefaultNixFileExtension
 import kriollo.generator.utils.ServiceProvider
 import javax.annotation.processing.Generated
 
@@ -17,6 +18,9 @@ abstract class Generator {
 
     abstract fun execute(configuration: CodegenConfiguration, serviceProvider: ServiceProvider)
 
+    open fun registerExtension(extension: DefaultNixFileExtension) {
+        // Left empty for child classes to implement if needed
+    }
     open fun registerExtension(extension: MavenPropertiesExtension) {
         // Left empty for child classes to implement if needed
     }

@@ -1,0 +1,17 @@
+@import kriollo.generator.nix.DefaultNixFileModel
+@param model: DefaultNixFileModel
+${model.bashWarning()}
+
+with (import <nixpkgs> {});
+mkShell {
+    buildInputs = [
+        @for(pkg in model.packages)
+            ${pkg}
+        @endfor
+    ];
+    shellHook = ''
+        @for(hook in model.shellHooks)
+            ${hook}
+        @endfor
+    '';
+}

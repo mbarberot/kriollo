@@ -76,9 +76,7 @@ fun showHelp(buildCommand: String) {
     return
 }
 
-//TODO: junit specific directory (aka tests.junit.enabled)
 //TODO: refactor(di): add configuration service to allow a global access to the configuration and unify signatures
-//TODO: feat(tests): add test script (tests.script.enabled || scripts.enabled automatically adds it ?)
 //TODO: feat(logs): add Logging framework
 //TODO: feat(cli): use picocli
 //TODO: feat(generator): track generated files (kind of -lock file, may be done by decorating the FS service)

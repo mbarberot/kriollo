@@ -90,6 +90,10 @@ activationKey = "nix.enabled"
 generators = [
     { name = "DefaultNixFileGenerator" },
 ]
+provideExtensions = [
+    { name = "DefaultNixFileExtension", provideType = "DefaultNixPartial" },
+]
+
 
 [[components.kriollo]]
 path = "kriollo/generator/scripts/build"
