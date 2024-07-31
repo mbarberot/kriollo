@@ -1,4 +1,4 @@
-package kriollo.generator.script.build
+package kriollo.generator.scripts.build
 
 data class BuildScriptConfiguration(
     val enabled: Boolean = false,

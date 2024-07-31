@@ -1,4 +1,4 @@
-package kriollo.generator.test
+package kriollo.generator.tests
 
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.base.extensions.TemplatedExtension

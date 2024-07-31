@@ -44,6 +44,7 @@
                 @endfor
             </dependencies>
         </dependencyManagement>
+
     @endif
 
     <dependencies>

@@ -1,4 +1,4 @@
-package kriollo.generator.test
+package kriollo.generator.tests.junit
 
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.java.JavaArtifact
@@ -10,11 +10,16 @@ class JUnitJavaDependenciesExtension(
     val serviceProvider: ServiceProvider,
 ) : JavaDependencyExtension {
     override fun provide(): List<JavaArtifact> {
-        val assertjVersion = configuration.tests.assertjVersion
+        val assertjVersion = configuration.tests.junit.assertjVersion
         return listOf(
             JavaArtifact(groupId = "org.junit.jupiter", artifactId = "junit-jupiter", scope = "test"),
             JavaArtifact(groupId = "org.junit.platform", artifactId = "junit-platform-commons", scope = "test"),
-            JavaArtifact(groupId = "org.assertj", artifactId = "assertj-core", version = assertjVersion, scope = "test"),
+            JavaArtifact(
+                groupId = "org.assertj",
+                artifactId = "assertj-core",
+                version = assertjVersion,
+                scope = "test"
+            ),
         )
     }
 }

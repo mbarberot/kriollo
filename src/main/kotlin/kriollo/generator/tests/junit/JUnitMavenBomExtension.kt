@@ -1,4 +1,4 @@
-package kriollo.generator.test
+package kriollo.generator.tests.junit
 
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.java.JavaArtifact
@@ -14,7 +14,7 @@ class JUnitMavenBomExtension(
             JavaArtifact(
                 groupId = "org.junit",
                 artifactId = "junit-bom",
-                version = "5.10.0",
+                version = configuration.tests.junit.junitVersion,
             )
         )
     }

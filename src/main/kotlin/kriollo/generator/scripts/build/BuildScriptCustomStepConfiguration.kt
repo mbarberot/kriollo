@@ -1,4 +1,4 @@
-package kriollo.generator.script.build
+package kriollo.generator.scripts.build
 
 data class BuildScriptCustomStepConfiguration(
     val name: String,

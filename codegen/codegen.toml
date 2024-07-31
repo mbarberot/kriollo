@@ -47,16 +47,25 @@ enabled = true
 enabled = true
 # TODO : add pre-commit hook for conventional commits
 
+[scripts]
+enabled = true
+
 [scripts.build]
 enabled = true
 customSteps = [
     { name = "Copy jar into codegen dir", command = "cp target/kriollo.jar codegen/" },
 ]
 
+[scripts.tests]
+enabled = true
+
 [maven]
 enabled = true
 
 [tests]
+enabled = true
+
+[tests.junit]
 enabled = true
 
 [templating]
@@ -83,13 +92,30 @@ generators = [
 ]
 
 [[components.kriollo]]
-path = "kriollo/generator/script/build"
+path = "kriollo/generator/scripts/build"
 name = "BuildScript"
 tag = "core"
 activationKey = "scripts.build.enabled"
 generators = [
-    { name = "BuildScriptDirectoryGenerator" },
     { name = "BuildScriptGenerator" },
+]
+
+[[components.kriollo]]
+path = "kriollo/generator/scripts"
+name = "Scripts"
+tag = "core"
+activationKey = "scripts.enabled"
+generators = [
+    { name = "ScriptsDirectoryGenerator" }
+]
+
+[[components.kriollo]]
+path = "kriollo/generator/scripts/test"
+name = "TestScript"
+tag = "core"
+activationKey = "scripts.tests.enabled"
+generators = [
+    { name = "TestScriptGenerator" }
 ]
 
 [[components.kriollo]]
@@ -201,13 +227,21 @@ extensions = [
 ]
 
 [[components.kriollo]]
-path = "kriollo/generator/test"
+path = "kriollo/generator/tests"
 name = "tests"
 tag = "core"
 activationKey = "tests.enabled"
 extensions = [
-    { name = "JUnitJavaDependenciesExtension" },
     { name = "SurefireMavenPluginExtension" },
+]
+
+[[components.kriollo]]
+path = "kriollo/generator/tests/junit"
+name = "junit"
+tag = "core"
+activationKey = "tests.junit.enabled"
+extensions = [
+    { name = "JUnitJavaDependenciesExtension" },
     { name = "JUnitMavenBomExtension" },
 ]
 

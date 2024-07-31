@@ -5,7 +5,9 @@ package kriollo.generator
 
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.nix.NixModule
-import kriollo.generator.script.build.BuildScriptModule
+import kriollo.generator.scripts.build.BuildScriptModule
+import kriollo.generator.scripts.ScriptsModule
+import kriollo.generator.scripts.test.TestScriptModule
 import kriollo.generator.maven.MavenModule
 import kriollo.generator.git.GitModule
 import kriollo.generator.jetbrains.JetbrainsModule
@@ -15,7 +17,8 @@ import kriollo.generator.java.JavaModule
 import kriollo.generator.kotlin.KotlinModule
 import kriollo.generator.templating.jte.JteModule
 import kriollo.generator.project.ProjectModule
-import kriollo.generator.test.TestsModule
+import kriollo.generator.tests.TestsModule
+import kriollo.generator.tests.junit.JunitModule
 import kriollo.generator.libs.LibrariesModule
 import kriollo.generator.utils.ServiceProvider
 import javax.annotation.processing.Generated
@@ -26,6 +29,8 @@ class CoreModules {
         return listOf(
             NixModule(configuration, serviceProvider),
             BuildScriptModule(configuration, serviceProvider),
+            ScriptsModule(configuration, serviceProvider),
+            TestScriptModule(configuration, serviceProvider),
             MavenModule(configuration, serviceProvider),
             GitModule(configuration, serviceProvider),
             JetbrainsModule(configuration, serviceProvider),
@@ -36,6 +41,7 @@ class CoreModules {
             JteModule(configuration, serviceProvider),
             ProjectModule(configuration, serviceProvider),
             TestsModule(configuration, serviceProvider),
+            JunitModule(configuration, serviceProvider),
             LibrariesModule(configuration, serviceProvider),
         )
     }
