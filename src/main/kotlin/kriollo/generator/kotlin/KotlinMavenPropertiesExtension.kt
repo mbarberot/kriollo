@@ -2,7 +2,7 @@ package kriollo.generator.kotlin
 
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.maven.MavenPropertiesExtension
-import kriollo.generator.utils.ServiceProvider
+import kriollo.services.provider.ServiceProvider
 
 class KotlinMavenPropertiesExtension(configuration: CodegenConfiguration, serviceProvider: ServiceProvider) :
     MavenPropertiesExtension {

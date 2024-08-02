@@ -3,7 +3,7 @@ package kriollo.generator.tests.junit
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.java.JavaArtifact
 import kriollo.generator.maven.MavenBomExtension
-import kriollo.generator.utils.ServiceProvider
+import kriollo.services.provider.ServiceProvider
 
 class JUnitMavenBomExtension(
     val configuration: CodegenConfiguration,

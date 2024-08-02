@@ -15,7 +15,8 @@ import kriollo.generator.templating.TemplatingConfiguration
 import kriollo.generator.tests.TestsConfiguration
 
 data class CodegenConfiguration(
-    val project: ProjectConfiguration,
+    val kriollo: KriolloConfiguration = KriolloConfiguration(),
+    val project: ProjectConfiguration = ProjectConfiguration(),
     val cli: CliConfiguration = CliConfiguration(),
     val jetbrains: JetbrainsConfiguration = JetbrainsConfiguration(),
     val java: JavaConfiguration = JavaConfiguration(),

@@ -7,7 +7,7 @@ ${model.javaWarning()}
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.CodegenModule
 import kriollo.generator.Generator
-import kriollo.generator.utils.ServiceProvider
+import kriollo.services.provider.ServiceProvider
 ${model.generatedAnnotationImport()}
 
 ${model.generatedAnnotation()}

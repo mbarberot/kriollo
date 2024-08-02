@@ -20,7 +20,7 @@ class KriolloBaseGeneratorGenerator(val configuration: CodegenConfiguration) : T
             name = "Generator",
             imports = buildList {
                 add("kriollo.configuration.CodegenConfiguration")
-                add("kriollo.generator.utils.ServiceProvider")
+                add("kriollo.services.provider.ServiceProvider")
 
                 extensionProviders.forEach { config ->
                     config.provideExtensions.forEach { extensionConfig ->

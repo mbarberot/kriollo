@@ -2,7 +2,7 @@ package kriollo.generator.cli.script
 
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.base.FileGenerator
-import kriollo.generator.utils.ServiceProvider
+import kriollo.services.provider.ServiceProvider
 
 class MainScriptFileGenerator(val configuration: CodegenConfiguration) : FileGenerator() {
 

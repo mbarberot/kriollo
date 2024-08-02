@@ -2,7 +2,7 @@ package kriollo.generator.scripts.test
 
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.base.TemplatedFileGenerator
-import kriollo.generator.utils.EmptyModel.EmptyModel
+import kriollo.generator.utils.EmptyModel
 
 class TestScriptGenerator(val configuration: CodegenConfiguration) : TemplatedFileGenerator() {
 

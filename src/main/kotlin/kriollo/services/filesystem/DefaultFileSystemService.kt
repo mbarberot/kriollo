@@ -1,4 +1,4 @@
-package kriollo.generator.utils
+package kriollo.services.filesystem
 
 import java.io.File
 import java.io.FileWriter
@@ -7,10 +7,11 @@ import kotlin.io.path.createDirectory
 import kotlin.io.path.createParentDirectories
 import kotlin.io.path.notExists
 
-class FilesytemService {
-    fun createFile(filename: String, content: String = "", isScript: Boolean = false) {
+class DefaultFileSystemService : BaseFileSystemService() {
+
+    override fun doCreateFile(filename: String, content: String, isScript: Boolean) {
         val directoryPath = filename.substringBeforeLast("/", "")
-        if(directoryPath.isNotEmpty()) {
+        if (directoryPath.isNotEmpty()) {
             createDirectory(directoryPath)
         }
 
@@ -29,9 +30,10 @@ class FilesytemService {
         fileWriter.write(content)
         fileWriter.flush()
         fileWriter.close()
+
     }
 
-    fun createDirectory(path: String) {
+    override fun doCreateDirectory(path: String) {
         Path(path).let {
             if (it.notExists()) {
                 println("> Generating directory $path")
@@ -41,4 +43,3 @@ class FilesytemService {
         }
     }
 }
-

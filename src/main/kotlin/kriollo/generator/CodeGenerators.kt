@@ -1,7 +1,7 @@
 package kriollo.generator
 
 import kriollo.configuration.CodegenConfiguration
-import kriollo.generator.utils.ServiceProvider
+import kriollo.services.provider.ServiceProvider
 
 class CodeGenerators(
     modules: List<CodegenModule>,

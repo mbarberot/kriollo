@@ -1,7 +1,7 @@
 package kriollo.generator.base
 
 import kriollo.configuration.CodegenConfiguration
-import kriollo.generator.utils.ServiceProvider
+import kriollo.services.provider.ServiceProvider
 
 abstract class TemplatedFileGenerator : FileGenerator() {
 

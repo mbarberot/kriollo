@@ -4,7 +4,7 @@ import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.base.extensions.TemplatedExtension
 import kriollo.generator.maven.MavenPluginExtension
 import kriollo.generator.maven.SimpleMavenPluginModel
-import kriollo.generator.utils.ServiceProvider
+import kriollo.services.provider.ServiceProvider
 
 class SurefireMavenPluginExtension(
     val configuration: CodegenConfiguration,

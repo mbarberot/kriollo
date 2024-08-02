@@ -3,7 +3,7 @@ package kriollo.generator.maven
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.nix.DefaultNixFileExtension
 import kriollo.generator.nix.DefaultNixPartial
-import kriollo.generator.utils.ServiceProvider
+import kriollo.services.provider.ServiceProvider
 
 class MavenDefaultNixExtension(
     val configuration: CodegenConfiguration,

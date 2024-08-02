@@ -2,7 +2,7 @@ package kriollo.generator.components.kriollo
 
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.Generator
-import kriollo.generator.utils.ServiceProvider
+import kriollo.services.provider.ServiceProvider
 
 class KriolloModulesGenerator(
     val configuration: CodegenConfiguration,

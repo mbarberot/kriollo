@@ -5,12 +5,11 @@ import com.fasterxml.jackson.module.kotlin.kotlinModule
 import gg.jte.ContentType
 import gg.jte.TemplateEngine
 import kriollo.configuration.CodegenConfiguration
-import kriollo.generator.CodeGenerators
-import kriollo.generator.CoreModules
-import kriollo.generator.KriolloModules
-import kriollo.generator.utils.FilesytemService
-import kriollo.generator.utils.ServiceProvider
-import kriollo.generator.utils.TemplatingService
+import kriollo.services.filesystem.DefaultFileSystemService
+import kriollo.services.provider.DefaultServiceProvider
+import kriollo.services.templating.DefaultTemplatingService
+import kriollo.services.provider.ServiceProvider
+import kriollo.features.Generate
 import java.io.File
 
 private fun readConfiguration(configurationFilePath: String): CodegenConfiguration {
@@ -33,7 +32,7 @@ fun main(args: Array<String>) {
     """.trimIndent()
     )
 
-    val codegenConfiguration = readConfiguration("./codegen/codegen.toml")
+    val configuration = readConfiguration("./codegen/codegen.toml")
 
     val buildCommand = "build"
 
@@ -42,22 +41,15 @@ fun main(args: Array<String>) {
         return
     }
 
-    val serviceProvider = ServiceProvider(
-        FilesytemService(),
-        TemplatingService(
-            TemplateEngine.createPrecompiled(ContentType.valueOf(codegenConfiguration.templating.jte.contentType)),
+    val serviceProvider: ServiceProvider = DefaultServiceProvider(
+        DefaultFileSystemService(),
+        DefaultTemplatingService(
+            TemplateEngine.createPrecompiled(ContentType.valueOf(configuration.templating.jte.contentType)),
         )
     )
 
-    val generators = CodeGenerators(
-        buildList {
-            addAll(CoreModules().getModules(codegenConfiguration, serviceProvider))
-            addAll(KriolloModules().getModules(codegenConfiguration, serviceProvider))
-        },
-    )
-
     if (buildCommand == args[0]) {
-        generators.execute(codegenConfiguration, serviceProvider);
+        Generate(configuration, serviceProvider).generate()
         return
     }
 
@@ -75,7 +67,6 @@ fun showHelp(buildCommand: String) {
     )
 }
 
-//TODO: feat(generator): track generated files (kind of -lock file, may be done by decorating the FS service)
 //TODO: feat(generator): handle old obsolete files using the -lock file
 
 //TODO: feat(cli): use picocli

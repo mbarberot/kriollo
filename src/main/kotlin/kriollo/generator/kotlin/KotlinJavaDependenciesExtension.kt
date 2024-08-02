@@ -3,7 +3,7 @@ package kriollo.generator.kotlin
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.java.JavaArtifact
 import kriollo.generator.java.JavaDependencyExtension
-import kriollo.generator.utils.ServiceProvider
+import kriollo.services.provider.ServiceProvider
 
 class KotlinJavaDependenciesExtension(
     val configuration: CodegenConfiguration,

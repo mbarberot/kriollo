@@ -8,7 +8,7 @@ import kriollo.configuration.CodegenConfiguration
 @for(component in model.components)
     import ${component.namespace}.${component.className}
 @endfor
-import kriollo.generator.utils.ServiceProvider
+import kriollo.services.provider.ServiceProvider
 ${model.generatedAnnotationImport()}
 
 ${model.generatedAnnotation()}

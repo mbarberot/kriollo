@@ -1,7 +1,7 @@
 package kriollo.generator.base.extensions
 
 import kriollo.generator.CodegenExtension
-import kriollo.generator.utils.ServiceProvider
+import kriollo.services.provider.ServiceProvider
 
 abstract class TemplatedExtension(val serviceProvider: ServiceProvider): CodegenExtension<String> {
     abstract fun getTemplatePath(): String
