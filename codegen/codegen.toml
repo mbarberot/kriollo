@@ -2,7 +2,9 @@
 mainClass = "kriollo.KriolloKt"
 encoding = "UTF-8"
 # TODO set finalName here
-dependencies = []
+dependencies = [
+    { groupId = "info.picocli", artifactId = "picocli", version = "4.7.6" },
+]
 
 [kriollo]
 dir = "codegen"
