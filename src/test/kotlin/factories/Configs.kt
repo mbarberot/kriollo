@@ -1,13 +1,13 @@
 package factories
 
+import kriollo.services.configuration.BasicCodegenConfiguration
 import kriollo.configuration.CodegenConfiguration
-import kriollo.configuration.KriolloConfiguration
 import kriollo.generator.git.GitConfiguration
 import kriollo.generator.nix.NixConfiguration
 
 object Configs {
     fun basicConfig(): CodegenConfiguration {
-        return CodegenConfiguration(
+        return BasicCodegenConfiguration(
             nix = NixConfiguration(
                 enabled = true
             ),

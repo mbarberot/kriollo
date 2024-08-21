@@ -1,16 +1,17 @@
 package kriollo.generator.libs
 
-import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.java.JavaArtifact
 import kriollo.generator.java.JavaDependencyExtension
 import kriollo.services.provider.ServiceProvider
 
-class JacksonJavaDependenciesExtension(val configuration: CodegenConfiguration, serviceProvider: ServiceProvider) : JavaDependencyExtension {
+class JacksonJavaDependenciesExtension(
+    val serviceProvider: ServiceProvider
+) : JavaDependencyExtension {
     override fun provide(): List<JavaArtifact> {
-        val (version, dataformats) = configuration.libs.jackson
+        val (version, dataformats) = serviceProvider.configuration.libs.jackson
 
         return buildList {
-            if (configuration.kotlin.enabled) {
+            if (serviceProvider.configuration.kotlin.enabled) {
                 add(
                     JavaArtifact(
                         groupId = "com.fasterxml.jackson.module",

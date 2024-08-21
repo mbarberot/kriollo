@@ -2,10 +2,11 @@ package kriollo.generator.scripts.build
 
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.base.TemplatedFileGenerator
+import kriollo.services.provider.ServiceProvider
 
-class BuildScriptGenerator(val configuration: CodegenConfiguration) : TemplatedFileGenerator() {
+class BuildScriptGenerator(val serviceProvider: ServiceProvider) : TemplatedFileGenerator() {
 
-    override fun getFilePath(configuration: CodegenConfiguration) = "./${configuration.scripts.dir}/build.sh"
+    override fun getFilePath(configuration: CodegenConfiguration) = "./${serviceProvider.configuration.scripts.dir}/build.sh"
 
     override fun isScript() = true
 
@@ -15,7 +16,7 @@ class BuildScriptGenerator(val configuration: CodegenConfiguration) : TemplatedF
 
     override fun getTemplateData(): Any {
         return BuildScriptModel(
-            configuration.scripts.build.customSteps
+            serviceProvider.configuration.scripts.build.customSteps
         )
     }
 }

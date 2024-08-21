@@ -2,8 +2,9 @@ package kriollo.generator.nix
 
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.base.TemplatedFileGenerator
+import kriollo.services.provider.ServiceProvider
 
-class DefaultNixFileGenerator(val configuration: CodegenConfiguration) : TemplatedFileGenerator() {
+class DefaultNixFileGenerator(val serviceProvider: ServiceProvider) : TemplatedFileGenerator() {
 
     private val extensions: MutableList<DefaultNixFileExtension> = mutableListOf()
 

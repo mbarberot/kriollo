@@ -1,11 +1,10 @@
 package kriollo.generator.base
 
-import kriollo.configuration.CodegenConfiguration
 import kriollo.services.provider.ServiceProvider
 
 abstract class TemplatedFileGenerator : FileGenerator() {
 
-    override fun getContent(configuration: CodegenConfiguration, serviceProvider: ServiceProvider): String {
+    override fun getContent(serviceProvider: ServiceProvider): String {
         return serviceProvider.templatingService.renderToString(
             getTemplatePath(),
             getTemplateData()

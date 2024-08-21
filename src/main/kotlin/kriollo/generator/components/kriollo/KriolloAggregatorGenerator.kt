@@ -14,10 +14,16 @@ class KriolloAggregatorGenerator(
 
     override fun getTemplateData(): Any {
         return KriolloTagModulesModel(
-            "kriollo.generator",
-            getClassName(),
-            componentsConfigurations
-                .map { config -> KriolloTagModulesComponentModel(config.getNamespace(), config.getClassName()) }
+            namespace = "kriollo.generator",
+            name = getClassName(),
+            imports = buildList {
+                add("kriollo.services.provider.ServiceProvider")
+                componentsConfigurations
+                    .map { config -> "${config.getNamespace()}.${config.getClassName()}" }
+                    .forEach { add(it) }
+            },
+            components = componentsConfigurations
+                .map { config -> config.getClassName() },
         )
     }
 

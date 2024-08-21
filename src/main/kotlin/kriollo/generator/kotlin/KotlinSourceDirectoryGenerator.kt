@@ -1,9 +1,11 @@
 package kriollo.generator.kotlin
 
-import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.base.DirectoryGenerator
+import kriollo.services.provider.ServiceProvider
 
-class KotlinSourceDirectoryGenerator(configuration: CodegenConfiguration) : DirectoryGenerator() {
+class KotlinSourceDirectoryGenerator(
+    val serviceProvider: ServiceProvider
+) : DirectoryGenerator() {
 
     override fun getDirectoryPath(): String {
         return "./src/main/kotlin"

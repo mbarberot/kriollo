@@ -11,9 +11,10 @@ class CreateIndexTest {
     @Test
     fun `kriollo generates an index file`() {
         // Arrange
-        val config = Configs.basicConfig()
-        val serviceProvider = TestServiceProvider()
-        val useCase = Generate(config, serviceProvider)
+        val serviceProvider = TestServiceProvider(
+            configuration = Configs.basicConfig()
+        )
+        val useCase = Generate(serviceProvider)
 
         // Act
         useCase.generate()
@@ -26,9 +27,10 @@ class CreateIndexTest {
     @Test
     fun `kriollo's generated file lists any generated file`() {
         // Arrange
-        val config = Configs.basicConfig()
-        val serviceProvider = TestServiceProvider()
-        val useCase = Generate(config, serviceProvider)
+        val serviceProvider = TestServiceProvider(
+            configuration = Configs.basicConfig()
+        )
+        val useCase = Generate(serviceProvider)
 
         // Act
         useCase.generate()

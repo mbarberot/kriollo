@@ -1,9 +1,12 @@
 package kriollo.generator.components.kriollo
 
-import kriollo.generator.utils.BaseModel
-
-data class KriolloTagModulesModel(
-    val namespace: String,
-    val className: String,
-    val components: List<KriolloTagModulesComponentModel>,
-) : BaseModel()
+class KriolloTagModulesModel(
+    namespace: String,
+    name: String,
+    imports: List<String>,
+    val components: List<String>,
+) : JavaModel(
+    namespace,
+    name,
+    imports,
+)

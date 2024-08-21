@@ -1,8 +1,6 @@
 package kriollo.generator
 
-import kriollo.configuration.CodegenConfiguration
-
-abstract class CodegenModule(val configuration: CodegenConfiguration) {
+abstract class CodegenModule {
     abstract fun isActivated(): Boolean
     abstract fun provideGenerators(): List<Generator>
     open fun provideExtensions(generator: Generator) {

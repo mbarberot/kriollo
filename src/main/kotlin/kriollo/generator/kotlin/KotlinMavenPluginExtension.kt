@@ -1,12 +1,10 @@
 package kriollo.generator.kotlin
 
-import kriollo.configuration.CodegenConfiguration
-import kriollo.generator.maven.MavenPluginExtension
 import kriollo.generator.base.extensions.TemplatedExtension
+import kriollo.generator.maven.MavenPluginExtension
 import kriollo.services.provider.ServiceProvider
 
 class KotlinMavenPluginExtension(
-    val configuration: CodegenConfiguration,
     serviceProvider: ServiceProvider
 ): MavenPluginExtension, TemplatedExtension(serviceProvider) {
 
@@ -15,7 +13,7 @@ class KotlinMavenPluginExtension(
     override fun getAllTemplateData(): List<Any> {
         return listOf(
             KotlinMavenPluginModel(
-                configuration.kotlin.version
+                serviceProvider.configuration.kotlin.version
             )
         )
     }

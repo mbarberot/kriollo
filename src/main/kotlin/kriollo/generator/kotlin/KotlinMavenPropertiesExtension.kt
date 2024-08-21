@@ -1,10 +1,9 @@
 package kriollo.generator.kotlin
 
-import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.maven.MavenPropertiesExtension
 import kriollo.services.provider.ServiceProvider
 
-class KotlinMavenPropertiesExtension(configuration: CodegenConfiguration, serviceProvider: ServiceProvider) :
+class KotlinMavenPropertiesExtension(val serviceProvider: ServiceProvider) :
     MavenPropertiesExtension {
     override fun provide(): List<Pair<String, String>> {
         return listOf(

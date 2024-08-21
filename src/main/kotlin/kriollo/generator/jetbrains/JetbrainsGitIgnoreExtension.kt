@@ -1,11 +1,12 @@
 package kriollo.generator.jetbrains
 
-import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.git.GitIgnoreExtension
 import kriollo.generator.git.GitIgnoreRules
 import kriollo.services.provider.ServiceProvider
 
-class JetbrainsGitIgnoreExtension(configuration: CodegenConfiguration, serviceProvider: ServiceProvider) : GitIgnoreExtension{
+class JetbrainsGitIgnoreExtension(
+   val serviceProvider: ServiceProvider
+) : GitIgnoreExtension{
     override fun provide(): List<GitIgnoreRules> {
         return listOf(
             GitIgnoreRules(

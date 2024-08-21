@@ -12,7 +12,7 @@ ${model.generatedAnnotationImport()}
 ${model.generatedAnnotation()}
 abstract class ${model.name} {
 
-    abstract fun execute(configuration: CodegenConfiguration, serviceProvider: ServiceProvider)
+    abstract fun execute(serviceProvider: ServiceProvider)
 
     @for(extension in model.extensions)
         open fun registerExtension(extension: ${extension}) {

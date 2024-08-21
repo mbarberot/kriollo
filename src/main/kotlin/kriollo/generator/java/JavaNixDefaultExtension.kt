@@ -1,12 +1,10 @@
 package kriollo.generator.java
 
-import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.nix.DefaultNixFileExtension
 import kriollo.generator.nix.DefaultNixPartial
 import kriollo.services.provider.ServiceProvider
 
 class JavaNixDefaultExtension(
-    val configuration: CodegenConfiguration,
     val serviceProvider: ServiceProvider
 ): DefaultNixFileExtension {
     override fun provide(): List<DefaultNixPartial> {

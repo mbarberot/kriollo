@@ -1,12 +1,10 @@
 package kriollo.generator.cli
 
-import kriollo.configuration.CodegenConfiguration
-import kriollo.generator.maven.MavenPluginExtension
 import kriollo.generator.base.extensions.TemplatedExtension
+import kriollo.generator.maven.MavenPluginExtension
 import kriollo.services.provider.ServiceProvider
 
 class CliMavenPluginExtension(
-    val configuration: CodegenConfiguration,
     serviceProvider: ServiceProvider,
 ) : MavenPluginExtension, TemplatedExtension(serviceProvider) {
 
@@ -16,7 +14,7 @@ class CliMavenPluginExtension(
 
     override fun getAllTemplateData(): List<Any> {
         return listOf(
-            CliMavenPluginModel(mainClass = configuration.project.mainClass)
+            CliMavenPluginModel(mainClass = serviceProvider.configuration.project.mainClass)
         )
     }
 

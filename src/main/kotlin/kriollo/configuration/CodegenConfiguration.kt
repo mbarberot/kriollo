@@ -14,20 +14,19 @@ import kriollo.generator.scripts.ScriptsConfiguration
 import kriollo.generator.templating.TemplatingConfiguration
 import kriollo.generator.tests.TestsConfiguration
 
-data class CodegenConfiguration(
-    val kriollo: KriolloConfiguration = KriolloConfiguration(),
-    val project: ProjectConfiguration = ProjectConfiguration(),
-    val cli: CliConfiguration = CliConfiguration(),
-    val jetbrains: JetbrainsConfiguration = JetbrainsConfiguration(),
-    val java: JavaConfiguration = JavaConfiguration(),
-    val kotlin: KotlinConfiguration = KotlinConfiguration(),
-    val nix: NixConfiguration = NixConfiguration(),
-    val git: GitConfiguration = GitConfiguration(),
-    val scripts: ScriptsConfiguration = ScriptsConfiguration(),
-    val maven: MavenConfiguration = MavenConfiguration(),
-    val templating: TemplatingConfiguration = TemplatingConfiguration(),
-    val libs: JavaLibConfiguration = JavaLibConfiguration(),
-    val tests: TestsConfiguration = TestsConfiguration(),
-    val components: ComponentsConfiguration = ComponentsConfiguration(),
-)
-
+interface CodegenConfiguration {
+    val kriollo: KriolloConfiguration
+    val project: ProjectConfiguration
+    val cli: CliConfiguration
+    val jetbrains: JetbrainsConfiguration
+    val java: JavaConfiguration
+    val kotlin: KotlinConfiguration
+    val nix: NixConfiguration
+    val git: GitConfiguration
+    val scripts: ScriptsConfiguration
+    val maven: MavenConfiguration
+    val templating: TemplatingConfiguration
+    val libs: JavaLibConfiguration
+    val tests: TestsConfiguration
+    val components: ComponentsConfiguration
+} 

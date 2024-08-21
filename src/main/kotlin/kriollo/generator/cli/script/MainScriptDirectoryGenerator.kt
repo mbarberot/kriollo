@@ -1,11 +1,11 @@
 package kriollo.generator.cli.script
 
-import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.base.DirectoryGenerator
+import kriollo.services.provider.ServiceProvider
 
-class MainScriptDirectoryGenerator(val configuration: CodegenConfiguration): DirectoryGenerator() {
+class MainScriptDirectoryGenerator(val serviceProvider: ServiceProvider): DirectoryGenerator() {
 
     override fun getDirectoryPath(): String {
-        return configuration.cli.script.targetDirectory
+        return serviceProvider.configuration.cli.script.targetDirectory
     }
 }

@@ -2,8 +2,9 @@ package kriollo.generator.git
 
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.base.TemplatedFileGenerator
+import kriollo.services.provider.ServiceProvider
 
-class GitIgnoreFileGenerator(val configuration: CodegenConfiguration) : TemplatedFileGenerator() {
+class GitIgnoreFileGenerator(val serviceProvider: ServiceProvider) : TemplatedFileGenerator() {
 
     private val extensions: MutableList<GitIgnoreExtension> = mutableListOf()
 

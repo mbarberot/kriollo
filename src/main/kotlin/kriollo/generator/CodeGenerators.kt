@@ -1,6 +1,5 @@
 package kriollo.generator
 
-import kriollo.configuration.CodegenConfiguration
 import kriollo.services.provider.ServiceProvider
 
 class CodeGenerators(
@@ -26,7 +25,7 @@ class CodeGenerators(
 
     }
 
-    fun execute(configuration: CodegenConfiguration, serviceProvider: ServiceProvider) {
-        generators.forEach { it.execute(configuration, serviceProvider) }
+    fun execute(serviceProvider: ServiceProvider) {
+        generators.forEach { it.execute(serviceProvider) }
     }
 }

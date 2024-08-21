@@ -3,8 +3,9 @@ package kriollo.generator.maven
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.base.TemplatedFileGenerator
 import kriollo.generator.java.JavaDependencyExtension
+import kriollo.services.provider.ServiceProvider
 
-class MavenPomGenerator(val configuration: CodegenConfiguration) : TemplatedFileGenerator() {
+class MavenPomGenerator(val serviceProvider: ServiceProvider) : TemplatedFileGenerator() {
 
     private val propertiesExtension = mutableListOf<MavenPropertiesExtension>()
     private val dependencyExtensions = mutableListOf<JavaDependencyExtension>()

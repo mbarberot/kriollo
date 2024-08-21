@@ -1,15 +1,15 @@
 package kriollo.generator.components.kriollo
 
-import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.Generator
 import kriollo.services.provider.ServiceProvider
 
 class KriolloExtensionsGenerator(
-    val configuration: CodegenConfiguration,
+    val serviceProvider: ServiceProvider
 ) : Generator() {
 
-    override fun execute(configuration: CodegenConfiguration, serviceProvider: ServiceProvider) {
-        configuration
+    override fun execute( serviceProvider: ServiceProvider) {
+        serviceProvider
+            .configuration
             .components
             .kriollo
             .flatMap { moduleConfiguration ->
@@ -19,6 +19,6 @@ class KriolloExtensionsGenerator(
                         KriolloExtensionGenerator(moduleConfiguration, extensionConfiguration)
                     }
             }
-            .forEach { generator -> generator.execute(configuration, serviceProvider) }
+            .forEach { generator -> generator.execute(serviceProvider) }
     }
 }

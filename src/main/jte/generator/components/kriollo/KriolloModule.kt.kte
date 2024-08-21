@@ -4,7 +4,6 @@ package ${model.namespace}
 
 ${model.javaWarning()}
 
-import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.CodegenModule
 import kriollo.generator.Generator
 import kriollo.services.provider.ServiceProvider
@@ -12,22 +11,21 @@ ${model.generatedAnnotationImport()}
 
 ${model.generatedAnnotation()}
 class ${model.name}(
-    configuration: CodegenConfiguration,
     val serviceProvider: ServiceProvider,
-) : CodegenModule(configuration) {
+) : CodegenModule() {
 
     override fun isActivated(): Boolean = ${model.activation}
 
     override fun provideGenerators(): List<Generator> = listOf(
         @for(generator in model.generators)
-            ${generator}(configuration),
+            ${generator}(serviceProvider),
         @endfor
     )
 
     @if(model.extensions.isNotEmpty())
     override fun provideExtensions(generator: Generator) {
         @for(extension in model.extensions)
-            generator.registerExtension(${extension}(configuration, serviceProvider))
+            generator.registerExtension(${extension}(serviceProvider))
         @endfor
     }
     @endif

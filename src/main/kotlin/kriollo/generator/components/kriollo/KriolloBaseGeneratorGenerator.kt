@@ -2,15 +2,17 @@ package kriollo.generator.components.kriollo
 
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.base.TemplatedFileGenerator
+import kriollo.services.provider.ServiceProvider
 
-class KriolloBaseGeneratorGenerator(val configuration: CodegenConfiguration) : TemplatedFileGenerator() {
+class KriolloBaseGeneratorGenerator(val serviceProvider: ServiceProvider) : TemplatedFileGenerator() {
     override fun getTemplatePath(): String {
         return "generator/components/kriollo/KriolloBaseGenerator.kt.kte"
     }
 
     override fun getTemplateData(): Any {
 
-        val extensionProviders = configuration
+        val extensionProviders = serviceProvider
+            .configuration
             .components
             .kriollo
             .filter { it.provideExtensions.isNotEmpty() }
@@ -19,7 +21,6 @@ class KriolloBaseGeneratorGenerator(val configuration: CodegenConfiguration) : T
             namespace = "kriollo.generator",
             name = "Generator",
             imports = buildList {
-                add("kriollo.configuration.CodegenConfiguration")
                 add("kriollo.services.provider.ServiceProvider")
 
                 extensionProviders.forEach { config ->

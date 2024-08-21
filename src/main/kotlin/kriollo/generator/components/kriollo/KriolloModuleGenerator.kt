@@ -17,7 +17,7 @@ class KriolloModuleGenerator(
         return KriolloModuleModel(
             namespace = moduleConfiguration.getNamespace(),
             name = moduleConfiguration.getClassName(),
-            activation = if (activationKey == "-") "true" else "configuration.$activationKey",
+            activation = if (activationKey == "-") "true" else "serviceProvider.configuration.$activationKey",
             generators = generators.map { generator -> generator.name },
             extensions = extensions.map { extension -> extension.name },
         )

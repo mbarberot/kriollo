@@ -1,25 +1,17 @@
 package kriollo
 
-import com.fasterxml.jackson.dataformat.toml.TomlMapper
-import com.fasterxml.jackson.module.kotlin.kotlinModule
 import gg.jte.ContentType
 import gg.jte.TemplateEngine
 import kriollo.cli.KriolloCli
-import kriollo.configuration.CodegenConfiguration
 import kriollo.features.Generate
+import kriollo.services.configuration.TomlCodegenConfiguration
 import kriollo.services.filesystem.DefaultFileSystemService
 import kriollo.services.provider.DefaultServiceProvider
 import kriollo.services.provider.ServiceProvider
 import kriollo.services.templating.DefaultTemplatingService
 import picocli.CommandLine
-import java.io.File
 import kotlin.system.exitProcess
 
-private fun readConfiguration(configurationFilePath: String): CodegenConfiguration {
-    val mapper = TomlMapper()
-    mapper.registerModule(kotlinModule())
-    return mapper.readValue(File(configurationFilePath), CodegenConfiguration::class.java)
-}
 
 object Kriollo {
     val version = "0.1.0"
@@ -27,9 +19,9 @@ object Kriollo {
 
 fun main(args: Array<String>) {
 
-    val configuration = readConfiguration("./codegen/codegen.toml")
-
+    val configuration = TomlCodegenConfiguration("./codegen/codegen.toml")
     val serviceProvider: ServiceProvider = DefaultServiceProvider(
+        configuration,
         DefaultFileSystemService(),
         DefaultTemplatingService(
             TemplateEngine.createPrecompiled(ContentType.valueOf(configuration.templating.jte.contentType)),
@@ -37,7 +29,7 @@ fun main(args: Array<String>) {
     )
 
     val kriolloCli = KriolloCli(
-        Generate(configuration, serviceProvider),
+        Generate(serviceProvider),
     )
 
     exitProcess(CommandLine(kriolloCli).execute(*args))
@@ -45,8 +37,9 @@ fun main(args: Array<String>) {
 
 
 // ** v2014.1 **
-//TODO: refactor(di): add configuration service to allow a global access to the configuration and unify signatures
 //TODO: feat(logs): add Logging framework
+//TODO: refactor(di): remove last "configuration: CodegenConfiguration" occurences
+//TODO: refactor(di): check serviceProvider parameters (should be injected through constructor everywhere)
 
 //TODO: feat(maven): set source and test directories using an extension (only one || error)
 //TODO: feat(maven): artifact coordinates
