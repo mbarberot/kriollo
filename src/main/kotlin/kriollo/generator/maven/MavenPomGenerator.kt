@@ -1,7 +1,9 @@
 package kriollo.generator.maven
 
+import kriollo.KriolloException
 import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.base.TemplatedFileGenerator
+import kriollo.generator.java.JavaArtifact
 import kriollo.generator.java.JavaDependencyExtension
 import kriollo.services.provider.ServiceProvider
 
@@ -11,12 +13,14 @@ class MavenPomGenerator(val serviceProvider: ServiceProvider) : TemplatedFileGen
     private val dependencyExtensions = mutableListOf<JavaDependencyExtension>()
     private val pluginExtensions = mutableListOf<MavenPluginExtension>()
     private val bomExtensions = mutableListOf<MavenBomExtension>()
+    private val artifactExtensions = mutableListOf<MavenArtifactExtension>()
 
     override fun getFilePath(configuration: CodegenConfiguration) = "pom.xml"
 
     override fun getTemplatePath() = "generator/maven/pom.xml.kte"
 
     override fun getTemplateData() = PomModel(
+        artifact = getArtifactOrFail(),
         properties = buildMap {
             propertiesExtension
                 .flatMap { it.provide() }
@@ -34,11 +38,21 @@ class MavenPomGenerator(val serviceProvider: ServiceProvider) : TemplatedFileGen
 
         },
         boms = buildList {
-           bomExtensions
-               .map { extension -> extension.provide() }
-               .forEach { bom -> addAll(bom) }
+            bomExtensions
+                .map { extension -> extension.provide() }
+                .forEach { bom -> addAll(bom) }
         }
     )
+
+    private fun getArtifactOrFail(): JavaArtifact {
+        val artifacts: List<JavaArtifact> = artifactExtensions.flatMap { it.provide() }
+        when {
+            artifacts.isEmpty() -> throw KriolloException("No artifact defined")
+            artifacts.size > 1 -> throw KriolloException("Multiple artifacts defined")
+        }
+        val artifact = artifacts.first()
+        return artifact
+    }
 
     override fun registerExtension(extension: JavaDependencyExtension) {
         dependencyExtensions.add(extension)
@@ -54,6 +68,13 @@ class MavenPomGenerator(val serviceProvider: ServiceProvider) : TemplatedFileGen
 
     override fun registerExtension(extension: MavenBomExtension) {
         bomExtensions.add(extension)
+    }
+
+    override fun registerExtension(extension: MavenArtifactExtension) {
+        when {
+            artifactExtensions.isEmpty() -> artifactExtensions.add(extension)
+            else -> throw KriolloException("Only one MavenArtifactExtension should be registered")
+        }
     }
 }
 

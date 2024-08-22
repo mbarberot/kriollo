@@ -1,0 +1,17 @@
+
+** v2014.1 **
+TODO: refactor(di): remove last "configuration: CodegenConfiguration" occurences
+TODO: refactor(di): check serviceProvider parameters (should be injected through constructor everywhere)
+
+** v2014.2 **
+NEXT: feat(logs): add Logging framework
+NEXT: feat(justfile): add justfile support
+NEXT: feat(dockerfile): generate dockerfile
+NEXT: feat(readme): add readme support with custom title/description/sections
+NEXT: feat(config): check configuration (ie: JUnit requires Maven or Gradle, ...)
+NEXT: feat(config): split configuration file
+NEXT: feat(generator): handle old obsolete files using the -lock file
+NEXT: feat(plugin): use a ServiceProvider (from JDK) to build dynamic module registration
+NEXT: feat(maven): set source and test directories using an extension (only one || error)
+NEXT: refactor(jte): use a base template for java classes
+NEXT: refactor(jte): use StaticTemplates

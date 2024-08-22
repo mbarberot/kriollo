@@ -1,0 +1,12 @@
+@import kriollo.generator.project.ProjectVersionClassModel
+@param model: ProjectVersionClassModel
+package ${model.namespace}
+
+${model.javaWarning()}
+
+${model.generatedAnnotationImport()}
+
+${model.generatedAnnotation()}
+object ${model.name} {
+    const val VERSION = "${model.version}"
+}

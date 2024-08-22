@@ -5,6 +5,7 @@ pom.xml
 .gitignore
 ./codegen/kriollo
 src/main/jte/.jteroot
+src/main/kotlin/kriollo/KriolloVersion.kt
 src/main/kotlin/kriollo/generator/nix/NixModule.kt
 src/main/kotlin/kriollo/generator/scripts/build/BuildScriptModule.kt
 src/main/kotlin/kriollo/generator/scripts/ScriptsModule.kt
@@ -28,6 +29,7 @@ src/main/kotlin/kriollo/generator/nix/DefaultNixFileExtension.kt
 src/main/kotlin/kriollo/generator/maven/MavenPropertiesExtension.kt
 src/main/kotlin/kriollo/generator/maven/MavenPluginExtension.kt
 src/main/kotlin/kriollo/generator/maven/MavenBomExtension.kt
+src/main/kotlin/kriollo/generator/maven/MavenArtifactExtension.kt
 src/main/kotlin/kriollo/generator/git/GitIgnoreExtension.kt
 src/main/kotlin/kriollo/generator/java/JavaDependencyExtension.kt
 src/main/kotlin/kriollo/generator/Generator.kt

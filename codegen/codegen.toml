@@ -1,7 +1,9 @@
 [project]
+groupId = "kriollo"
+name = "kriollo"
+version = "2014.0.0-SNAPSHOT"
 mainClass = "kriollo.KriolloKt"
 encoding = "UTF-8"
-# TODO set finalName here
 dependencies = [
     { groupId = "info.picocli", artifactId = "picocli", version = "4.7.6" },
 ]
@@ -126,7 +128,8 @@ extensions = [
 provideExtensions = [
     { name = "MavenPropertiesExtension", provideType = "Pair<String,String>" },
     { name = "MavenPluginExtension", provideType = "String" },
-    { name = "MavenBomExtension", provideType = "kriollo.generator.java.JavaArtifact" }
+    { name = "MavenBomExtension", provideType = "kriollo.generator.java.JavaArtifact" },
+    { name = "MavenArtifactExtension", provideType = "kriollo.generator.java.JavaArtifact" },
 ]
 
 [[components.kriollo]]
@@ -217,9 +220,13 @@ path = "kriollo/generator/project"
 name = "Project"
 tag = "core"
 activationKey = "-"
+generators = [
+    { name = "ProjectVersionGenerator" },
+]
 extensions = [
     { name = "ProjectJavaDependenciesExtension" },
-    { name = "ProjectMavenPropertiesExtension" }
+    { name = "ProjectMavenPropertiesExtension" },
+    { name = "ProjectMavenArtifactExtension" },
 ]
 
 [[components.kriollo]]

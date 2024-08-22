@@ -1,15 +1,21 @@
 package kriollo.cli
 
+import kriollo.KriolloVersion
 import kriollo.features.Generate
-import picocli.CommandLine
+import picocli.CommandLine.Command
 
-@CommandLine.Command(name = "Kriollo", version = ["2024.0.0"], mixinStandardHelpOptions = true)
+@Command(
+    name = "Kriollo",
+    mixinStandardHelpOptions = true,
+    version = [KriolloVersion.VERSION]
+)
 class KriolloCli(
     private val generateAction: Generate,
 ) {
 
-    @CommandLine.Command(name = "build")
+    @Command(name = "build")
     fun build() {
         generateAction.generate()
     }
+
 }
