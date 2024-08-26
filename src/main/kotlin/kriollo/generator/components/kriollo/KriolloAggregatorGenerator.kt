@@ -27,7 +27,7 @@ class KriolloAggregatorGenerator(
         )
     }
 
-    override fun getFilePath(configuration: CodegenConfiguration): String {
+    override fun getFilePath(): String {
         return "src/main/kotlin/kriollo/generator/${getClassName()}.kt"
     }
 

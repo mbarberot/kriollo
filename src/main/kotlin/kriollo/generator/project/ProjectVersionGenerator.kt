@@ -1,6 +1,5 @@
 package kriollo.generator.project
 
-import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.base.TemplatedFileGenerator
 import kriollo.services.provider.ServiceProvider
 
@@ -20,7 +19,7 @@ class ProjectVersionGenerator(
         )
     }
 
-    override fun getFilePath(configuration: CodegenConfiguration): String {
+    override fun getFilePath(): String {
         return "src/main/kotlin/${getNamespace()}/${getClassName()}.kt"
     }
 

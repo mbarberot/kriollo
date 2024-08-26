@@ -6,7 +6,7 @@ import kriollo.services.provider.ServiceProvider
 
 class JteRootFileGenerator(val serviceProvider: ServiceProvider): FileGenerator() {
 
-    override fun getFilePath(configuration: CodegenConfiguration): String {
+    override fun getFilePath(): String {
         return "${serviceProvider.configuration.templating.jte.sourceDirectory}/.jteroot"
     }
 

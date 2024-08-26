@@ -23,7 +23,7 @@ class KriolloModuleGenerator(
         )
     }
 
-    override fun getFilePath(configuration: CodegenConfiguration): String {
+    override fun getFilePath(): String {
         return "src/main/kotlin/${moduleConfiguration.path}/${moduleConfiguration.getClassName()}.kt"
     }
 }

@@ -6,7 +6,7 @@ import kriollo.services.provider.ServiceProvider
 
 class BuildScriptGenerator(val serviceProvider: ServiceProvider) : TemplatedFileGenerator() {
 
-    override fun getFilePath(configuration: CodegenConfiguration) = "./${serviceProvider.configuration.scripts.dir}/build.sh"
+    override fun getFilePath() = "./${serviceProvider.configuration.scripts.dir}/build.sh"
 
     override fun isScript() = true
 

@@ -8,7 +8,7 @@ class DefaultNixFileGenerator(val serviceProvider: ServiceProvider) : TemplatedF
 
     private val extensions: MutableList<DefaultNixFileExtension> = mutableListOf()
 
-    override fun getFilePath(configuration: CodegenConfiguration): String = "default.nix"
+    override fun getFilePath(): String = "default.nix"
 
     override fun getTemplatePath(): String {
         return "generator/nix/default.nix.kte"

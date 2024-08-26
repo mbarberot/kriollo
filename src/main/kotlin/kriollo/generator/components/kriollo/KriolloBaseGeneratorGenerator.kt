@@ -37,7 +37,7 @@ class KriolloBaseGeneratorGenerator(val serviceProvider: ServiceProvider) : Temp
         )
     }
 
-    override fun getFilePath(configuration: CodegenConfiguration): String {
+    override fun getFilePath(): String {
         return "src/main/kotlin/kriollo/generator/Generator.kt"
     }
 

@@ -8,7 +8,7 @@ class GitIgnoreFileGenerator(val serviceProvider: ServiceProvider) : TemplatedFi
 
     private val extensions: MutableList<GitIgnoreExtension> = mutableListOf()
 
-    override fun getFilePath(configuration: CodegenConfiguration) = ".gitignore"
+    override fun getFilePath() = ".gitignore"
 
     override fun getTemplatePath(): String = "generator/git/gitignore.kte"
 

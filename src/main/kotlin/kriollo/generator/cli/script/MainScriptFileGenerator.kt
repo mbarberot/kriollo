@@ -1,12 +1,11 @@
 package kriollo.generator.cli.script
 
-import kriollo.configuration.CodegenConfiguration
 import kriollo.generator.base.FileGenerator
 import kriollo.services.provider.ServiceProvider
 
 class MainScriptFileGenerator(val serviceProvider: ServiceProvider) : FileGenerator() {
 
-    override fun getFilePath(configuration: CodegenConfiguration): String {
+    override fun getFilePath(): String {
         val scriptConfiguration = serviceProvider.configuration.cli.script
 
         return "./${scriptConfiguration.targetDirectory}/${scriptConfiguration.fileName}"

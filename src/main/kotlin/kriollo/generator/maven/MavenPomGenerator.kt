@@ -15,7 +15,7 @@ class MavenPomGenerator(val serviceProvider: ServiceProvider) : TemplatedFileGen
     private val bomExtensions = mutableListOf<MavenBomExtension>()
     private val artifactExtensions = mutableListOf<MavenArtifactExtension>()
 
-    override fun getFilePath(configuration: CodegenConfiguration) = "pom.xml"
+    override fun getFilePath() = "pom.xml"
 
     override fun getTemplatePath() = "generator/maven/pom.xml.kte"
 
