@@ -1,3 +1,16 @@
+cli.enabled = true
+java.enabled = true
+kotlin.enabled = true
+nix.enabled = true
+jetbrains.enabled = true
+git.enabled = true
+scripts.enabled = true
+scripts.tests.enabled = true
+maven.enabled = true
+tests.enabled = true
+tests.junit.enabled = true
+templating.enabled = true
+
 [project]
 groupId = "kriollo"
 name = "kriollo"
@@ -11,35 +24,11 @@ dependencies = [
 [kriollo]
 dir = "codegen"
 
-[cli]
-enabled = true
-
 [cli.script]
 enabled = true
 fileName = "kriollo"
 targetDirectory = "codegen"
-jarLocation = "codegen/kriollo.jar" # TODO : get "kriollo.jar" from from project equivalent of maven's build.finalName
-
-[java]
-enabled = true
-# TODO : setup jdk here
-
-[kotlin]
-enabled = true
-version = "1.9.24"
-
-[nix]
-enabled = true
-
-[jetbrains]
-enabled = true
-
-[git]
-enabled = true
-# TODO : add pre-commit hook for conventional commits
-
-[scripts]
-enabled = true
+jarLocation = "codegen/kriollo.jar"
 
 [scripts.build]
 enabled = true
@@ -47,28 +36,11 @@ customSteps = [
     { name = "Copy jar into codegen dir", command = "cp target/kriollo.jar codegen/" },
 ]
 
-[scripts.tests]
-enabled = true
-
-[maven]
-enabled = true
-
-[tests]
-enabled = true
-
-[tests.junit]
-enabled = true
-
-[templating]
-enabled = true
-
 [templating.jte]
 enabled = true
-version = "3.1.12"
 contentType = "Plain"
 
 [libs.jackson]
-version = "2.13.0"
 dataformats = ["toml"]
 
 [components]
@@ -268,11 +240,3 @@ generators = [
     { name = "KriolloExtensionsGenerator" },
     { name = "KriolloBaseGeneratorGenerator" },
 ]
-
-#[[components.kriollo-extensions]]
-#path = "kriollo/generator/base/extensions"
-#extensions = [
-#    { name = "JavaDependencyExtension", provide = "kriollo.generator.java.JavaArtifact" },
-#    { name = "GitIgnoreExtension", provide = "kriollo.generator.git.GitIgnoreRules" },
-#    { name = "MavenPluginExtension", provide = "String" },
-#]
