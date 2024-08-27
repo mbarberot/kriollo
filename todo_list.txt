@@ -1,6 +1,6 @@
 
 ** v2014.1 **
-TODO: feat(script): use the project name to set jar location
+TODO: tag
 
 ** v2014.2 **
 NEXT: feat(logs): add Logging framework
@@ -14,6 +14,7 @@ NEXT: feat(plugin): use a ServiceProvider (from JDK) to build dynamic module reg
 NEXT: feat(maven): set source and test directories using an extension (only one || error)
 NEXT: refactor(jte): use a base template for java classes
 NEXT: refactor(jte): use StaticTemplates
+NEXT: refactor(picocli): add to the libs configuration
 
 IDEA:
 --

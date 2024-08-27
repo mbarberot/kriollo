@@ -28,7 +28,6 @@ dir = "codegen"
 enabled = true
 fileName = "kriollo"
 targetDirectory = "codegen"
-jarLocation = "codegen/kriollo.jar"
 
 [scripts.build]
 enabled = true
