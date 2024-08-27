@@ -14,7 +14,7 @@ templating.enabled = true
 [project]
 groupId = "kriollo"
 name = "kriollo"
-version = "2014.0.0-SNAPSHOT"
+version = "2014.0.0"
 mainClass = "kriollo.KriolloKt"
 encoding = "UTF-8"
 dependencies = [
