@@ -8,10 +8,11 @@ class JavaNixDefaultExtension(
     val serviceProvider: ServiceProvider
 ): DefaultNixFileExtension {
     override fun provide(): List<DefaultNixPartial> {
+        val javaNixPackage = "jdk${serviceProvider.configuration.java.version}"
         return listOf(
             DefaultNixPartial(
-                packages = listOf("jdk21"),
-                shellHook = "export JAVA_HOME=${'$'}{jdk21.home}"
+                packages = listOf(javaNixPackage),
+                shellHook = "export JAVA_HOME=${'$'}{$javaNixPackage.home}"
             )
         )
     }

@@ -1,6 +1,5 @@
 
 ** v2014.1 **
-TODO: feat(java): configure jdk
 TODO: feat(script): use the project name to set jar location
 
 ** v2014.2 **
@@ -15,3 +14,13 @@ NEXT: feat(plugin): use a ServiceProvider (from JDK) to build dynamic module reg
 NEXT: feat(maven): set source and test directories using an extension (only one || error)
 NEXT: refactor(jte): use a base template for java classes
 NEXT: refactor(jte): use StaticTemplates
+
+IDEA:
+--
+fun generate(builder: Builder) {
+    builder.dir(path)
+    builder.kotlinFile().withTemplate(tplPath).javaModel(namespace, imports, name).content(model)
+    builder.file(path).rawContent(str)
+    builder.file(path).withTemplate(tplPath).content(model)
+}
+--
