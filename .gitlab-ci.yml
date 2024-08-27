@@ -1,0 +1,35 @@
+stages:
+  - build
+  - test
+  - deploy
+
+cache:
+  paths:
+    - .m2/repository
+  key: "${CI_BUILD_REF_NAME}"
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=${CI_PROJECT_DIR}/.m2/repository"
+
+build:
+  stage: build
+  image: library/maven:3.9-eclipse-temurin-21
+  script:
+    - ./scripts/build.sh
+
+test:
+  stage: test
+  image: library/maven:3.9-eclipse-temurin-21
+  script:
+    - ./scripts/test.sh
+
+deploy:
+  stage: deploy
+  rules:
+    - if: $CI_COMMIT_TAG
+  image: library/maven:3.9-eclipse-temurin-21
+  script:
+    - ./scripts/build.sh
+  artifacts:
+    paths:
+      - target/kriollo.jar

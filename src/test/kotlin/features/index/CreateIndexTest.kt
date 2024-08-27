@@ -39,8 +39,7 @@ class CreateIndexTest {
         val generatedFiles = serviceProvider.fileSystem.getTestGeneratedFiles()
         assertThat(generatedFiles.getContentOf("codegen/generated-files.txt")).isEqualTo(
             """
-                default.nix
-                .gitignore
+                src/main/kotlin/acme/AcmeVersion.kt
             """.trimIndent()
         )
     }
