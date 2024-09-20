@@ -1,6 +1,5 @@
 stages:
-  - build
-  - test
+  - check
   - deploy
 
 cache:
@@ -10,20 +9,16 @@ cache:
 
 variables:
   MAVEN_OPTS: "-Dmaven.repo.local=${CI_PROJECT_DIR}/.m2/repository"
-
-build:
-  stage: build
-  image: library/maven:3.9-eclipse-temurin-21
-  script:
-    - ./scripts/build.sh
+  PACKAGE_REGISTRY_URL: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/kriollo/${CI_COMMIT_TAG}"
+  ARTIFACT: "kriollo-${CI_COMMIT_TAG}.tar.gz"
 
 test:
-  stage: test
+  stage: check
   image: library/maven:3.9-eclipse-temurin-21
   script:
     - ./scripts/test.sh
 
-deploy:
+build:
   stage: deploy
   rules:
     - if: $CI_COMMIT_TAG
@@ -33,3 +28,47 @@ deploy:
   artifacts:
     paths:
       - target/kriollo.jar
+
+package:
+  stage: deploy
+  needs:
+    - build
+  rules:
+    - if: $CI_COMMIT_TAG
+  image: library/debian:12-slim
+  script:
+    - ./scripts/package.sh ${CI_COMMIT_TAG}
+  artifacts:
+    paths:
+      - target/kriollo-${CI_COMMIT_TAG}.tar.gz
+
+upload:
+  stage: deploy
+  needs:
+    - package
+  rules:
+    - if: $CI_COMMIT_TAG
+  image: curlimages/curl:latest
+  script:
+    - |
+      curl \
+        --header "JOB-TOKEN: ${CI_JOB_TOKEN}" \
+        --upload-file target/${ARTIFACT} \
+        "${PACKAGE_REGISTRY_URL}/${ARTIFACT}"
+
+release:
+  stage: deploy
+  needs:
+    - upload
+  rules:
+    - if: $CI_COMMIT_TAG
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  script:
+    - echo "running release_job"
+  release: # See https://docs.gitlab.com/ee/ci/yaml/#release for available properties
+    tag_name: '$CI_COMMIT_TAG'
+    description: '$CI_COMMIT_TAG'
+    assets:
+      links:
+        - name: ${ARTIFACT}
+          url: ${PACKAGE_REGISTRY_URL}/${ARTIFACT}
