@@ -4,6 +4,7 @@ import gg.jte.ContentType
 import gg.jte.TemplateEngine
 import kriollo.cli.KriolloCli
 import kriollo.features.Generate
+import kriollo.features.init.Init
 import kriollo.services.configuration.TomlCodegenConfiguration
 import kriollo.services.filesystem.DefaultFileSystemService
 import kriollo.services.provider.DefaultServiceProvider
@@ -24,6 +25,7 @@ fun main(args: Array<String>) {
     )
 
     val kriolloCli = KriolloCli(
+        Init(serviceProvider),
         Generate(serviceProvider),
     )
 
