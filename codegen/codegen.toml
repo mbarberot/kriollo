@@ -14,7 +14,7 @@ templating.enabled = true
 [project]
 groupId = "kriollo"
 name = "kriollo"
-version = "2024.0.0"
+version = "2024.1.0"
 mainClass = "kriollo.KriolloKt"
 dependencies = [
     { groupId = "info.picocli", artifactId = "picocli", version = "4.7.6" },
