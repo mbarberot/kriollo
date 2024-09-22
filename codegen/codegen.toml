@@ -16,13 +16,9 @@ groupId = "kriollo"
 name = "kriollo"
 version = "2024.0.0"
 mainClass = "kriollo.KriolloKt"
-encoding = "UTF-8"
 dependencies = [
     { groupId = "info.picocli", artifactId = "picocli", version = "4.7.6" },
 ]
-
-[kriollo]
-dir = "codegen"
 
 [cli.script]
 enabled = true

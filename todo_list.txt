@@ -1,6 +1,19 @@
 
 ** v2014.1 **
-TODO: tag
+TODO: split configuration files
+
+IDEA for configuration split:
+--
+project.toml -> project & dotfiles configuration, maybe split again for dotfiles
+components.toml -> generated components
+--
+
+NOTE for configuration split:
+--
+1. Keep backward compatibility
+2. Show deprecation
+3. Add migration path, automated if possible
+--
 
 ** v2014.2 **
 NEXT: feat(logs): add Logging framework
