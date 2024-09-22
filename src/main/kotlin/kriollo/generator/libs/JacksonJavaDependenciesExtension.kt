@@ -5,7 +5,7 @@ import kriollo.generator.java.JavaDependencyExtension
 import kriollo.services.provider.ServiceProvider
 
 class JacksonJavaDependenciesExtension(
-    val serviceProvider: ServiceProvider
+    val serviceProvider: ServiceProvider,
 ) : JavaDependencyExtension {
     override fun provide(): List<JavaArtifact> {
         val (version, dataformats) = serviceProvider.configuration.libs.jackson
@@ -27,6 +27,14 @@ class JacksonJavaDependenciesExtension(
                         JavaArtifact(
                             groupId = "com.fasterxml.jackson.dataformat",
                             artifactId = "jackson-dataformat-toml",
+                            version = version
+                        )
+                    )
+
+                    else -> add(
+                        JavaArtifact(
+                            groupId = "com.fasterxml.jackson.dataformat",
+                            artifactId = "jackson-dataformat-$it",
                             version = version
                         )
                     )
