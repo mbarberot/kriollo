@@ -1,10 +1,8 @@
 package factories
 
-import kriollo.services.configuration.BasicCodegenConfiguration
 import kriollo.configuration.CodegenConfiguration
-import kriollo.generator.git.GitConfiguration
-import kriollo.generator.nix.NixConfiguration
 import kriollo.generator.project.ProjectConfiguration
+import kriollo.services.configuration.BasicCodegenConfiguration
 
 object Configs {
     fun basicConfig(): CodegenConfiguration {
