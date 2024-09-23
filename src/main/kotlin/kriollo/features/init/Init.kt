@@ -13,26 +13,39 @@ class Init(val serviceProvider: ServiceProvider) {
 
     private fun generateBasicConfiguration(): String {
         return """
+          #
+          # Project
+          #
+          
           [project]
           groupId = ""
           name = ""
           version = ""
           
-          java.enabled = true
-          kotlin.enabled = true
-          maven.enabled = true
+          [java]
+          enabled = true
+          
+          [kotlin]
+          enabled = true
+          
+          [maven]
+          enabled = true
           
           [tests]
           enabled = true
           junit.enabled = true
           
-          
+          #
           # Dotfiles
-          jetbrains.enabled = true
-          nix.enabled = true
-          git.enabled = true
+          #
+          [jetbrains]
+          enabled = true
           
+          [nix]
+          enabled = true
           
+          [git]
+          enabled = true
           
            """.trimIndent()
     }
