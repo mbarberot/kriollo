@@ -9,12 +9,14 @@ class Generate(
     private val serviceProvider: ServiceProvider,
 ) {
 
-    private val generators: CodeGenerators = CodeGenerators(
-        buildList {
-            addAll(CoreModules().getModules(serviceProvider))
-            addAll(KriolloModules().getModules(serviceProvider))
-        },
-    )
+    private val generators: CodeGenerators by lazy {
+        CodeGenerators(
+            buildList {
+                addAll(CoreModules().getModules(serviceProvider))
+                addAll(KriolloModules().getModules(serviceProvider))
+            },
+        )
+    }
 
     fun generate() {
         generators.execute(serviceProvider);
