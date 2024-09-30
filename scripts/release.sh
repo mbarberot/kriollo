@@ -25,7 +25,7 @@ fi
 
 # UPDATE VERSION
 
-sed -i '0,/version = .*/s//version = "'${TAG}'"/' codegen/codegen.toml
+sed -i '0,/version .*/s//version "'${TAG}'"/' codegen/codegen.kdl
 # > regenerate code
 ./codegen/kriollo build
 # > rebuild
