@@ -85,8 +85,8 @@ templating {
 
 libs {
     jackson {
-        dataformats {
-            - "toml"
+        core {
+            - "databind"
         }
     }
 }

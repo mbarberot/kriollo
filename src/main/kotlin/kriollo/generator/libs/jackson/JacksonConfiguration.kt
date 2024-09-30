@@ -4,5 +4,5 @@ import kriollo.HardcodedValues
 
 data class JacksonConfiguration(
     val version: String = HardcodedValues.DEFAULT_JACKSON_VERSION,
-    val dataformats: List<String> = listOf()
+    val core: List<String> = listOf()
 )

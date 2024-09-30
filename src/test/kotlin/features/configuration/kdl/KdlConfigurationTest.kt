@@ -76,8 +76,8 @@ class KdlConfigurationTest {
             
             libs {
                 jackson {
-                    dataformats {
-                        - "toml"
+                    core {
+                        - "databind"
                     }
                 }
             }
@@ -107,7 +107,7 @@ class KdlConfigurationTest {
                 ),
                 libs = JavaLibConfiguration(
                     jackson = JacksonConfiguration(
-                        dataformats = listOf("toml")
+                        core = listOf("databind")
                     )
                 )
             )
