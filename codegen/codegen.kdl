@@ -1,7 +1,7 @@
 project {
     groupId "kriollo"
     name "kriollo"
-    version "2024.1.0"
+    version "2024.2.0"
     mainClass "kriollo.KriolloKt"
     dependencies {
         - {
