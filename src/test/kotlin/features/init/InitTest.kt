@@ -18,7 +18,7 @@ class InitTest {
 
         // Assert
         val generatedFiles = serviceProvider.fileSystem.getTestGeneratedFiles()
-        assertThat(generatedFiles.filenames()).contains("codegen/codegen.toml")
+        assertThat(generatedFiles.filenames()).contains("codegen/codegen.kdl")
     }
 
     @Test
@@ -32,12 +32,13 @@ class InitTest {
 
         // Assert
         val generatedFiles = serviceProvider.fileSystem.getTestGeneratedFiles()
-        assertThat(generatedFiles.getContentOf("codegen/codegen.toml")).contains(
+        assertThat(generatedFiles.getContentOf("codegen/codegen.kdl")).contains(
             """
-                [project]
-                groupId = ""
-                name = ""
-                version = ""
+                project {
+                    groupId ""
+                    name ""
+                    version ""
+                }
             """.trimIndent()
         )
     }
