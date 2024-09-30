@@ -18,6 +18,7 @@ version = "2024.1.0"
 mainClass = "kriollo.KriolloKt"
 dependencies = [
     { groupId = "info.picocli", artifactId = "picocli", version = "4.7.6" },
+    { groupId = "kdl", artifactId = "kdl4j", version = "0.3.0" },
 ]
 
 [cli.script]

@@ -41,7 +41,10 @@ class MavenPomGenerator(val serviceProvider: ServiceProvider) : TemplatedFileGen
             bomExtensions
                 .map { extension -> extension.provide() }
                 .forEach { bom -> addAll(bom) }
-        }
+        },
+        repositories = PomRepositoriesModel(
+            jitpack = serviceProvider.configuration.maven.repositories.jitpack
+        )
     )
 
     private fun getArtifactOrFail(): JavaArtifact {

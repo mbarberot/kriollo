@@ -5,7 +5,7 @@ import com.fasterxml.jackson.module.kotlin.kotlinModule
 import kriollo.configuration.CodegenConfiguration
 import java.io.File
 
-private fun readConfiguration(configurationFilePath: String): CodegenConfiguration {
+private fun readTomlConfiguration(configurationFilePath: String): CodegenConfiguration {
     val mapper = TomlMapper()
     mapper.registerModule(kotlinModule())
     return mapper.readValue(File(configurationFilePath), BasicCodegenConfiguration::class.java)
@@ -13,4 +13,4 @@ private fun readConfiguration(configurationFilePath: String): CodegenConfigurati
 
 class TomlCodegenConfiguration(
     configurationFilePath: String,
-) : CodegenConfiguration by readConfiguration(configurationFilePath)
+) : CodegenConfiguration by readTomlConfiguration(configurationFilePath)

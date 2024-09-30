@@ -8,4 +8,11 @@ data class PomModel(
     val plugins: List<String>,
     val properties: Map<String, String>,
     val boms: List<JavaArtifact>,
+    val repositories: PomRepositoriesModel,
 )
+
+data class PomRepositoriesModel(
+    val jitpack: Boolean = false
+) {
+    fun isNotEmpty(): Boolean = listOf(jitpack).all { it }
+}

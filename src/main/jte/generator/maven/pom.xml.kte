@@ -15,8 +15,8 @@
 
     <properties>
         @for(property in model.properties)
-        <${property.key}>${property.value}</${property.key}>
-    @endfor
+            <${property.key}>${property.value}</${property.key}>
+        @endfor
     </properties>
 
     <build>
@@ -35,6 +35,18 @@
             @endfor
         </plugins>
     </build>
+
+    @if(model.repositories.isNotEmpty())
+    <repositories>
+        @if(model.repositories.jitpack)
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+        @endif
+    </repositories>
+
+    @endif
 
     @if(model.boms.isNotEmpty())
         <dependencyManagement>

@@ -16,7 +16,7 @@ import kriollo.generator.scripts.ScriptsConfiguration
 import kriollo.generator.templating.TemplatingConfiguration
 import kriollo.generator.tests.TestsConfiguration
 
-class BasicCodegenConfiguration(
+data class BasicCodegenConfiguration(
     override val kriollo: KriolloConfiguration = KriolloConfiguration(),
     override val project: ProjectConfiguration = ProjectConfiguration(),
     override val cli: CliConfiguration = CliConfiguration(),
