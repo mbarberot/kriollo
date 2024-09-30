@@ -1,21 +1,6 @@
 
-** v2014.1 **
-TODO: split configuration files
-
-IDEA for configuration split:
---
-project.toml -> project & dotfiles configuration, maybe split again for dotfiles
-components.toml -> generated components
---
-
-NOTE for configuration split:
---
-1. Keep backward compatibility
-2. Show deprecation
-3. Add migration path, automated if possible
---
-
-** v2014.2 **
+** v2014.3 **
+NEXT: feat(config): split configuration file (ie: project.kdl, dotfiles.kdl, components.kdl)
 NEXT: feat(logs): add Logging framework
 NEXT: feat(justfile): add justfile support
 NEXT: feat(dockerfile): generate dockerfile
