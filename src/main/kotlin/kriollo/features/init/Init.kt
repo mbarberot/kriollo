@@ -33,7 +33,9 @@ class Init(val serviceProvider: ServiceProvider) {
             
             tests {
                 enabled true
-                junit.enabled true
+                junit {
+                    enabled true
+                }
             }
           
             jetbrains {
