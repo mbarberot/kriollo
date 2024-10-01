@@ -1,7 +1,7 @@
 project {
     groupId "com.gitlab.mbarberot"
     name "kriollo"
-    version "2024.2.0"
+    version "2024.2.1"
     mainClass "KriolloKt"
     dependencies {
         - {
