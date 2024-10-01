@@ -1,4 +1,4 @@
-@import kriollo.generator.cli.CliMavenPluginModel
+@import com.gitlab.mbarberot.kriollo.generator.cli.CliMavenPluginModel
 @param model: CliMavenPluginModel
 <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

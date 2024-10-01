@@ -1,4 +1,4 @@
-@import kriollo.generator.maven.PomModel
+@import com.gitlab.mbarberot.kriollo.generator.maven.PomModel
 @param model: PomModel
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"
          xmlns="http://maven.apache.org/POM/4.0.0"

@@ -1,16 +1,16 @@
 package features.configuration.kdl
 
-import kriollo.configuration.CodegenConfiguration
-import kriollo.generator.libs.JavaLibConfiguration
-import kriollo.generator.libs.jackson.JacksonConfiguration
-import kriollo.generator.project.ProjectConfiguration
-import kriollo.generator.scripts.ScriptsConfiguration
-import kriollo.generator.scripts.build.BuildScriptConfiguration
-import kriollo.generator.scripts.build.BuildScriptCustomStepConfiguration
-import kriollo.generator.scripts.test.TestScriptConfiguration
-import kriollo.services.configuration.BasicCodegenConfiguration
-import kriollo.services.configuration.KdlCodegenConfiguration
-import kriollo.services.configuration.mapToClass
+import com.gitlab.mbarberot.kriollo.configuration.CodegenConfiguration
+import com.gitlab.mbarberot.kriollo.generator.libs.JavaLibConfiguration
+import com.gitlab.mbarberot.kriollo.generator.libs.jackson.JacksonConfiguration
+import com.gitlab.mbarberot.kriollo.generator.project.ProjectConfiguration
+import com.gitlab.mbarberot.kriollo.generator.scripts.ScriptsConfiguration
+import com.gitlab.mbarberot.kriollo.generator.scripts.build.BuildScriptConfiguration
+import com.gitlab.mbarberot.kriollo.generator.scripts.build.BuildScriptCustomStepConfiguration
+import com.gitlab.mbarberot.kriollo.generator.scripts.test.TestScriptConfiguration
+import com.gitlab.mbarberot.kriollo.services.configuration.BasicCodegenConfiguration
+import com.gitlab.mbarberot.kriollo.services.configuration.KdlCodegenConfiguration
+import com.gitlab.mbarberot.kriollo.services.configuration.mapToClass
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 

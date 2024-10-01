@@ -1,8 +1,8 @@
 package factories.services
 
-import kriollo.configuration.CodegenConfiguration
-import kriollo.services.configuration.BasicCodegenConfiguration
-import kriollo.services.provider.ServiceProvider
+import com.gitlab.mbarberot.kriollo.configuration.CodegenConfiguration
+import com.gitlab.mbarberot.kriollo.services.configuration.BasicCodegenConfiguration
+import com.gitlab.mbarberot.kriollo.services.provider.ServiceProvider
 
 class TestServiceProvider(
     override val configuration: CodegenConfiguration = BasicCodegenConfiguration(),

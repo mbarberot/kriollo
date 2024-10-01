@@ -1,4 +1,4 @@
-@import kriollo.generator.kotlin.KotlinMavenPluginModel
+@import com.gitlab.mbarberot.kriollo.generator.kotlin.KotlinMavenPluginModel
 @param model: KotlinMavenPluginModel
 <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>

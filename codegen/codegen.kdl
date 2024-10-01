@@ -1,8 +1,8 @@
 project {
-    groupId "kriollo"
+    groupId "com.gitlab.mbarberot"
     name "kriollo"
     version "2024.2.0"
-    mainClass "kriollo.KriolloKt"
+    mainClass "KriolloKt"
     dependencies {
         - {
             groupId "info.picocli"
@@ -94,7 +94,7 @@ libs {
 components {
     kriollo {
         - {
-            path "kriollo/generator/nix"
+            path "generator/nix"
             name "nix"
             tag "core"
             activationKey "nix.enabled"
@@ -111,7 +111,7 @@ components {
             }
         }
         - {
-            path "kriollo/generator/scripts/build"
+            path "generator/scripts/build"
             name "BuildScript"
             tag "core"
             activationKey "scripts.build.enabled"
@@ -122,7 +122,7 @@ components {
             }
         }
         - {
-            path "kriollo/generator/scripts"
+            path "generator/scripts"
             name "Scripts"
             tag "core"
             activationKey "scripts.enabled"
@@ -133,7 +133,7 @@ components {
             }
         }
         - {
-            path "kriollo/generator/scripts/test"
+            path "generator/scripts/test"
             name "TestScript"
             tag "core"
             activationKey "scripts.tests.enabled"
@@ -144,7 +144,7 @@ components {
             }
         }
         - {
-            path "kriollo/generator/maven"
+            path "generator/maven"
             name "Maven"
             tag "core"
             activationKey "maven.enabled"
@@ -172,17 +172,17 @@ components {
                 }
                 - {
                     name "MavenBomExtension"
-                    provideType "kriollo.generator.java.JavaArtifact"
+                    provideType "com.gitlab.mbarberot.kriollo.generator.java.JavaArtifact"
                 }
                 - {
                     name "MavenArtifactExtension"
-                    provideType "kriollo.generator.java.JavaArtifact"
+                    provideType "com.gitlab.mbarberot.kriollo.generator.java.JavaArtifact"
                 }
             }
 
         }
         - {
-            path "kriollo/generator/git"
+            path "generator/git"
             name "Git"
             tag "core"
             activationKey "git.enabled"
@@ -200,7 +200,7 @@ components {
 
         }
         - {
-            path "kriollo/generator/jetbrains"
+            path "generator/jetbrains"
             name "Jetbrains"
             tag "core"
             activationKey "jetbrains.enabled"
@@ -212,7 +212,7 @@ components {
 
         }
         - {
-            path "kriollo/generator/cli"
+            path "generator/cli"
             name "cli"
             tag "core"
             activationKey "cli.enabled"
@@ -224,7 +224,7 @@ components {
 
         }
         - {
-            path "kriollo/generator/cli/script"
+            path "generator/cli/script"
             name "MainScript"
             tag "core"
             activationKey "cli.script.enabled"
@@ -239,7 +239,7 @@ components {
 
         }
         - {
-            path "kriollo/generator/java"
+            path "generator/java"
             name "Java"
             tag "core"
             activationKey "java.enabled"
@@ -260,7 +260,7 @@ components {
 
         }
         - {
-            path "kriollo/generator/kotlin"
+            path "generator/kotlin"
             name "Kotlin"
             tag "core"
             activationKey "kotlin.enabled"
@@ -289,7 +289,7 @@ components {
 
         }
         - {
-            path "kriollo/generator/templating/jte"
+            path "generator/templating/jte"
             name "Jte"
             tag "core"
             activationKey "templating.jte.enabled"
@@ -312,7 +312,7 @@ components {
 
         }
         - {
-            path "kriollo/generator/project"
+            path "generator/project"
             name "Project"
             tag "core"
             activationKey "-"
@@ -335,7 +335,7 @@ components {
 
         }
         - {
-            path "kriollo/generator/tests"
+            path "generator/tests"
             name "tests"
             tag "core"
             activationKey "tests.enabled"
@@ -347,7 +347,7 @@ components {
 
         }
         - {
-            path "kriollo/generator/tests/junit"
+            path "generator/tests/junit"
             name "junit"
             tag "core"
             activationKey "tests.junit.enabled"
@@ -362,7 +362,7 @@ components {
 
         }
         - {
-            path "kriollo/generator/libs"
+            path "generator/libs"
             name "Libraries"
             tag "core"
             activationKey "-"
@@ -374,7 +374,7 @@ components {
 
         }
         - {
-            path "kriollo/generator/components/kriollo"
+            path "generator/components/kriollo"
             name "Kriollo"
             tag "kriollo"
             activationKey "components.kriollo.isNotEmpty()"

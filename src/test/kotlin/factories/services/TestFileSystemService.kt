@@ -1,6 +1,6 @@
 package factories.services
 
-import kriollo.services.filesystem.BaseFileSystemService
+import com.gitlab.mbarberot.kriollo.services.filesystem.BaseFileSystemService
 
 class TestFileSystemService : BaseFileSystemService() {
 

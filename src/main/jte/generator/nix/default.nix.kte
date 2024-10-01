@@ -1,4 +1,4 @@
-@import kriollo.generator.nix.DefaultNixFileModel
+@import com.gitlab.mbarberot.kriollo.generator.nix.DefaultNixFileModel
 @param model: DefaultNixFileModel
 ${model.bashWarning()}
 

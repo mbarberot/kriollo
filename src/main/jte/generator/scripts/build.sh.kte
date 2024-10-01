@@ -1,4 +1,4 @@
-@import kriollo.generator.scripts.build.BuildScriptModel
+@import com.gitlab.mbarberot.kriollo.generator.scripts.build.BuildScriptModel
 @param model: BuildScriptModel
 #!/usr/bin/env bash
 

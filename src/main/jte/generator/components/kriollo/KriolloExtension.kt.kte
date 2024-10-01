@@ -1,10 +1,10 @@
-@import kriollo.generator.components.kriollo.KriolloExtensionModel
+@import com.gitlab.mbarberot.kriollo.generator.components.kriollo.KriolloExtensionModel
 @param model: KriolloExtensionModel
 package ${model.namespace}
 
 ${model.javaWarning()}
 
-import kriollo.generator.CodegenExtension
+import com.gitlab.mbarberot.kriollo.generator.CodegenExtension
 @for(import in model.imports())
     import ${import}
 @endfor

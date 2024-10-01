@@ -1,3 +1,9 @@
+** v2024.2.1
+
+TODO: fix(init): wrong junit configuration (junit.enabled true instead of junit { enabled true })
+TODO: fix(version): handle snake and kebab case (ie: notion-cli)
+TODO: fix(generate): src root for generation must also use the groupId
+
 
 ** v2014.3 **
 NEXT: feat(config): split configuration file (ie: project.kdl, dotfiles.kdl, components.kdl)

@@ -1,4 +1,4 @@
-@import kriollo.generator.git.GitIgnoreModel
+@import com.gitlab.mbarberot.kriollo.generator.git.GitIgnoreModel
 @param model: GitIgnoreModel
 ${model.bashWarning()}
 

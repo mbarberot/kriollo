@@ -1,4 +1,4 @@
-@import kriollo.generator.components.kriollo.KriolloTagModulesModel
+@import com.gitlab.mbarberot.kriollo.generator.components.kriollo.KriolloTagModulesModel
 @param model: KriolloTagModulesModel
 package ${model.namespace}
 

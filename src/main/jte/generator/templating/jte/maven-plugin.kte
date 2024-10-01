@@ -1,4 +1,4 @@
-@import kriollo.generator.templating.jte.JteMavenPluginModel
+@import com.gitlab.mbarberot.kriollo.generator.templating.jte.JteMavenPluginModel
 @param model: JteMavenPluginModel
 <plugin>
                 <groupId>gg.jte</groupId>

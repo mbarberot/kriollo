@@ -1,4 +1,4 @@
-@import kriollo.generator.maven.SimpleMavenPluginModel
+@import com.gitlab.mbarberot.kriollo.generator.maven.SimpleMavenPluginModel
 @param model: SimpleMavenPluginModel
 <plugin>
                 @if(model.groupId != null)
