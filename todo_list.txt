@@ -1,24 +1,65 @@
-** v2024.2.1
+THE MIGHTY TODO_LIST
+====================
 
-TODO: fix(init): wrong junit configuration (junit.enabled true instead of junit { enabled true })
-TODO: fix(version): handle snake and kebab case (ie: notion-cli)
-TODO: fix(generate): src root for generation must also use the groupId
+** v2024.3.0 
+
+[Epic : cleaning files]
+
+TODO: feat(clean): add a clean task that delete every file listed in the generated-files.txt
+
+TODO: feat(generate): run clean task before generating the project 
+Motivation : remove orphan files if a generator is removed or if it does not need to generate that file anymore
+
+TODO: feat(generate): do not create a file if it alredy exists
+Motivation : allow taking over a generated file by editiing it manually and removing it from the generated-files.txt
+Would make an eject task easier too. 
+
+TODO: feat(generation): add a force option to erase a file that already exists
+Motivation : should lead the filesystem and file generation specific code into a better state by introducing refactorings
+
+[Epic : configuration changes with nice deprecation handling]
+
+TODO: feat(config): allow deprecations in configurations 
+Notes : add an abstraction to allow a lenient configuration file that accepts every configuration possible for the current major version
+and an adapter layer that will redirect the deprecated configuration into the actual configuration used in the core. 
+Another thing to mention is that this adapter should emit warnings about these deprecations to help the user fixing its configuration file
+
+TODO: refactoring(config): add abstraction on configuration fetching (ie: factory ?)
+TODO: refactoring(config): separate DTO used for configuration read of the actual configuration instance in the core
+TODO: refactoring(config): add a noop adapter
+TODO: refactoring(config): make a breaking change in the core configuration and handle it in the adapter
+TODO: refactoring(config): setup a deprecation system (observer pattern through the service provider ?)
+
+Note: beware on test to not rely to the actual lenient/core configuration pair to avoid breaking tests on major version deprecation code cleanup. 
+
+Then, do the real changes : 
+
+TODO: feat(feign): add feign in the managed libs
+TODO: feat(picocli): add picocli in the managed libs
+TODO: feat(config): move managed libs in the project configuration
+TODO: feat(config): there was something else that could be in project too but i don't remember it yet => see the notion-cli project
 
 
-** v2014.3 **
-NEXT: feat(config): split configuration file (ie: project.kdl, dotfiles.kdl, components.kdl)
-NEXT: feat(logs): add Logging framework
+** v2024.FUTURE **
+
+[Epic : More generators ]
+
 NEXT: feat(justfile): add justfile support
 NEXT: feat(dockerfile): generate dockerfile
 NEXT: feat(readme): add readme support with custom title/description/sections
+NEXT: feat(maven): set source and test directories using an extension (only one || error)
+
+[Epic : Stabilisation ]
+
+NEXT: feat(logs): add Logging framework
 NEXT: feat(config): check configuration (ie: JUnit requires Maven or Gradle, ...)
 NEXT: feat(config): split configuration file
-NEXT: feat(generator): handle old obsolete files using the -lock file
+NEXT: feat(config): split configuration file (ie: project.kdl, dotfiles.kdl, components.kdl)
 NEXT: feat(plugin): use a ServiceProvider (from JDK) to build dynamic module registration
-NEXT: feat(maven): set source and test directories using an extension (only one || error)
 NEXT: refactor(jte): use a base template for java classes
 NEXT: refactor(jte): use StaticTemplates
-NEXT: refactor(picocli): add to the libs configuration
+
+** Ideas **
 
 IDEA:
 --
@@ -29,3 +70,29 @@ fun generate(builder: Builder) {
     builder.file(path).withTemplate(tplPath).content(model)
 }
 --
+
+IDEA: External basic components
+--
+A kdl file to register it : 
+
+* file name 
+* execution rule
+* path
+
+A template file for the generation with 
+
+* component config
+* glogal config
+* maybe some services
+
+Dir structure to be defined 
+Maybe:  
+
+codegen/
+  custom-components/
+    my-component/
+      component.kdl
+      template.kte
+
+Note: could make use of several templates, maybe in a more elaborate version later
+-- 
