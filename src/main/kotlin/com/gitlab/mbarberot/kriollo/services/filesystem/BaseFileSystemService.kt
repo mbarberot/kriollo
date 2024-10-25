@@ -26,6 +26,7 @@ abstract class BaseFileSystemService : FileSystemService {
     }
 
     override fun removeFile(path: String) {
+        println("> Deleting $path file")
         Path(path).deleteIfExists()
     }
 

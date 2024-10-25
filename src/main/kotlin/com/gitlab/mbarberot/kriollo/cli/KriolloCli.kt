@@ -29,6 +29,7 @@ class KriolloCli(
 
     @Command(name = "build")
     fun build() {
+        cleanAction.clean()
         generateAction.generate()
     }
 

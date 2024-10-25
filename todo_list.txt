@@ -3,20 +3,6 @@ THE MIGHTY TODO_LIST
 
 ** v2024.3.0 
 
-[Epic : cleaning files]
-
-TODO: feat(clean): add a clean task that delete every file listed in the generated-files.txt
-
-TODO: feat(generate): run clean task before generating the project 
-Motivation : remove orphan files if a generator is removed or if it does not need to generate that file anymore
-
-TODO: feat(generate): do not create a file if it alredy exists
-Motivation : allow taking over a generated file by editiing it manually and removing it from the generated-files.txt
-Would make an eject task easier too. 
-
-TODO: feat(generation): add a force option to erase a file that already exists
-Motivation : should lead the filesystem and file generation specific code into a better state by introducing refactorings
-
 [Epic : configuration changes with nice deprecation handling]
 
 TODO: feat(config): allow deprecations in configurations 

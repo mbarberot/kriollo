@@ -6,7 +6,10 @@ class Clean(
     private val serviceProvider: ServiceProvider,
 ) {
     fun clean() {
-        val index: List<String> = serviceProvider.fileSystem.getFileContent("codegen/generated-files.txt")
+        println("# Clean #")
+
+        val indexFileName = "${serviceProvider.configuration.kriollo.dir}/generated-files.txt"
+        val index: List<String> = serviceProvider.fileSystem.getFileContent(indexFileName)
 
         index.forEach { filePath ->
             serviceProvider.fileSystem.removeFile(filePath)

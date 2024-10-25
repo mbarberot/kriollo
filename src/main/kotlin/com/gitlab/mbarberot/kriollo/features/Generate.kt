@@ -9,8 +9,8 @@ class Generate(
     private val serviceProvider: ServiceProvider,
 ) {
 
-    private val generators: com.gitlab.mbarberot.kriollo.generator.CodeGenerators by lazy {
-        com.gitlab.mbarberot.kriollo.generator.CodeGenerators(
+    private val generators: CodeGenerators by lazy {
+        CodeGenerators(
             buildList {
                 addAll(CoreModules().getModules(serviceProvider))
                 addAll(KriolloModules().getModules(serviceProvider))
@@ -19,6 +19,7 @@ class Generate(
     }
 
     fun generate() {
+        println("# Generate #")
         generators.execute(serviceProvider);
         createIndexFile()
     }
