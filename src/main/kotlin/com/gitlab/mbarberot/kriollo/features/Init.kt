@@ -1,4 +1,4 @@
-package com.gitlab.mbarberot.kriollo.features.init
+package com.gitlab.mbarberot.kriollo.features
 
 import com.gitlab.mbarberot.kriollo.services.provider.ServiceProvider
 

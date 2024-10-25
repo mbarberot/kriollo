@@ -1,5 +1,9 @@
 package com.gitlab.mbarberot.kriollo.services.filesystem
 
+import kotlin.io.path.Path
+import kotlin.io.path.deleteIfExists
+import kotlin.io.path.readLines
+
 abstract class BaseFileSystemService : FileSystemService {
 
     private val generatedFiles: MutableList<GeneratedFile> = mutableListOf()
@@ -19,6 +23,14 @@ abstract class BaseFileSystemService : FileSystemService {
 
     override fun generatedFiles(): List<GeneratedFile> {
         return generatedFiles
+    }
+
+    override fun removeFile(path: String) {
+        Path(path).deleteIfExists()
+    }
+
+    override fun getFileContent(path: String): List<String> {
+        return Path(path).readLines(Charsets.UTF_8)
     }
 
 }

@@ -1,8 +1,9 @@
 package com.gitlab.mbarberot.kriollo
 
 import com.gitlab.mbarberot.kriollo.cli.KriolloCli
+import com.gitlab.mbarberot.kriollo.features.Clean
 import com.gitlab.mbarberot.kriollo.features.Generate
-import com.gitlab.mbarberot.kriollo.features.init.Init
+import com.gitlab.mbarberot.kriollo.features.Init
 import com.gitlab.mbarberot.kriollo.services.provider.DefaultServiceProvider
 import com.gitlab.mbarberot.kriollo.services.provider.ServiceProvider
 import picocli.CommandLine
@@ -14,6 +15,7 @@ fun main(args: Array<String>) {
 
     val kriolloCli = KriolloCli(
         Init(serviceProvider),
+        Clean(serviceProvider),
         Generate(serviceProvider),
     )
 

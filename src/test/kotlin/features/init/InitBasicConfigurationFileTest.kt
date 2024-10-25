@@ -1,7 +1,7 @@
 package features.init
 
 import factories.services.TestServiceProvider
-import com.gitlab.mbarberot.kriollo.features.init.Init
+import com.gitlab.mbarberot.kriollo.features.Init
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
