@@ -5,17 +5,15 @@ project {
     mainClass "KriolloKt"
     dependencies {
         - {
-            groupId "info.picocli"
-            artifactId "picocli"
-            version "4.7.6"
-        }
-        - {
             groupId "com.github.kdl-org"
             artifactId "kdl4j"
             version "0.3.0"
         }
     }
     libs {
+        picocli {
+            enabled true
+        }
         jackson {
             enabled true
             core {
@@ -370,6 +368,9 @@ components {
             extensions {
                 - {
                     name "JacksonJavaDependenciesExtension"
+                }
+                - {
+                    name "PicocliJavaDependenciesExtension"
                 }
             }
 

@@ -5,24 +5,9 @@ THE MIGHTY TODO_LIST
 
 [Epic : configuration changes with nice deprecation handling]
 
-TODO: feat(config): allow deprecations in configurations 
-Notes : add an abstraction to allow a lenient configuration file that accepts every configuration possible for the current major version
-and an adapter layer that will redirect the deprecated configuration into the actual configuration used in the core. 
-Another thing to mention is that this adapter should emit warnings about these deprecations to help the user fixing its configuration file
-
-TODO: refactoring(config): add abstraction on configuration fetching (ie: factory ?)
-TODO: refactoring(config): separate DTO used for configuration read of the actual configuration instance in the core
-TODO: refactoring(config): add a noop adapter
-TODO: refactoring(config): make a breaking change in the core configuration and handle it in the adapter
-TODO: refactoring(config): setup a deprecation system (observer pattern through the service provider ?)
-
-Note: beware on test to not rely to the actual lenient/core configuration pair to avoid breaking tests on major version deprecation code cleanup. 
-
 Then, do the real changes : 
 
 TODO: feat(feign): add feign in the managed libs
-TODO: feat(picocli): add picocli in the managed libs
-TODO: feat(config): move managed libs in the project configuration
 TODO: feat(config): there was something else that could be in project too but i don't remember it yet => see the notion-cli project
 
 

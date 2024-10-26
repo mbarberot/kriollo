@@ -20,5 +20,6 @@ class LibrariesModule(
 
     override fun provideExtensions(generator: Generator) {
         generator.registerExtension(JacksonJavaDependenciesExtension(serviceProvider))
+        generator.registerExtension(PicocliJavaDependenciesExtension(serviceProvider))
     }
 }
