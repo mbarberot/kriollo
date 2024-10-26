@@ -12,7 +12,6 @@ import com.gitlab.mbarberot.kriollo.generator.maven.MavenConfiguration
 import com.gitlab.mbarberot.kriollo.generator.nix.NixConfiguration
 import com.gitlab.mbarberot.kriollo.generator.project.ProjectConfiguration
 import com.gitlab.mbarberot.kriollo.generator.scripts.ScriptsConfiguration
-import com.gitlab.mbarberot.kriollo.generator.templating.TemplatingConfiguration
 import com.gitlab.mbarberot.kriollo.generator.tests.TestsConfiguration
 
 data class BasicCodegenConfiguration(
@@ -26,7 +25,6 @@ data class BasicCodegenConfiguration(
     override val git: GitConfiguration = GitConfiguration(),
     override val scripts: ScriptsConfiguration = ScriptsConfiguration(),
     override val maven: MavenConfiguration = MavenConfiguration(),
-    override val templating: TemplatingConfiguration = TemplatingConfiguration(),
     override val tests: TestsConfiguration = TestsConfiguration(),
     override val components: ComponentsConfiguration = ComponentsConfiguration(),
 ): CodegenConfiguration

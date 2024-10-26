@@ -6,6 +6,6 @@ import com.gitlab.mbarberot.kriollo.services.provider.ServiceProvider
 class JteDirectoryGenerator(val serviceProvider: ServiceProvider): DirectoryGenerator() {
 
     override fun getDirectoryPath(): String {
-        return serviceProvider.configuration.templating.jte.sourceDirectory
+        return serviceProvider.configuration.project.libs.jte.sourceDirectory
     }
 }

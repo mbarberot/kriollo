@@ -11,7 +11,7 @@ class JteMavenPluginExtension(
     override fun getTemplatePath(): String = "generator/templating/jte/maven-plugin.kte"
 
     override fun getAllTemplateData(): List<Any> {
-        val (_, _, _, version, sourceDirectory, contentType) = serviceProvider.configuration.templating.jte
+        val (_, _, _, version, sourceDirectory, contentType) = serviceProvider.configuration.project.libs.jte
         return listOf(
             JteMavenPluginModel(version, sourceDirectory, contentType)
         )

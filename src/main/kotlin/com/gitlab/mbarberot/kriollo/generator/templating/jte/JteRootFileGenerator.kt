@@ -6,7 +6,7 @@ import com.gitlab.mbarberot.kriollo.services.provider.ServiceProvider
 class JteRootFileGenerator(val serviceProvider: ServiceProvider): FileGenerator() {
 
     override fun getFilePath(): String {
-        return "${serviceProvider.configuration.templating.jte.sourceDirectory}/.jteroot"
+        return "${serviceProvider.configuration.project.libs.jte.sourceDirectory}/.jteroot"
     }
 
     override fun getContent(serviceProvider: ServiceProvider) = ""

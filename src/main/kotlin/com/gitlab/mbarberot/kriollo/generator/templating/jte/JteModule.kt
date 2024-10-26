@@ -13,7 +13,7 @@ class JteModule(
     val serviceProvider: ServiceProvider,
 ) : CodegenModule() {
 
-    override fun isActivated(): Boolean = serviceProvider.configuration.templating.jte.enabled
+    override fun isActivated(): Boolean = serviceProvider.configuration.project.libs.jte.enabled
 
     override fun provideGenerators(): List<Generator> = listOf(
         JteDirectoryGenerator(serviceProvider),

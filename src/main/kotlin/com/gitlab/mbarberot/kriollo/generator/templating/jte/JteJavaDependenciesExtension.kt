@@ -8,7 +8,7 @@ class JteJavaDependenciesExtension(
     val serviceProvider: ServiceProvider
 ) : JavaDependencyExtension {
     override fun provide(): List<JavaArtifact> {
-        val (_, groupId, artifactId, version, _, _) = serviceProvider.configuration.templating.jte
+        val (_, groupId, artifactId, version, _, _) = serviceProvider.configuration.project.libs.jte
         return buildList {
             add(JavaArtifact(groupId, artifactId, version))
 

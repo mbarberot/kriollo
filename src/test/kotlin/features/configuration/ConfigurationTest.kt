@@ -73,7 +73,6 @@ data class TestBackwardCompatibleConfiguration(
     override val git: GitConfiguration = GitConfiguration(),
     override val scripts: ScriptsConfiguration = ScriptsConfiguration(),
     override val maven: MavenConfiguration = MavenConfiguration(),
-    override val templating: TemplatingConfiguration = TemplatingConfiguration(),
     override val tests: TestsConfiguration = TestsConfiguration(),
     override val components: ComponentsConfiguration = ComponentsConfiguration(),
 ) : CodegenConfiguration

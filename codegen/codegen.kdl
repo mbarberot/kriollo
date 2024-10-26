@@ -20,6 +20,10 @@ project {
                 - "databind"
             }
         }
+        jte {
+            enabled true
+            contentType "Plain"
+        }
     }
 }
 
@@ -81,14 +85,6 @@ cli {
         targetDirectory "codegen"
     }
 }
-
-templating {
-    jte {
-        enabled true
-        contentType "Plain"
-    }
-}
-
 
 components {
     kriollo {
@@ -291,7 +287,7 @@ components {
             path "generator/templating/jte"
             name "Jte"
             tag "core"
-            activationKey "templating.jte.enabled"
+            activationKey "project.libs.jte.enabled"
             generators {
                 - {
                     name "JteDirectoryGenerator"

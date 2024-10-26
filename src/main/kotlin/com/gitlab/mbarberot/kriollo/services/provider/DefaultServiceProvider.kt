@@ -27,7 +27,7 @@ class DefaultServiceProvider(
 
     override val templatingService: TemplatingService by lazy {
         DefaultTemplatingService(
-            TemplateEngine.createPrecompiled(ContentType.valueOf(configuration.templating.jte.contentType)),
+            TemplateEngine.createPrecompiled(ContentType.valueOf(configuration.project.libs.jte.contentType)),
         )
     }
 }
