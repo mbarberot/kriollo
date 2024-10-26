@@ -6,7 +6,6 @@ import com.gitlab.mbarberot.kriollo.generator.git.GitConfiguration
 import com.gitlab.mbarberot.kriollo.generator.java.JavaConfiguration
 import com.gitlab.mbarberot.kriollo.generator.jetbrains.JetbrainsConfiguration
 import com.gitlab.mbarberot.kriollo.generator.kotlin.KotlinConfiguration
-import com.gitlab.mbarberot.kriollo.generator.libs.JavaLibConfiguration
 import com.gitlab.mbarberot.kriollo.generator.maven.MavenConfiguration
 import com.gitlab.mbarberot.kriollo.generator.nix.NixConfiguration
 import com.gitlab.mbarberot.kriollo.generator.project.IProjectConfiguration
@@ -26,7 +25,6 @@ interface CodegenConfiguration {
     val scripts: ScriptsConfiguration
     val maven: MavenConfiguration
     val templating: TemplatingConfiguration
-    val libs: JavaLibConfiguration
     val tests: TestsConfiguration
     val components: ComponentsConfiguration
 } 

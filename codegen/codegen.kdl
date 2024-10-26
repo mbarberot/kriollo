@@ -15,6 +15,14 @@ project {
             version "0.3.0"
         }
     }
+    libs {
+        jackson {
+            enabled true
+            core {
+                - "databind"
+            }
+        }
+    }
 }
 
 java {
@@ -83,13 +91,6 @@ templating {
     }
 }
 
-libs {
-    jackson {
-        core {
-            - "databind"
-        }
-    }
-}
 
 components {
     kriollo {

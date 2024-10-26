@@ -64,10 +64,10 @@ fun isList(document: KDLDocument): Boolean {
     return listOf("-", "*").any { it == document.nodes.first().identifier }
 }
 
-fun readKdlConfiguration(path: String): CodegenConfiguration {
-    return mapToClass(FileReader(path), BasicCodegenConfiguration::class.java)
+fun <T>readKdlConfiguration(path: String, clazz: Class<T>): T {
+    return mapToClass(FileReader(path), clazz)
 }
 
 class KdlCodegenConfiguration(
     configurationFilePath: String,
-) : CodegenConfiguration by readKdlConfiguration(configurationFilePath)
+) : CodegenConfiguration by readKdlConfiguration(configurationFilePath, BasicCodegenConfiguration::class.java)

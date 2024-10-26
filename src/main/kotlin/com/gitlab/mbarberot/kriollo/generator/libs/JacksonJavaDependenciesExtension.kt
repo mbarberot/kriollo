@@ -8,7 +8,11 @@ class JacksonJavaDependenciesExtension(
     val serviceProvider: ServiceProvider,
 ) : JavaDependencyExtension {
     override fun provide(): List<JavaArtifact> {
-        val (version, core) = serviceProvider.configuration.libs.jackson
+        val (enabled, version, core) = serviceProvider.configuration.project.libs.jackson
+
+        if (!enabled) {
+            return listOf()
+        }
 
         return buildList {
             if (serviceProvider.configuration.kotlin.enabled) {

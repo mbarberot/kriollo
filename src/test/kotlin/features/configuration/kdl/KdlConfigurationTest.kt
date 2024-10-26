@@ -89,7 +89,17 @@ class KdlConfigurationTest {
         // Assert
         assertThat(configuration).isEqualTo(
             BasicCodegenConfiguration(
-                project = ProjectConfiguration("acme", "tnt", "1.0.0"),
+                project = ProjectConfiguration(
+                    groupId = "acme",
+                    name = "tnt",
+                    version = "1.0.0",
+                    libs = JavaLibConfiguration(
+                        jackson = JacksonConfiguration(
+                            enabled = true,
+                            core = listOf("databind"),
+                        )
+                    )
+                ),
                 scripts = ScriptsConfiguration(
                     enabled = true,
                     build = BuildScriptConfiguration(
@@ -105,12 +115,8 @@ class KdlConfigurationTest {
                         enabled = true
                     )
                 ),
-                libs = JavaLibConfiguration(
-                    jackson = JacksonConfiguration(
-                        core = listOf("databind")
-                    )
+
                 )
-            )
         )
     }
 }

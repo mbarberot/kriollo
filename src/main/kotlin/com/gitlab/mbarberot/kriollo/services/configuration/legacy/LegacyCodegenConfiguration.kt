@@ -1,23 +1,25 @@
-package com.gitlab.mbarberot.kriollo.services.configuration
+package com.gitlab.mbarberot.kriollo.services.configuration.legacy
 
 import com.gitlab.mbarberot.kriollo.configuration.CodegenConfiguration
 import com.gitlab.mbarberot.kriollo.configuration.KriolloConfiguration
 import com.gitlab.mbarberot.kriollo.generator.cli.CliConfiguration
 import com.gitlab.mbarberot.kriollo.generator.components.ComponentsConfiguration
 import com.gitlab.mbarberot.kriollo.generator.git.GitConfiguration
+import com.gitlab.mbarberot.kriollo.generator.java.JavaArtifact
 import com.gitlab.mbarberot.kriollo.generator.java.JavaConfiguration
 import com.gitlab.mbarberot.kriollo.generator.jetbrains.JetbrainsConfiguration
 import com.gitlab.mbarberot.kriollo.generator.kotlin.KotlinConfiguration
+import com.gitlab.mbarberot.kriollo.generator.libs.JavaLibConfiguration
 import com.gitlab.mbarberot.kriollo.generator.maven.MavenConfiguration
 import com.gitlab.mbarberot.kriollo.generator.nix.NixConfiguration
-import com.gitlab.mbarberot.kriollo.generator.project.ProjectConfiguration
+import com.gitlab.mbarberot.kriollo.generator.project.IProjectConfiguration
 import com.gitlab.mbarberot.kriollo.generator.scripts.ScriptsConfiguration
 import com.gitlab.mbarberot.kriollo.generator.templating.TemplatingConfiguration
 import com.gitlab.mbarberot.kriollo.generator.tests.TestsConfiguration
 
-data class BasicCodegenConfiguration(
+data class LegacyCodegenConfiguration(
     override val kriollo: KriolloConfiguration = KriolloConfiguration(),
-    override val project: ProjectConfiguration = ProjectConfiguration(),
+    override val project: MutableProjectConfiguration = MutableProjectConfiguration(),
     override val cli: CliConfiguration = CliConfiguration(),
     override val jetbrains: JetbrainsConfiguration = JetbrainsConfiguration(),
     override val java: JavaConfiguration = JavaConfiguration(),
@@ -27,6 +29,17 @@ data class BasicCodegenConfiguration(
     override val scripts: ScriptsConfiguration = ScriptsConfiguration(),
     override val maven: MavenConfiguration = MavenConfiguration(),
     override val templating: TemplatingConfiguration = TemplatingConfiguration(),
+    val libs: JavaLibConfiguration = JavaLibConfiguration(),
     override val tests: TestsConfiguration = TestsConfiguration(),
     override val components: ComponentsConfiguration = ComponentsConfiguration(),
 ): CodegenConfiguration
+
+data class MutableProjectConfiguration(
+    override val groupId: String = "",
+    override val name: String = "",
+    override val version: String = "",
+    override val mainClass: String = "",
+    override val encoding: String = "UTF-8",
+    override val dependencies: List<JavaArtifact> = listOf(),
+    override var libs: JavaLibConfiguration = JavaLibConfiguration(),
+) : IProjectConfiguration

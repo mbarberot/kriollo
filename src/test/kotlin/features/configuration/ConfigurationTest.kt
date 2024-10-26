@@ -62,7 +62,7 @@ fun adapt(config: TestBackwardCompatibleConfiguration, deprecations: MutableList
  *
  * Allows deserializing a configuration file that did not migrate to the latest configuration
  */
-class TestBackwardCompatibleConfiguration(
+data class TestBackwardCompatibleConfiguration(
     override val kriollo: KriolloConfiguration = KriolloConfiguration(),
     override val project: BackwardCompatibleProjectConfiguration = BackwardCompatibleProjectConfiguration(),
     override val cli: CliConfiguration = CliConfiguration(),
@@ -74,20 +74,22 @@ class TestBackwardCompatibleConfiguration(
     override val scripts: ScriptsConfiguration = ScriptsConfiguration(),
     override val maven: MavenConfiguration = MavenConfiguration(),
     override val templating: TemplatingConfiguration = TemplatingConfiguration(),
-    override val libs: JavaLibConfiguration = JavaLibConfiguration(),
     override val tests: TestsConfiguration = TestsConfiguration(),
     override val components: ComponentsConfiguration = ComponentsConfiguration(),
 ) : CodegenConfiguration
 
 /**
  * A configuration part featuring a non-CodegenConfiguration field "testProperty" for testing purpose
+ *
+ * It's better to fork the whole data class to customize it (val => var)
  */
-class BackwardCompatibleProjectConfiguration(
+data class BackwardCompatibleProjectConfiguration(
     override val groupId: String = "",
     override var name: String = "",
     override val version: String = "",
     override val mainClass: String = "",
     override val encoding: String = "UTF-8",
     override val dependencies: List<JavaArtifact> = listOf(),
+    override val libs: JavaLibConfiguration = JavaLibConfiguration(),
     val testProperty: String = "test-property",
 ) : IProjectConfiguration
