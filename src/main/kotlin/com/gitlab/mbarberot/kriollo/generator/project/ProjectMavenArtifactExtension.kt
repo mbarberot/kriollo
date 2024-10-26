@@ -9,7 +9,10 @@ class ProjectMavenArtifactExtension(
 ): MavenArtifactExtension {
 
     override fun provide(): List<JavaArtifact> {
-        val (groupId, name, version) = serviceProvider.configuration.project
+        val groupId = serviceProvider.configuration.project.groupId
+        val name = serviceProvider.configuration.project.name
+        val version = serviceProvider.configuration.project.version
+
         return listOf(
             JavaArtifact(groupId, name, version)
         )

@@ -20,7 +20,7 @@ data class BasicCodegenConfiguration(
     override val kriollo: KriolloConfiguration = KriolloConfiguration(),
     override val project: ProjectConfiguration = ProjectConfiguration(),
     override val cli: CliConfiguration = CliConfiguration(),
-    override val jetbrains: com.gitlab.mbarberot.kriollo.generator.jetbrains.JetbrainsConfiguration = com.gitlab.mbarberot.kriollo.generator.jetbrains.JetbrainsConfiguration(),
+    override val jetbrains: JetbrainsConfiguration = JetbrainsConfiguration(),
     override val java: JavaConfiguration = JavaConfiguration(),
     override val kotlin: KotlinConfiguration = KotlinConfiguration(),
     override val nix: NixConfiguration = NixConfiguration(),

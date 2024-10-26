@@ -9,14 +9,14 @@ import com.gitlab.mbarberot.kriollo.generator.kotlin.KotlinConfiguration
 import com.gitlab.mbarberot.kriollo.generator.libs.JavaLibConfiguration
 import com.gitlab.mbarberot.kriollo.generator.maven.MavenConfiguration
 import com.gitlab.mbarberot.kriollo.generator.nix.NixConfiguration
-import com.gitlab.mbarberot.kriollo.generator.project.ProjectConfiguration
+import com.gitlab.mbarberot.kriollo.generator.project.IProjectConfiguration
 import com.gitlab.mbarberot.kriollo.generator.scripts.ScriptsConfiguration
 import com.gitlab.mbarberot.kriollo.generator.templating.TemplatingConfiguration
 import com.gitlab.mbarberot.kriollo.generator.tests.TestsConfiguration
 
 interface CodegenConfiguration {
     val kriollo: KriolloConfiguration
-    val project: ProjectConfiguration
+    val project: IProjectConfiguration
     val cli: CliConfiguration
     val jetbrains: JetbrainsConfiguration
     val java: JavaConfiguration
