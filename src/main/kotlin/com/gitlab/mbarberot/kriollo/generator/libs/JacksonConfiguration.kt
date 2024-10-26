@@ -1,4 +1,4 @@
-package com.gitlab.mbarberot.kriollo.generator.libs.jackson
+package com.gitlab.mbarberot.kriollo.generator.libs
 
 import com.gitlab.mbarberot.kriollo.HardcodedValues
 

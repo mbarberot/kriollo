@@ -3,14 +3,6 @@ THE MIGHTY TODO_LIST
 
 ** v2024.3.0 
 
-[Epic : configuration changes with nice deprecation handling]
-
-Then, do the real changes : 
-
-TODO: feat(feign): add feign in the managed libs
-TODO: feat(config): there was something else that could be in project too but i don't remember it yet => see the notion-cli project
-
-
 ** v2024.FUTURE **
 
 [Epic : More generators ]

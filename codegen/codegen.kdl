@@ -372,6 +372,9 @@ components {
                 - {
                     name "PicocliJavaDependenciesExtension"
                 }
+                - {
+                    name "FeignJavaDependenciesExtension"
+                }
             }
 
         }

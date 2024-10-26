@@ -2,9 +2,9 @@ package com.gitlab.mbarberot.kriollo.services.configuration
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.kotlinModule
+import com.gitlab.mbarberot.kriollo.configuration.CodegenConfiguration
 import kdl.objects.KDLDocument
 import kdl.parse.KDLParser
-import com.gitlab.mbarberot.kriollo.configuration.CodegenConfiguration
 import java.io.FileReader
 
 fun <T> mapToClass(reader: FileReader, clazz: Class<T>): T {
