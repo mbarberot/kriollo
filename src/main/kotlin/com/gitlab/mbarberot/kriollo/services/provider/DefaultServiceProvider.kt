@@ -2,9 +2,9 @@ package com.gitlab.mbarberot.kriollo.services.provider
 
 import com.gitlab.mbarberot.kriollo.configuration.CodegenConfiguration
 import com.gitlab.mbarberot.kriollo.services.configuration.ConfigurationProvider
+import com.gitlab.mbarberot.kriollo.services.configuration.kdl.KdlConfigurationReader
 import com.gitlab.mbarberot.kriollo.services.configuration.legacy.LegacyCodegenConfiguration
 import com.gitlab.mbarberot.kriollo.services.configuration.legacy.LegacyConfigurationAdapter
-import com.gitlab.mbarberot.kriollo.services.configuration.readKdlConfiguration
 import com.gitlab.mbarberot.kriollo.services.filesystem.DefaultFileSystemService
 import com.gitlab.mbarberot.kriollo.services.filesystem.FileSystemService
 import com.gitlab.mbarberot.kriollo.services.templating.DefaultTemplatingService
@@ -16,7 +16,7 @@ class DefaultServiceProvider(
 ) : ServiceProvider {
     override val configuration: CodegenConfiguration by lazy {
         ConfigurationProvider(
-            { readKdlConfiguration("./codegen/codegen.kdl", LegacyCodegenConfiguration::class.java) },
+            KdlConfigurationReader("./codegen/codegen.kdl", LegacyCodegenConfiguration::class.java),
             LegacyConfigurationAdapter()
         )
     }

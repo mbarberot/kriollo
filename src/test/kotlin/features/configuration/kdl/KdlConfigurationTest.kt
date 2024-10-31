@@ -1,7 +1,6 @@
 package features.configuration.kdl
 
 import com.gitlab.mbarberot.kriollo.configuration.CodegenConfiguration
-import com.gitlab.mbarberot.kriollo.generator.libs.JavaLibConfiguration
 import com.gitlab.mbarberot.kriollo.generator.libs.JacksonConfiguration
 import com.gitlab.mbarberot.kriollo.generator.project.ProjectConfiguration
 import com.gitlab.mbarberot.kriollo.generator.scripts.ScriptsConfiguration
@@ -9,8 +8,11 @@ import com.gitlab.mbarberot.kriollo.generator.scripts.build.BuildScriptConfigura
 import com.gitlab.mbarberot.kriollo.generator.scripts.build.BuildScriptCustomStepConfiguration
 import com.gitlab.mbarberot.kriollo.generator.scripts.test.TestScriptConfiguration
 import com.gitlab.mbarberot.kriollo.services.configuration.BasicCodegenConfiguration
-import com.gitlab.mbarberot.kriollo.services.configuration.KdlCodegenConfiguration
-import com.gitlab.mbarberot.kriollo.services.configuration.mapToClass
+import com.gitlab.mbarberot.kriollo.services.configuration.kdl.KdlConfigurationReader
+import com.gitlab.mbarberot.kriollo.services.configuration.kdl.mapToClass
+import com.gitlab.mbarberot.kriollo.services.configuration.legacy.LegacyCodegenConfiguration
+import com.gitlab.mbarberot.kriollo.services.configuration.legacy.MutableJavaLibConfiguration
+import com.gitlab.mbarberot.kriollo.services.configuration.legacy.MutableProjectConfiguration
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -18,9 +20,13 @@ class KdlConfigurationTest {
     @Test
     fun `read kdl configuration file`() {
         // Arrange
+        val configurationReader = KdlConfigurationReader(
+            "./codegen/codegen.kdl",
+            LegacyCodegenConfiguration::class.java
+        )
 
         // Act
-        val configuration: CodegenConfiguration = KdlCodegenConfiguration("./codegen/codegen.kdl")
+        val configuration: CodegenConfiguration = configurationReader.read()
 
         // Assert
         assertThat(configuration).isNotNull()
@@ -56,6 +62,14 @@ class KdlConfigurationTest {
                 groupId "acme"
                 name "tnt"
                 version "1.0.0"
+                libs {
+                    jackson {
+                        enabled true
+                        core {
+                            - "databind"
+                        }
+                    }
+                }
             }
             
             scripts {
@@ -73,51 +87,42 @@ class KdlConfigurationTest {
                     enabled true
                 }
             }
-            
-            libs {
-                jackson {
-                    core {
-                        - "databind"
-                    }
-                }
-            }
         """.trimIndent()
 
         // Act
-        val configuration = mapToClass(kdl, BasicCodegenConfiguration::class.java)
+        val configuration = mapToClass(kdl, LegacyCodegenConfiguration::class.java)
 
         // Assert
-        assertThat(configuration).isEqualTo(
-            BasicCodegenConfiguration(
-                project = ProjectConfiguration(
-                    groupId = "acme",
-                    name = "tnt",
-                    version = "1.0.0",
-                    libs = JavaLibConfiguration(
-                        jackson = JacksonConfiguration(
-                            enabled = true,
-                            core = listOf("databind"),
-                        )
-                    )
-                ),
-                scripts = ScriptsConfiguration(
-                    enabled = true,
-                    build = BuildScriptConfiguration(
+        val expectedConfiguration = LegacyCodegenConfiguration(
+            project = MutableProjectConfiguration(
+                groupId = "acme",
+                name = "tnt",
+                version = "1.0.0",
+                libs = MutableJavaLibConfiguration(
+                    jackson = JacksonConfiguration(
                         enabled = true,
-                        customSteps = listOf(
-                            BuildScriptCustomStepConfiguration(
-                                name = "Copy jar into codegen dir",
-                                command = "cp target/kriollo.jar codegen/",
-                            )
+                        core = listOf("databind"),
+                    )
+                )
+            ),
+            scripts = ScriptsConfiguration(
+                enabled = true,
+                build = BuildScriptConfiguration(
+                    enabled = true,
+                    customSteps = listOf(
+                        BuildScriptCustomStepConfiguration(
+                            name = "Copy jar into codegen dir",
+                            command = "cp target/kriollo.jar codegen/",
                         )
-                    ),
-                    tests = TestScriptConfiguration(
-                        enabled = true
                     )
                 ),
-
+                tests = TestScriptConfiguration(
+                    enabled = true
                 )
+            ),
         )
+
+        assertThat(configuration).isEqualTo(expectedConfiguration)
     }
 }
 

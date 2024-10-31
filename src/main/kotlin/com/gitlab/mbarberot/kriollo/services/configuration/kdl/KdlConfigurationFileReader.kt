@@ -1,13 +1,13 @@
-package com.gitlab.mbarberot.kriollo.services.configuration
+package com.gitlab.mbarberot.kriollo.services.configuration.kdl
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.kotlinModule
-import com.gitlab.mbarberot.kriollo.configuration.CodegenConfiguration
+import com.gitlab.mbarberot.kriollo.services.configuration.ConfigurationReader
 import kdl.objects.KDLDocument
 import kdl.parse.KDLParser
 import java.io.FileReader
 
-fun <T> mapToClass(reader: FileReader, clazz: Class<T>): T {
+private fun <T> mapToClass(reader: FileReader, clazz: Class<T>): T {
     val parser = KDLParser();
     val document = parser.parse(reader)
     val data = toMap(document)
@@ -21,13 +21,13 @@ fun <T> mapToClass(kdl: String, clazz: Class<T>): T {
     return toPojo(data, clazz)
 }
 
-fun <T> toPojo(data: Map<String, Any>, clazz: Class<T>): T {
+private fun <T> toPojo(data: Map<String, Any>, clazz: Class<T>): T {
     val objectMapper = ObjectMapper()
     objectMapper.registerModule(kotlinModule())
     return objectMapper.convertValue(data, clazz)
 }
 
-fun toMap(document: KDLDocument): Map<String, Any> {
+private fun toMap(document: KDLDocument): Map<String, Any> {
     return buildMap {
         document
             .nodes
@@ -45,7 +45,7 @@ fun toMap(document: KDLDocument): Map<String, Any> {
     }
 }
 
-fun toList(document: KDLDocument): List<Any> {
+private fun toList(document: KDLDocument): List<Any> {
     return buildList {
         document.nodes.forEach { node ->
             when {
@@ -56,7 +56,7 @@ fun toList(document: KDLDocument): List<Any> {
     }
 }
 
-fun isList(document: KDLDocument): Boolean {
+private fun isList(document: KDLDocument): Boolean {
     if(document.nodes.isEmpty()) {
         return false
     }
@@ -64,10 +64,10 @@ fun isList(document: KDLDocument): Boolean {
     return listOf("-", "*").any { it == document.nodes.first().identifier }
 }
 
-fun <T>readKdlConfiguration(path: String, clazz: Class<T>): T {
+private fun <T>readKdlConfiguration(path: String, clazz: Class<T>): T {
     return mapToClass(FileReader(path), clazz)
 }
 
-class KdlCodegenConfiguration(
-    configurationFilePath: String,
-) : CodegenConfiguration by readKdlConfiguration(configurationFilePath, BasicCodegenConfiguration::class.java)
+class KdlConfigurationReader<T>(val path: String, val clazz: Class<T>): ConfigurationReader<T> {
+    override fun read(): T = readKdlConfiguration(path, clazz)
+}
