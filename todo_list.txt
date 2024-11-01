@@ -1,17 +1,19 @@
 
 ** Todos **
 
-(B) +generators +justfile: add justfile support
-(B) +generators +dockerfile: generate dockerfile
-(B) +generators +readme: add readme support with custom title/description/sections
-(B) +generators +maven: set source and test directories using an extension (only one || error)
-(B) +stabilization +logs: add Logging framework
-(B) +stabilization +config: check configuration (ie: JUnit requires Maven or Gradle, ...)
-(B) +stabilization +config: split configuration file
-(B) +stabilization +config: split configuration file (ie: project.kdl, dotfiles.kdl, components.kdl)
-(B) +stabilization +plugin: use a ServiceProvider (from JDK) to build dynamic module registration
-(B) +stabilization +jte: use a base template for java classes
-(B) +stabilization +jte: use StaticTemplates
+(B) +chore bump kotlin version
+(B) +chore bump jackson version
+(B) +chore handle refactor todos in code
+(B) +generators +justfile add justfile support
+(B) +generators +dockerfile generate dockerfile
+(B) +generators +readme add readme support with custom title/description/sections
+(B) +generators +maven set source and test directories using an extension (only one || error)
+(B) +stabilization +logs add Logging framework
+(B) +stabilization +config refactor usage of path "./codegen/codegen.kdl"
+(B) +stabilization +config split configuration file (ie project.kdl, dotfiles.kdl, components.kdl)
+(B) +stabilization +plugin use a ServiceProvider (from JDK) to build dynamic module registration
+(B) +stabilization +jte use a base template for java classes
+(B) +stabilization +jte use StaticTemplates
 
 ** Ideas **
 
