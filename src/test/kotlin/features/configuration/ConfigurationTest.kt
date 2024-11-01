@@ -14,11 +14,11 @@ import com.gitlab.mbarberot.kriollo.generator.maven.MavenConfiguration
 import com.gitlab.mbarberot.kriollo.generator.nix.NixConfiguration
 import com.gitlab.mbarberot.kriollo.generator.project.IProjectConfiguration
 import com.gitlab.mbarberot.kriollo.generator.scripts.ScriptsConfiguration
-import com.gitlab.mbarberot.kriollo.generator.templating.TemplatingConfiguration
 import com.gitlab.mbarberot.kriollo.generator.tests.TestsConfiguration
 import com.gitlab.mbarberot.kriollo.services.configuration.ConfigurationAdapter
 import com.gitlab.mbarberot.kriollo.services.configuration.ConfigurationProvider
 import com.gitlab.mbarberot.kriollo.services.configuration.ConfigurationReader
+import com.gitlab.mbarberot.kriollo.services.configuration.legacy.DeprecationHandler
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -30,8 +30,8 @@ class ConfigurationTest {
 
         // Act
         val config: CodegenConfiguration = ConfigurationProvider(
-            ConfigurationReader { return@ConfigurationReader TestBackwardCompatibleConfiguration() },
-            ConfigurationAdapter { return@ConfigurationAdapter adapt(it, deprecations) },
+            BackwardConfigurationReader(),
+            BackwardConfigurationAdapter { deprecations.add(it) },
         )
 
         // Assert
@@ -40,21 +40,23 @@ class ConfigurationTest {
     }
 }
 
-/**
- * A simple adapter example featuring :
- * - moving the legacy property "testProperty" to the expected location for CodegenConfiguration
- * - handling a deprecation (here in a list for assertions in test, but may be printed or logged in production code)
- *
- * As the lenient configuration is child of the CodegenConfiguration, this object may be returned as is.
- * The rest of the code will never know what is the actual implementation
- */
-fun adapt(config: TestBackwardCompatibleConfiguration, deprecations: MutableList<String>): CodegenConfiguration {
-    if (config.project.testProperty.isNotEmpty()) {
-        deprecations.add("project.testProperty is deprecated, please use project.name instead")
-        config.project.name = config.project.testProperty
+class BackwardConfigurationReader: ConfigurationReader<TestBackwardCompatibleConfiguration> {
+    override fun read(): TestBackwardCompatibleConfiguration {
+        return TestBackwardCompatibleConfiguration()
     }
+}
 
-    return config
+class BackwardConfigurationAdapter(
+    private val deprecationHandler: DeprecationHandler
+
+    ): ConfigurationAdapter<TestBackwardCompatibleConfiguration> {
+    override fun adapt(backwardConfig: TestBackwardCompatibleConfiguration): CodegenConfiguration {
+        if (backwardConfig.project.testProperty.isNotEmpty()) {
+            deprecationHandler.logDeprecation("project.testProperty is deprecated, please use project.name instead")
+            backwardConfig.project.name = backwardConfig.project.testProperty
+        }
+        return backwardConfig
+    }
 }
 
 /**

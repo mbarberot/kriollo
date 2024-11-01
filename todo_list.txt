@@ -1,26 +1,17 @@
-THE MIGHTY TODO_LIST
-====================
 
-** v2024.3.0 
+** Todos **
 
-** v2024.FUTURE **
-
-[Epic : More generators ]
-
-NEXT: feat(justfile): add justfile support
-NEXT: feat(dockerfile): generate dockerfile
-NEXT: feat(readme): add readme support with custom title/description/sections
-NEXT: feat(maven): set source and test directories using an extension (only one || error)
-
-[Epic : Stabilisation ]
-
-NEXT: feat(logs): add Logging framework
-NEXT: feat(config): check configuration (ie: JUnit requires Maven or Gradle, ...)
-NEXT: feat(config): split configuration file
-NEXT: feat(config): split configuration file (ie: project.kdl, dotfiles.kdl, components.kdl)
-NEXT: feat(plugin): use a ServiceProvider (from JDK) to build dynamic module registration
-NEXT: refactor(jte): use a base template for java classes
-NEXT: refactor(jte): use StaticTemplates
+(B) +generators +justfile: add justfile support
+(B) +generators +dockerfile: generate dockerfile
+(B) +generators +readme: add readme support with custom title/description/sections
+(B) +generators +maven: set source and test directories using an extension (only one || error)
+(B) +stabilization +logs: add Logging framework
+(B) +stabilization +config: check configuration (ie: JUnit requires Maven or Gradle, ...)
+(B) +stabilization +config: split configuration file
+(B) +stabilization +config: split configuration file (ie: project.kdl, dotfiles.kdl, components.kdl)
+(B) +stabilization +plugin: use a ServiceProvider (from JDK) to build dynamic module registration
+(B) +stabilization +jte: use a base template for java classes
+(B) +stabilization +jte: use StaticTemplates
 
 ** Ideas **
 
