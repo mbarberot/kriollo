@@ -1,6 +1,8 @@
 
 ** Todos **
 
+(A) +qol self update => rebuild automatically to ensure the previous todoitem is correct ?
+
 (B) +chore bump kotlin version
 (B) +chore bump jackson version
 (B) +chore handle refactor todos in code
