@@ -104,6 +104,11 @@ components {
                     provideType "DefaultNixPartial"
                 }
             }
+            extensions {
+               - {
+                   name "BaseNixPackageExtension"
+               }
+            }
         }
         - {
             path "generator/scripts/build"

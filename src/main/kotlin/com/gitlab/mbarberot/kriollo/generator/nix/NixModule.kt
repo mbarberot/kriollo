@@ -19,4 +19,7 @@ class NixModule(
         DefaultNixFileGenerator(serviceProvider),
     )
 
+    override fun provideExtensions(generator: Generator) {
+        generator.registerExtension(BaseNixPackageExtension(serviceProvider))
+    }
 }

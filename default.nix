@@ -4,6 +4,7 @@
 with (import <nixpkgs> {});
 mkShell {
     buildInputs = [
+        jq
         maven
         jdk21
         kotlin
