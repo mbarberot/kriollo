@@ -252,6 +252,9 @@ components {
                 - {
                     name "JavaNixDefaultExtension"
                 }
+                - {
+                    name "JavaMavenPluginExtension"
+                }
             }
             provideExtensions {
                 - {

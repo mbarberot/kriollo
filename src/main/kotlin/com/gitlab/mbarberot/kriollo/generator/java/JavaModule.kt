@@ -21,5 +21,6 @@ class JavaModule(
     override fun provideExtensions(generator: Generator) {
         generator.registerExtension(JavaGitIgnoreExtension(serviceProvider))
         generator.registerExtension(JavaNixDefaultExtension(serviceProvider))
+        generator.registerExtension(JavaMavenPluginExtension(serviceProvider))
     }
 }

@@ -8,4 +8,11 @@
                 @if(model.version != null)
                     <version>${model.version}</version>
                 @endif
+                @if(model.configuration != null)
+                    <configuration>
+                        @for(configEntry in model.configuration.entries)
+                            <${configEntry.key}>${configEntry.value}</${configEntry.key}>
+                        @endfor
+                    </configuration>
+                @endif
             </plugin>

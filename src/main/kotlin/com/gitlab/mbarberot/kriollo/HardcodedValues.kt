@@ -7,4 +7,5 @@ object HardcodedValues {
     const val DEFAULT_JACKSON_VERSION = "2.13.0"
     const val DEFAULT_PICOCLI_VERSION = "4.7.6"
     const val DEFAULT_FEIGN_VERSION = "11.8"
+    const val MAVEN_COMPILER_PLUGIN_VERSION = "3.13.0"
 }
