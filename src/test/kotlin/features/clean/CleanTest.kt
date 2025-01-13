@@ -35,5 +35,23 @@ class CleanTest {
         assertThat(fakeFileSystem.removedFilenames())
             .containsExactly("src/main/kotlin/org/acme/anvil/AnvilVersion.kt")
     }
+
+    @Test
+    fun `do not fail when there is no generated files`() {
+        // Arrange
+        val fakeFileSystem = FakeFileSystem()
+        val testServiceProvider = TestServiceProvider(
+            configuration = Configs.basicConfig(),
+            fileSystem = TestFileSystemService(fakeFileSystem)
+        )
+        val clean = Clean(testServiceProvider)
+
+        // Act
+        clean.clean()
+
+        // Assert
+        assertThat(fakeFileSystem.removedFilenames())
+            .isEmpty()
+    }
 }
 

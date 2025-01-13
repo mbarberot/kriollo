@@ -1,6 +1,7 @@
 
 ** 2024.5.0
 
+x +fix +init the first build is failing because generated-files.txt does not exists yet
 (A) +feat +git add .env to gitignore as default
 (A) +feat +git allow custom gitignore from kdl
 (A) +feat +test add test.integration.enabled = true (=> failsafe maven plugin with default configuration by tag "integration-test"

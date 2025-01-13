@@ -1,7 +1,9 @@
 package com.gitlab.mbarberot.kriollo.services.filesystem
 
+import java.io.IOException
 import kotlin.io.path.Path
 import kotlin.io.path.deleteIfExists
+import kotlin.io.path.notExists
 import kotlin.io.path.readLines
 
 abstract class BaseFileSystemService : FileSystemService {
@@ -31,7 +33,13 @@ abstract class BaseFileSystemService : FileSystemService {
     }
 
     override fun getFileContent(path: String): List<String> {
-        return Path(path).readLines(Charsets.UTF_8)
+        val file = Path(path)
+
+        return if (file.notExists()) {
+            throw IOException("File $path not found")
+        } else {
+            file.readLines(Charsets.UTF_8)
+        }
     }
 
 }
