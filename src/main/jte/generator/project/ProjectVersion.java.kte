@@ -1,0 +1,16 @@
+@import com.gitlab.mbarberot.kriollo.generator.project.ProjectVersionClassModel
+@param model: ProjectVersionClassModel
+package ${model.namespace};
+
+${model.javaWarning()}
+
+${model.generatedAnnotationImport()}
+
+${model.generatedAnnotation()}
+public class ${model.name} {
+    public static final String VERSION = "${model.version}";
+
+    private ${model.name}() {
+        // This class should not be instantiated
+    }
+}

@@ -9,6 +9,8 @@ data class PomModel(
     val properties: Map<String, String>,
     val boms: List<JavaArtifact>,
     val repositories: PomRepositoriesModel,
+    val sourceDirectory: String,
+    val testSourceDirectory: String,
 )
 
 data class PomRepositoriesModel(

@@ -14,7 +14,7 @@ class TestFileSystemService(
     }
 
     override fun doCreateDirectory(path: String) {
-        TODO("Not yet implemented")
+        // do nothing
     }
 
     override fun getFileContent(path: String): List<String> {

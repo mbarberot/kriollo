@@ -4,9 +4,33 @@ import com.gitlab.mbarberot.kriollo.configuration.CodegenConfiguration
 
 object SourceUtils {
 
+    fun getSourceExtension(configuration: CodegenConfiguration): String {
+        return if(configuration.kotlin.enabled) {
+            "kt"
+        } else {
+            "java"
+        }
+    }
+
+    fun getSourceDirectory(configuration: CodegenConfiguration, isTestSource: Boolean = false): String {
+        val finalDirectory = if(configuration.kotlin.enabled) {
+            "kotlin"
+        } else {
+            "java"
+        }
+
+        val directoryType = if(isTestSource) {
+            "test"
+        } else {
+            "main"
+        }
+
+        return "src/${directoryType}/${finalDirectory}"
+    }
+
     fun getRootSourcePath(configuration: CodegenConfiguration, withTrailingSlash: Boolean = true): String {
         val sourcePath = StringBuilder()
-            .append("src/main/kotlin")
+            .append(getSourceDirectory(configuration))
             .append("/")
             .append(getRootPackage(configuration, withTrailingDot = false).replace(".", "/"))
 

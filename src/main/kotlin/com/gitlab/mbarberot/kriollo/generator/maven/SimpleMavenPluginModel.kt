@@ -4,5 +4,5 @@ data class SimpleMavenPluginModel(
     val groupId: String? = null,
     val artifactId: String,
     val version: String? = null,
-    val configuration: Map<String,String>? = null
+    val configuration: Map<String,String> = mapOf()
 )

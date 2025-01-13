@@ -8,7 +8,7 @@
                 @if(model.version != null)
                     <version>${model.version}</version>
                 @endif
-                @if(model.configuration != null)
+                @if(model.configuration.entries.isNotEmpty())
                     <configuration>
                         @for(configEntry in model.configuration.entries)
                             <${configEntry.key}>${configEntry.value}</${configEntry.key}>

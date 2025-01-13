@@ -5,6 +5,7 @@ import com.gitlab.mbarberot.kriollo.generator.base.TemplatedFileGenerator
 import com.gitlab.mbarberot.kriollo.generator.java.JavaArtifact
 import com.gitlab.mbarberot.kriollo.generator.java.JavaDependencyExtension
 import com.gitlab.mbarberot.kriollo.services.provider.ServiceProvider
+import com.gitlab.mbarberot.kriollo.utils.SourceUtils
 
 class MavenPomGenerator(val serviceProvider: ServiceProvider) : TemplatedFileGenerator() {
 
@@ -20,6 +21,8 @@ class MavenPomGenerator(val serviceProvider: ServiceProvider) : TemplatedFileGen
 
     override fun getTemplateData() = PomModel(
         artifact = getArtifactOrFail(),
+        sourceDirectory = SourceUtils.getSourceDirectory(serviceProvider.configuration, false),
+        testSourceDirectory = SourceUtils.getSourceDirectory(serviceProvider.configuration, true),
         properties = buildMap {
             propertiesExtension
                 .flatMap { it.provide() }
@@ -45,6 +48,16 @@ class MavenPomGenerator(val serviceProvider: ServiceProvider) : TemplatedFileGen
             jitpack = serviceProvider.configuration.maven.repositories.jitpack
         )
     )
+
+    private fun getSourceDirectory(basePath: String): String {
+        val finalDirectory = if(serviceProvider.configuration.kotlin.enabled) {
+            "kotlin"
+        } else {
+            "java"
+        }
+
+        return "${basePath}/${finalDirectory}"
+    }
 
     private fun getArtifactOrFail(): JavaArtifact {
         val artifacts: List<JavaArtifact> = artifactExtensions.flatMap { it.provide() }

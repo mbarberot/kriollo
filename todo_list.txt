@@ -5,7 +5,7 @@ x +fix +init the first build is failing because generated-files.txt does not exi
 (A) +feat +git add .env to gitignore as default
 (A) +feat +git allow custom gitignore from kdl
 (A) +feat +test add test.integration.enabled = true (=> failsafe maven plugin with default configuration by tag "integration-test"
-(A) +feat +test add test.integration.confition = "integration-test || api-test"
+(A) +feat +test add test.integration.condition = "integration-test || api-test"
 (A) +deprecation change test.junit to test.unit
 (B) +qol add src/main/bash/install.sh (= almost identical to self-update.sh)
 (B) +feat +jackson add databind
