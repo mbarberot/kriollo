@@ -27,10 +27,6 @@ project {
     }
 }
 
-java {
-    enabled true
-}
-
 kotlin {
     enabled true
 }
@@ -291,6 +287,9 @@ components {
                     name "KotlinJavaDependenciesExtension"
                 }
                 - {
+                    name "KotlinMavenCompilerPluginExtension"
+                }
+                - {
                     name "KotlinMavenPluginExtension"
                 }
                 - {
@@ -298,6 +297,9 @@ components {
                 }
                 - {
                     name "KotlinDefaultNixExtension"
+                }
+                - {
+                    name "KotlinGitIgnoreExtension"
                 }
             }
 

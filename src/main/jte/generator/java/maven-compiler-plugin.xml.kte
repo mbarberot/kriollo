@@ -1,0 +1,31 @@
+@import com.gitlab.mbarberot.kriollo.generator.java.JavaMavenCompilerPluginModel
+@param model: JavaMavenCompilerPluginModel
+<plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${model.version}</version>
+                <configuration>
+                    <source>${model.sourceVersion}</source>
+                    <target>${model.targetVersion}</target>
+                    <compilerArgs>
+                        <arg>-XDcompilePolicy=simple</arg>
+                        <arg>--should-stop=ifError=FLOW</arg>
+                        <arg>
+                            -Xplugin:ErrorProne
+                            -XepOpt:NullAway:AnnotatedPackages=$package
+                            -Xep:NullAway:ERROR
+                        </arg>
+                    </compilerArgs>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>com.google.errorprone</groupId>
+                            <artifactId>error_prone_core</artifactId>
+                            <version>${model.errorProneVersion}</version>
+                        </path>
+                        <path>
+                            <groupId>com.uber.nullaway</groupId>
+                            <artifactId>nullaway</artifactId>
+                            <version>${model.nullAwayVersion}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>

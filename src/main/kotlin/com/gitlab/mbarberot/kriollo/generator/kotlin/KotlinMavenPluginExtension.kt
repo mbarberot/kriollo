@@ -8,7 +8,7 @@ class KotlinMavenPluginExtension(
     serviceProvider: ServiceProvider
 ): MavenPluginExtension, TemplatedExtension(serviceProvider) {
 
-    override fun getTemplatePath(): String = "generator/kotlin/maven-plugin.kte"
+    override fun getTemplatePath(): String = "generator/kotlin/kotlin-maven-plugin.xml.kte"
 
     override fun getAllTemplateData(): List<Any> {
         return listOf(

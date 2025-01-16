@@ -4,7 +4,7 @@ import com.gitlab.mbarberot.kriollo.generator.git.GitIgnoreExtension
 import com.gitlab.mbarberot.kriollo.generator.git.GitIgnoreRules
 import com.gitlab.mbarberot.kriollo.services.provider.ServiceProvider
 
-class JavaGitIgnoreExtension(
+open class JavaGitIgnoreExtension(
     val serviceProvider: ServiceProvider
 ) : GitIgnoreExtension{
     override fun provide(): List<GitIgnoreRules> {

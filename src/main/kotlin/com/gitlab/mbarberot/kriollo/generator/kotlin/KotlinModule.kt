@@ -22,8 +22,10 @@ class KotlinModule(
 
     override fun provideExtensions(generator: Generator) {
         generator.registerExtension(KotlinJavaDependenciesExtension(serviceProvider))
+        generator.registerExtension(KotlinMavenCompilerPluginExtension(serviceProvider))
         generator.registerExtension(KotlinMavenPluginExtension(serviceProvider))
         generator.registerExtension(KotlinMavenPropertiesExtension(serviceProvider))
         generator.registerExtension(KotlinDefaultNixExtension(serviceProvider))
+        generator.registerExtension(KotlinGitIgnoreExtension(serviceProvider))
     }
 }

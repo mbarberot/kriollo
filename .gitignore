@@ -12,3 +12,5 @@ jte-classes
 # Java
 *.jar
 *.class
+# Project files
+.env

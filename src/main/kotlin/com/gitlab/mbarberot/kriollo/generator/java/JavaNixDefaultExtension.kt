@@ -4,7 +4,7 @@ import com.gitlab.mbarberot.kriollo.generator.nix.DefaultNixFileExtension
 import com.gitlab.mbarberot.kriollo.generator.nix.DefaultNixPartial
 import com.gitlab.mbarberot.kriollo.services.provider.ServiceProvider
 
-class JavaNixDefaultExtension(
+open class JavaNixDefaultExtension(
     val serviceProvider: ServiceProvider
 ): DefaultNixFileExtension {
     override fun provide(): List<DefaultNixPartial> {
