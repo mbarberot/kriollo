@@ -45,6 +45,10 @@ jetbrains {
 
 git {
     enabled true
+    ignore {
+        - "jte-classes"
+        - "*.swp"
+    }
 }
 
 scripts {
@@ -197,6 +201,11 @@ components {
                 - {
                     name "GitIgnoreExtension"
                     provideType "GitIgnoreRules"
+                }
+            }
+            extensions {
+                - {
+                    name "CustomGitIgnoreExtension"
                 }
             }
 

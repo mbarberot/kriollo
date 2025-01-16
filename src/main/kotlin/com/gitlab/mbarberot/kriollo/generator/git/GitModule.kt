@@ -19,4 +19,7 @@ class GitModule(
         GitIgnoreFileGenerator(serviceProvider),
     )
 
+    override fun provideExtensions(generator: Generator) {
+        generator.registerExtension(CustomGitIgnoreExtension(serviceProvider))
+    }
 }

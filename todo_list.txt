@@ -1,16 +1,16 @@
 
 ** 2024.5.0
 
-x +fix +init the first build is failing because generated-files.txt does not exists yet
 (A) +feat +git add .env to gitignore as default
-(A) +feat +git allow custom gitignore from kdl
-(A) +feat +test add test.integration.enabled = true (=> failsafe maven plugin with default configuration by tag "integration-test"
-(A) +feat +test add test.integration.condition = "integration-test || api-test"
-(A) +deprecation change test.junit to test.unit
+(B) +generators +cli generate self-update and install scripts for Jacta
+(B) +generators +ci generate gitlab-ci
 (B) +qol add src/main/bash/install.sh (= almost identical to self-update.sh)
-(B) +feat +jackson add databind
-(B) +feat +jackson +maven add jackson version in properties for easier add in depdendencies
-(B) +qol +maven order dependencies by : !test > groupId > artifactId 
+(C) +feat +jackson add databind
+(C) +feat +jackson +maven add jackson version in properties for easier add in depdendencies
+(C) +qol +maven order dependencies by : !test > groupId > artifactId
+(C) +feat +test add test.integration.enabled = true (=> failsafe maven plugin with default configuration by tag "integration-test"
+(C) +feat +test add test.integration.condition = "integration-test || api-test"
+(C) +deprecation change test.junit to test.unit
 (C) +qol show version found in self-update.sh and install.sh scripts
 (C) +qol add a full kdl configuration file reference
 

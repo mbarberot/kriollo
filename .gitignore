@@ -3,6 +3,9 @@
 
 # Maven
 target/
+# Custom rules defined in Kriollo configuration
+jte-classes
+*.swp
 # Jetbrains/Intellij files
 /.idea
 *.iml
