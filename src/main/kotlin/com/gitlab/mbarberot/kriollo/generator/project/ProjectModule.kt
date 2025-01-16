@@ -23,5 +23,6 @@ class ProjectModule(
         generator.registerExtension(ProjectJavaDependenciesExtension(serviceProvider))
         generator.registerExtension(ProjectMavenPropertiesExtension(serviceProvider))
         generator.registerExtension(ProjectMavenArtifactExtension(serviceProvider))
+        generator.registerExtension(ProjectGitIgnoreExtension(serviceProvider))
     }
 }

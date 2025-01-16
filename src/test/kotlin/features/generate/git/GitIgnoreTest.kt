@@ -34,6 +34,27 @@ class GitIgnoreTest {
     }
 
     @Test
+    fun `ignore dotenv`() {
+        // Arrange
+        val fakeFileSystem = FakeFileSystem()
+        val serviceProvider = TestServiceProvider(
+            configuration = Configs.javaProject(),
+            fileSystem = TestFileSystemService(fakeFileSystem),
+            templatingService = TestServiceProvider.jteTemplatingService
+        )
+        val useCase = Generate(serviceProvider)
+
+        // Act
+        useCase.generate()
+
+        // Assert
+        assertThat(fakeFileSystem.getContentLinesOf(".gitignore"))
+            .contains(
+                ".env",
+            )
+    }
+
+    @Test
     fun `ignore java artifacts`() {
         // Arrange
         val fakeFileSystem = FakeFileSystem()

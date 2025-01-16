@@ -345,6 +345,9 @@ components {
                 - {
                     name "ProjectMavenArtifactExtension"
                 }
+                - {
+                    name "ProjectGitIgnoreExtension"
+                }
             }
 
         }
