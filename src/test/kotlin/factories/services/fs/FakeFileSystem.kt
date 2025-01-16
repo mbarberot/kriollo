@@ -28,6 +28,13 @@ class FakeFileSystem(
         return getFile(filename)?.content ?: ""
     }
 
+    fun getContentLinesOf(filename: String): List<String> {
+        return getContentOf(filename)
+            .split("\n")
+            .map { it.trim() }
+            .filter { it.isNotBlank() }
+    }
+
     fun removeFile(path: String) {
         removedFiles.add(path)
     }
