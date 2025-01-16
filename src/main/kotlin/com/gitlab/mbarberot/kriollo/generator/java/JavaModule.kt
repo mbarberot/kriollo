@@ -22,5 +22,6 @@ class JavaModule(
         generator.registerExtension(JavaGitIgnoreExtension(serviceProvider))
         generator.registerExtension(JavaNixDefaultExtension(serviceProvider))
         generator.registerExtension(JavaMavenPluginExtension(serviceProvider))
+        generator.registerExtension(JavaBaseDependenciesExtension(serviceProvider))
     }
 }

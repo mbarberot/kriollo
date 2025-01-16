@@ -11,7 +11,7 @@
                         <arg>--should-stop=ifError=FLOW</arg>
                         <arg>
                             -Xplugin:ErrorProne
-                            -XepOpt:NullAway:AnnotatedPackages=$package
+                            -XepOpt:NullAway:AnnotatedPackages=${model.basePackage}
                             -Xep:NullAway:ERROR
                         </arg>
                     </compilerArgs>

@@ -3,10 +3,8 @@ package factories
 import com.gitlab.mbarberot.kriollo.configuration.CodegenConfiguration
 import com.gitlab.mbarberot.kriollo.generator.git.GitConfiguration
 import com.gitlab.mbarberot.kriollo.generator.java.JavaConfiguration
-import com.gitlab.mbarberot.kriollo.generator.jetbrains.JetbrainsConfiguration
 import com.gitlab.mbarberot.kriollo.generator.kotlin.KotlinConfiguration
 import com.gitlab.mbarberot.kriollo.generator.maven.MavenConfiguration
-import com.gitlab.mbarberot.kriollo.generator.nix.NixConfiguration
 import com.gitlab.mbarberot.kriollo.generator.project.ProjectConfiguration
 import com.gitlab.mbarberot.kriollo.services.configuration.BasicCodegenConfiguration
 
