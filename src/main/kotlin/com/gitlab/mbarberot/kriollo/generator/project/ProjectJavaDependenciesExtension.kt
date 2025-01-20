@@ -6,9 +6,11 @@ import com.gitlab.mbarberot.kriollo.services.provider.ServiceProvider
 
 class ProjectJavaDependenciesExtension(
     val serviceProvider: ServiceProvider,
-) :
-    JavaDependencyExtension {
+) : JavaDependencyExtension {
+
     override fun provide(): List<JavaArtifact> {
         return serviceProvider.configuration.project.dependencies
     }
+
+    override fun priority(): Int = 100
 }

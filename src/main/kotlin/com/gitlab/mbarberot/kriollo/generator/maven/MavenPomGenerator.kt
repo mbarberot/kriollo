@@ -29,15 +29,13 @@ class MavenPomGenerator(val serviceProvider: ServiceProvider) : TemplatedFileGen
                 .forEach { (key, value) -> put(key, value) }
         },
         dependencies = buildList {
-            dependencyExtensions
-                .map { extension -> extension.provide() }
-                .forEach { dependencies -> addAll(dependencies) }
+            mergeDependencies(dependencyExtensions)
+                .forEach{ dependency -> add(dependency) }
         },
         plugins = buildList {
             pluginExtensions
                 .map { extension -> extension.provide() }
                 .forEach { plugin -> addAll(plugin) }
-
         },
         boms = buildList {
             bomExtensions
@@ -49,14 +47,23 @@ class MavenPomGenerator(val serviceProvider: ServiceProvider) : TemplatedFileGen
         )
     )
 
-    private fun getSourceDirectory(basePath: String): String {
-        val finalDirectory = if(serviceProvider.configuration.kotlin.enabled) {
-            "kotlin"
-        } else {
-            "java"
-        }
-
-        return "${basePath}/${finalDirectory}"
+    private fun mergeDependencies(dependencyExtensions: List<JavaDependencyExtension>): List<JavaArtifact> {
+        return dependencyExtensions
+            .flatMap { extension ->
+                extension.provide()
+                    .map { dependency ->
+                        Triple(
+                            "${dependency.groupId}:${dependency.artifactId}",
+                            dependency,
+                            extension.priority()
+                        )
+                    }
+            }
+            .groupBy { (key, _, _) -> key }
+            .map { (_, values) ->
+                val (_, dependency, _) = values.maxBy { (_, _, priority) -> priority }
+                return@map dependency
+            }
     }
 
     private fun getArtifactOrFail(): JavaArtifact {
