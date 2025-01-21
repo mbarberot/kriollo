@@ -1,0 +1,19 @@
+@import com.gitlab.mbarberot.kriollo.generator.project.GeneratedAnnotationModel
+@param model: GeneratedAnnotationModel
+package ${model.namespace};
+
+${model.javaWarning()}
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+${model.generatedAnnotationImport()}
+
+import static java.lang.annotation.ElementType.TYPE;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
+${model.generatedAnnotation()}
+@Retention(RUNTIME)
+@Target(TYPE)
+public @interface Generated {
+    String value();
+}

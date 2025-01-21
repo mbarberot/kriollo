@@ -5,6 +5,9 @@
 (A) +test +jacoco introduce custom @Generated annotation on class & runtime
 (A) +test +jacoco use the new annotation to exclude generated code from jacoco coverage analysis
 (A) +release remove deprecations
+
+** 2025.2.0
+
 (A) +deprecation change test.junit to test.unit
 (B) +generators +cli generate self-update and install scripts for Jacta
 (B) +generators +ci generate gitlab-ci

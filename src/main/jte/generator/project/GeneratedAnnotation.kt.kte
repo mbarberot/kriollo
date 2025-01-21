@@ -1,0 +1,16 @@
+@import com.gitlab.mbarberot.kriollo.generator.project.GeneratedAnnotationModel
+@param model: GeneratedAnnotationModel
+package ${model.namespace}
+
+${model.javaWarning()}
+
+import kotlin.annotation.AnnotationRetention.*
+import kotlin.annotation.AnnotationTarget.*
+${model.generatedAnnotationImport()}
+
+${model.generatedAnnotation()}
+@Retention(RUNTIME)
+@Target(CLASS)
+annotation class Generated(
+    val value: String
+)

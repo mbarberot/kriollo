@@ -339,6 +339,9 @@ components {
                 - {
                     name "ProjectVersionGenerator"
                 }
+                - {
+                    name "GeneratedAnnotationGenerator"
+                }
             }
             extensions {
                 - {

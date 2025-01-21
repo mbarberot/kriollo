@@ -17,6 +17,7 @@ class ProjectModule(
 
     override fun provideGenerators(): List<Generator> = listOf(
         ProjectVersionGenerator(serviceProvider),
+        GeneratedAnnotationGenerator(serviceProvider),
     )
 
     override fun provideExtensions(generator: Generator) {

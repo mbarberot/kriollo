@@ -6,6 +6,7 @@ pom.xml
 ./codegen/kriollo
 src/main/jte/.jteroot
 src/main/kotlin/com/gitlab/mbarberot/kriollo/KriolloVersion.kt
+src/main/kotlin/com/gitlab/mbarberot/kriollo/kriollo/Generated.kt
 src/main/kotlin/com/gitlab/mbarberot/kriollo/generator/nix/NixModule.kt
 src/main/kotlin/com/gitlab/mbarberot/kriollo/generator/scripts/build/BuildScriptModule.kt
 src/main/kotlin/com/gitlab/mbarberot/kriollo/generator/scripts/ScriptsModule.kt
