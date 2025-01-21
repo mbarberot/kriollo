@@ -10,6 +10,10 @@ object HardcodedValues {
     const val DEFAULT_PICOCLI_VERSION = "4.7.6"
     const val DEFAULT_FEIGN_VERSION = "11.8"
 
+    const val DEFAULT_JACOCO_VERSION = "0.8.10"
+    const val DEFAULT_JACOCO_BRANCH_COVERAGE = "0.5"
+    const val DEFAULT_JACOCO_CLASS_COVERAGE = "0"
+
     const val MAVEN_COMPILER_PLUGIN_VERSION = "3.13.0"
 
     const val DEFAULT_ERROR_PRONE_VERSION = "2.36.0"

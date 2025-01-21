@@ -365,6 +365,9 @@ components {
                 - {
                     name "SurefireMavenPluginExtension"
                 }
+                - {
+                    name "JacocoMavenPluginExtension"
+                }
             }
 
         }

@@ -20,5 +20,6 @@ class TestsModule(
 
     override fun provideExtensions(generator: Generator) {
         generator.registerExtension(SurefireMavenPluginExtension(serviceProvider))
+        generator.registerExtension(JacocoMavenPluginExtension(serviceProvider))
     }
 }

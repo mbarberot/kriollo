@@ -1,0 +1,52 @@
+@import com.gitlab.mbarberot.kriollo.generator.tests.JacocoMavenPluginModel
+@param model: JacocoMavenPluginModel
+<plugin>
+                <groupId>${model.artifact.groupId}</groupId>
+                <artifactId>${model.artifact.artifactId}</artifactId>
+                <version>${model.artifact.version}</version>
+                <executions>
+                    <execution>
+                        <id>coverage-prepare</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>coverage-check</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <rule>
+                                    <element>BUNDLE</element>
+                                    <limits>
+                                        @if(model.branchMinimumCoverage != null)
+                                        <limit>
+                                            <counter>BRANCH</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>${model.branchMinimumCoverage}</minimum>
+                                        </limit>
+                                        @endif
+                                        @if(model.classMaximumMissed != null)
+                                        <limit>
+                                            <counter>CLASS</counter>
+                                            <value>MISSEDCOUNT</value>
+                                            <maximum>${model.classMaximumMissed}</maximum>
+                                        </limit>
+                                        @endif
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>coverage-report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
