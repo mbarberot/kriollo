@@ -6,7 +6,6 @@ ${model.javaWarning()}
 
 import kotlin.annotation.AnnotationRetention.*
 import kotlin.annotation.AnnotationTarget.*
-${model.generatedAnnotationImport()}
 
 ${model.generatedAnnotation()}
 @Retention(RUNTIME)

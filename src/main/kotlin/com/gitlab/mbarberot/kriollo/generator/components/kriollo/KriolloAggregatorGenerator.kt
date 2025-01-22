@@ -20,6 +20,7 @@ class KriolloAggregatorGenerator(
         return KriolloTagModulesModel(
             namespace = "$rootPackage.generator",
             name = getClassName(),
+            rootPackage = rootPackage,
             imports = buildList {
                 add("$rootPackage.services.provider.ServiceProvider")
                 componentsConfigurations

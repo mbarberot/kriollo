@@ -16,9 +16,11 @@ class KriolloModuleGenerator(
     override fun getTemplateData(): Any {
         val (_, _, _, activationKey, generators, extensions) = moduleConfiguration
 
+        val rootPackage = SourceUtils.getRootPackage(serviceProvider.configuration, withTrailingDot = false)
         return KriolloModuleModel(
-            namespace = SourceUtils.getRootPackage(serviceProvider.configuration) + moduleConfiguration.getNamespace(),
+            namespace = "$rootPackage.${moduleConfiguration.getNamespace()}",
             name = moduleConfiguration.getClassName(),
+            rootPackage = rootPackage,
             activation = if (activationKey == "-") "true" else "serviceProvider.configuration.$activationKey",
             generators = generators.map { generator -> generator.name },
             extensions = extensions.map { extension -> extension.name },

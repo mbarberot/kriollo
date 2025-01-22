@@ -21,6 +21,7 @@ class KriolloBaseGeneratorGenerator(val serviceProvider: ServiceProvider) : Temp
         return KriolloBaseGeneratorModel(
             namespace = "$rootPackage.generator",
             name = "Generator",
+            rootPackage = rootPackage,
             imports = buildList {
                 add("$rootPackage.services.provider.ServiceProvider")
 

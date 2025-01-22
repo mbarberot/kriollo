@@ -16,10 +16,12 @@ class ProjectVersionGenerator(
     }
 
     override fun getTemplateData(): Any {
+        val rootPackage = SourceUtils.getRootPackage(configuration, withTrailingDot = false)
         return ProjectVersionClassModel(
             version = configuration.project.version,
             name = getClassName(),
-            namespace = SourceUtils.getRootPackage(configuration, withTrailingDot = false)
+            namespace = rootPackage,
+            rootPackage = rootPackage,
         )
     }
 

@@ -17,9 +17,11 @@ class GeneratedAnnotationGenerator(
     }
 
     override fun getTemplateData(): Any {
+        val rootPackage = getRootPackage(configuration, withTrailingDot = false)
         return GeneratedAnnotationModel(
             name = getClassName(),
-            namespace = "${getRootPackage(configuration, withTrailingDot = false)}.kriollo"
+            namespace = "$rootPackage.kriollo",
+            rootPackage = rootPackage
         )
     }
 

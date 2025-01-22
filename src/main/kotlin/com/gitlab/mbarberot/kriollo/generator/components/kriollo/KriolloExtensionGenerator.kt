@@ -15,9 +15,11 @@ class KriolloExtensionGenerator(
     }
 
     override fun getTemplateData(): Any {
+        val rootPackage = SourceUtils.getRootPackage(serviceProvider.configuration, withTrailingDot = false)
         return KriolloExtensionModel(
-            namespace = SourceUtils.getRootPackage(serviceProvider.configuration) + moduleConfiguration.getNamespace(),
+            namespace = "$rootPackage.${moduleConfiguration.getNamespace()}",
             name = extensionConfiguration.name,
+            rootPackage = rootPackage,
             provideType = extensionConfiguration.getProvidedTypeClassName(),
             imports = buildList {
                 if (extensionConfiguration.provideType.contains('.')) {
@@ -28,6 +30,7 @@ class KriolloExtensionGenerator(
     }
 
     override fun getFilePath(): String {
-        return SourceUtils.getRootSourcePath(serviceProvider.configuration) + "${moduleConfiguration.path}/${extensionConfiguration.name}.kt"
+        val rootSourcePath = SourceUtils.getRootSourcePath(serviceProvider.configuration, withTrailingSlash = false)
+        return "$rootSourcePath/${moduleConfiguration.path}/${extensionConfiguration.name}.kt"
     }
 }
