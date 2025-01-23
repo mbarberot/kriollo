@@ -1,5 +1,6 @@
 package com.gitlab.mbarberot.kriollo.services.configuration.legacy
 
+import com.gitlab.mbarberot.kriollo.HardcodedValues
 import com.gitlab.mbarberot.kriollo.configuration.CodegenConfiguration
 import com.gitlab.mbarberot.kriollo.configuration.KriolloConfiguration
 import com.gitlab.mbarberot.kriollo.generator.cli.CliConfiguration
@@ -19,7 +20,9 @@ import com.gitlab.mbarberot.kriollo.generator.project.IProjectConfiguration
 import com.gitlab.mbarberot.kriollo.generator.scripts.ScriptsConfiguration
 import com.gitlab.mbarberot.kriollo.generator.templating.TemplatingConfiguration
 import com.gitlab.mbarberot.kriollo.generator.templating.jte.JteConfiguration
-import com.gitlab.mbarberot.kriollo.generator.tests.TestsConfiguration
+import com.gitlab.mbarberot.kriollo.generator.tests.ITestsConfiguration
+import com.gitlab.mbarberot.kriollo.generator.tests.coverage.CoverageConfiguration
+import com.gitlab.mbarberot.kriollo.generator.tests.junit.IJUnitConfiguration
 
 data class LegacyCodegenConfiguration(
     override val kriollo: KriolloConfiguration = KriolloConfiguration(),
@@ -34,7 +37,7 @@ data class LegacyCodegenConfiguration(
     override val maven: MavenConfiguration = MavenConfiguration(),
     val templating: TemplatingConfiguration = TemplatingConfiguration(),
     val libs: MutableJavaLibConfiguration = MutableJavaLibConfiguration(),
-    override val tests: TestsConfiguration = TestsConfiguration(),
+    override val tests: LegacyTestConfiguration = LegacyTestConfiguration(),
     override val components: ComponentsConfiguration = ComponentsConfiguration(),
 ): CodegenConfiguration
 
@@ -54,3 +57,15 @@ data class MutableJavaLibConfiguration(
     override val feign: FeignConfiguration = FeignConfiguration(),
     override var jte: JteConfiguration = JteConfiguration(),
 ): IJavaLibConfiguration
+
+data class LegacyTestConfiguration(
+    override val enabled: Boolean = false,
+    override val junit: LegacyJUnitConfiguration = LegacyJUnitConfiguration(),
+    override val coverage: CoverageConfiguration = CoverageConfiguration(),
+): ITestsConfiguration
+
+data class LegacyJUnitConfiguration(
+    val enabled: Boolean = false,
+    override val junitVersion: String = HardcodedValues.DEFAULT_JUNIT_VERSION,
+    override val assertjVersion: String = HardcodedValues.DEFAULT_ASSERTJ_VERSION,
+) : IJUnitConfiguration

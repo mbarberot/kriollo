@@ -45,7 +45,7 @@ object Configs {
             project = projectConfiguration,
             java = JavaConfiguration(enabled = true),
             maven = MavenConfiguration(enabled = true),
-            tests = TestsConfiguration(enabled = true, junit = JUnitConfiguration(enabled = true))
+            tests = TestsConfiguration(enabled = true)
         )
     }
 }

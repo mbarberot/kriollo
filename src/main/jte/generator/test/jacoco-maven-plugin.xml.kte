@@ -1,4 +1,4 @@
-@import com.gitlab.mbarberot.kriollo.generator.tests.JacocoMavenPluginModel
+@import com.gitlab.mbarberot.kriollo.generator.tests.coverage.JacocoMavenPluginModel
 @param model: JacocoMavenPluginModel
 <plugin>
                 <groupId>${model.artifact.groupId}</groupId>
@@ -18,22 +18,32 @@
                             <goal>check</goal>
                         </goals>
                         <configuration>
+                            @if(model.exclusions.isNotEmpty())
+                            <excludes>
+                                @for(pattern in model.exclusions)
+                                <exclude>${pattern}</exclude>
+                                @endfor
+                            </excludes>
+                            @endif
                             <rules>
                                 <rule>
                                     <element>BUNDLE</element>
                                     <limits>
-                                        @if(model.branchMinimumCoverage != null)
                                         <limit>
                                             <counter>BRANCH</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>${model.branchMinimumCoverage}</minimum>
+                                            <minimum>${model.minimumBranchCoverage}</minimum>
                                         </limit>
-                                        @endif
-                                        @if(model.classMaximumMissed != null)
+                                        <limit>
+                                            <counter>INSTRUCTION</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>${model.minimumInstructionCoverage}</minimum>
+                                        </limit>
+                                        @if(model.maximumMissedClasses != null)
                                         <limit>
                                             <counter>CLASS</counter>
                                             <value>MISSEDCOUNT</value>
-                                            <maximum>${model.classMaximumMissed}</maximum>
+                                            <maximum>${model.maximumMissedClasses}</maximum>
                                         </limit>
                                         @endif
                                     </limits>
@@ -47,6 +57,15 @@
                         <goals>
                             <goal>report</goal>
                         </goals>
+                        <configuration>
+                            @if(model.exclusions.isNotEmpty())
+                                <excludes>
+                                    @for(pattern in model.exclusions)
+                                        <exclude>${pattern}</exclude>
+                                    @endfor
+                                </excludes>
+                            @endif
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

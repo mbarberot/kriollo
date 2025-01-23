@@ -1,7 +1,13 @@
 package com.gitlab.mbarberot.kriollo.generator.tests.junit
 
+import com.gitlab.mbarberot.kriollo.HardcodedValues
+
+interface IJUnitConfiguration {
+    val junitVersion: String
+    val assertjVersion: String
+}
+
 data class JUnitConfiguration(
-    val enabled: Boolean = false,
-    val junitVersion: String = "5.10.0",
-    val assertjVersion: String = "3.25.1",
-)
+    override val junitVersion: String = HardcodedValues.DEFAULT_JUNIT_VERSION,
+    override val assertjVersion: String = HardcodedValues.DEFAULT_ASSERTJ_VERSION,
+) : IJUnitConfiguration

@@ -13,7 +13,7 @@ class JunitModule(
     val serviceProvider: ServiceProvider,
 ) : CodegenModule() {
 
-    override fun isActivated(): Boolean = serviceProvider.configuration.tests.junit.enabled
+    override fun isActivated(): Boolean = serviceProvider.configuration.tests.enabled
 
     override fun provideGenerators(): List<Generator> = listOf(
     )

@@ -18,6 +18,7 @@ import com.gitlab.mbarberot.kriollo.generator.scripts.build.BuildScriptModule
 import com.gitlab.mbarberot.kriollo.generator.scripts.test.TestScriptModule
 import com.gitlab.mbarberot.kriollo.generator.templating.jte.JteModule
 import com.gitlab.mbarberot.kriollo.generator.tests.TestsModule
+import com.gitlab.mbarberot.kriollo.generator.tests.coverage.CoverageModule
 import com.gitlab.mbarberot.kriollo.generator.tests.junit.JunitModule
 import com.gitlab.mbarberot.kriollo.services.provider.ServiceProvider
 import com.gitlab.mbarberot.kriollo.kriollo.Generated
@@ -41,6 +42,7 @@ class CoreModules {
             ProjectModule(serviceProvider),
             TestsModule(serviceProvider),
             JunitModule(serviceProvider),
+            CoverageModule(serviceProvider),
             LibrariesModule(serviceProvider),
         )
     }

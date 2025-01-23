@@ -22,6 +22,7 @@ src/main/kotlin/com/gitlab/mbarberot/kriollo/generator/templating/jte/JteModule.
 src/main/kotlin/com/gitlab/mbarberot/kriollo/generator/project/ProjectModule.kt
 src/main/kotlin/com/gitlab/mbarberot/kriollo/generator/tests/TestsModule.kt
 src/main/kotlin/com/gitlab/mbarberot/kriollo/generator/tests/junit/JunitModule.kt
+src/main/kotlin/com/gitlab/mbarberot/kriollo/generator/tests/coverage/CoverageModule.kt
 src/main/kotlin/com/gitlab/mbarberot/kriollo/generator/libs/LibrariesModule.kt
 src/main/kotlin/com/gitlab/mbarberot/kriollo/generator/components/kriollo/KriolloModule.kt
 src/main/kotlin/com/gitlab/mbarberot/kriollo/generator/CoreModules.kt

@@ -72,8 +72,12 @@ maven {
 
 tests {
     enabled true
-    junit {
-        enabled true
+    coverage {
+        minimumBranchCoverage "0.3"
+        minimumInstructionCoverage "0.6"
+        exclusions {
+            - "**/*Generated*.class"
+        }
     }
 }
 
@@ -107,9 +111,9 @@ components {
                 }
             }
             extensions {
-               - {
-                   name "BaseNixPackageExtension"
-               }
+                - {
+                    name "BaseNixPackageExtension"
+                }
             }
         }
         - {
@@ -368,17 +372,13 @@ components {
                 - {
                     name "SurefireMavenPluginExtension"
                 }
-                - {
-                    name "JacocoMavenPluginExtension"
-                }
             }
-
         }
         - {
             path "generator/tests/junit"
             name "junit"
             tag "core"
-            activationKey "tests.junit.enabled"
+            activationKey "tests.enabled"
             extensions {
                 - {
                     name "JUnitJavaDependenciesExtension"
@@ -387,7 +387,17 @@ components {
                     name "JUnitMavenBomExtension"
                 }
             }
-
+        }
+        - {
+            path "generator/tests/coverage"
+            name "coverage"
+            tag "core"
+            activationKey "tests.enabled"
+            extensions {
+                - {
+                    name "JacocoMavenPluginExtension"
+                }
+            }
         }
         - {
             path "generator/libs"

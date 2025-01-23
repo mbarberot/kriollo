@@ -10,7 +10,7 @@ import com.gitlab.mbarberot.kriollo.generator.maven.MavenConfiguration
 import com.gitlab.mbarberot.kriollo.generator.nix.NixConfiguration
 import com.gitlab.mbarberot.kriollo.generator.project.IProjectConfiguration
 import com.gitlab.mbarberot.kriollo.generator.scripts.ScriptsConfiguration
-import com.gitlab.mbarberot.kriollo.generator.tests.TestsConfiguration
+import com.gitlab.mbarberot.kriollo.generator.tests.ITestsConfiguration
 
 interface CodegenConfiguration {
     val kriollo: KriolloConfiguration
@@ -23,6 +23,6 @@ interface CodegenConfiguration {
     val git: GitConfiguration
     val scripts: ScriptsConfiguration
     val maven: MavenConfiguration
-    val tests: TestsConfiguration
+    val tests: ITestsConfiguration
     val components: ComponentsConfiguration
 } 
