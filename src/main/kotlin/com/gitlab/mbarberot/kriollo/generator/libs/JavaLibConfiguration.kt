@@ -2,7 +2,7 @@ package com.gitlab.mbarberot.kriollo.generator.libs
 
 import com.gitlab.mbarberot.kriollo.generator.templating.jte.JteConfiguration
 
-interface IJavaLibConfiguration{
+interface IJavaLibConfiguration {
     val jackson: JacksonConfiguration
     val picocli: PicocliConfiguration
     val feign: FeignConfiguration

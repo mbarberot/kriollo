@@ -1,39 +1,41 @@
 
 ** 2025.1.0
 
-(A) +test +jacoco allow coverage configuration using kdl
-(A) +test +jacoco introduce custom @Generated annotation on class & runtime
-(A) +test +jacoco use the new annotation to exclude generated code from jacoco coverage analysis
-(A) +release remove deprecations
+(A) +release test the release in Jacta
 
 ** 2025.2.0
 
-(A) +deprecation change test.junit to test.unit
+(A) improve output (logging ?)
+(B) +ci add coverage report to gitlab pages + link in readme
+(B) +chore bump kotlin version
+(B) +chore bump jackson version
+(B) +chore bump versions of everything
 (B) +generators +cli generate self-update and install scripts for Jacta
 (B) +generators +ci generate gitlab-ci
+(B) +chore handle refactor todos in code
 (B) +qol add src/main/bash/install.sh (= almost identical to self-update.sh)
 (C) +qol show version found in self-update.sh and install.sh scripts
 (C) +qol add a full kdl configuration file reference
+(C) +feat +jackson add databind
+(C) +feat +jackson +maven add jackson version in properties for easier add in depdendencies
+(C) +doc add license
+(C) +doc add a short description in the README
 
 ** Todos **
 
-(C) +feat +jackson add databind
-(C) +feat +jackson +maven add jackson version in properties for easier add in depdendencies
 (C) +qol +maven order dependencies by : !test > groupId > artifactId
 (C) +feat +test add test.integration.enabled = true (=> failsafe maven plugin with default configuration by tag "integration-test"
 (C) +feat +test add test.integration.condition = "integration-test || api-test"
-(B) +chore bump kotlin version
-(B) +chore bump jackson version
-(B) +chore handle refactor todos in code
 (B) +generators +justfile add justfile support
 (B) +generators +dockerfile generate dockerfile
 (B) +generators +readme add readme support with custom title/description/sections
-(B) +stabilization +logs add Logging framework
 (B) +stabilization +config refactor usage of path "./codegen/codegen.kdl"
 (B) +stabilization +config split configuration file (ie project.kdl, dotfiles.kdl, components.kdl)
 (B) +stabilization +plugin use a ServiceProvider (from JDK) to build dynamic module registration
 (B) +stabilization +jte use a base template for java classes
 (B) +stabilization +jte use StaticTemplates
+(B) +stabilization move kriollo components into a separate module and load it through ServiceProvider and a codegen/plugin/*.jar folder => careful on release
+(B) +stabilization integrate DI framework
 
 ** Ideas **
 

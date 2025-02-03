@@ -22,7 +22,7 @@ import com.gitlab.mbarberot.kriollo.services.configuration.legacy.DeprecationHan
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class ConfigurationTest {
+class BackwardCompatibleConfigurationTest {
     @Test
     fun `allow backward compatibility`() {
         // Arrange

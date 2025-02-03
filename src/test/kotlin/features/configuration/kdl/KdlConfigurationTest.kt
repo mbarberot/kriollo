@@ -2,6 +2,7 @@ package features.configuration.kdl
 
 import com.gitlab.mbarberot.kriollo.configuration.CodegenConfiguration
 import com.gitlab.mbarberot.kriollo.generator.libs.JacksonConfiguration
+import com.gitlab.mbarberot.kriollo.generator.libs.JavaLibConfiguration
 import com.gitlab.mbarberot.kriollo.generator.project.ProjectConfiguration
 import com.gitlab.mbarberot.kriollo.generator.scripts.ScriptsConfiguration
 import com.gitlab.mbarberot.kriollo.generator.scripts.build.BuildScriptConfiguration
@@ -11,12 +12,11 @@ import com.gitlab.mbarberot.kriollo.services.configuration.BasicCodegenConfigura
 import com.gitlab.mbarberot.kriollo.services.configuration.kdl.KdlConfigurationReader
 import com.gitlab.mbarberot.kriollo.services.configuration.kdl.mapToClass
 import com.gitlab.mbarberot.kriollo.services.configuration.legacy.LegacyCodegenConfiguration
-import com.gitlab.mbarberot.kriollo.services.configuration.legacy.MutableJavaLibConfiguration
-import com.gitlab.mbarberot.kriollo.services.configuration.legacy.MutableProjectConfiguration
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class KdlConfigurationTest {
+
     @Test
     fun `read kdl configuration file`() {
         // Arrange
@@ -94,11 +94,11 @@ class KdlConfigurationTest {
 
         // Assert
         val expectedConfiguration = LegacyCodegenConfiguration(
-            project = MutableProjectConfiguration(
+            project = ProjectConfiguration(
                 groupId = "acme",
                 name = "tnt",
                 version = "1.0.0",
-                libs = MutableJavaLibConfiguration(
+                libs = JavaLibConfiguration(
                     jackson = JacksonConfiguration(
                         enabled = true,
                         core = listOf("databind"),
