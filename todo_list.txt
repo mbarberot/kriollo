@@ -2,9 +2,15 @@
 ** 2025.1.0
 
 (A) +release test the release in Jacta
+(A) +bugfix should not have both java.enabled and kotlin.enabled
+(A) +upgrade update kotlin version
+(A) +upgrade lib versions
+(A) +generator nix allow additionnal packages
+(B) think about having a whole project.type = cli to generate a battery included project (bats,picocli,...)
 
 ** 2025.2.0
 
+(A) +generators add bats support in the test generator
 (A) improve output (logging ?)
 (B) +ci add coverage report to gitlab pages + link in readme
 (B) +chore bump kotlin version
