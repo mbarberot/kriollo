@@ -6,7 +6,11 @@
 (A) +upgrade update kotlin version
 (A) +upgrade lib versions
 (A) +generator nix allow additionnal packages
+(B) add a way to use a different kriollo jar (to allow poiting on a local repo instead of using the release jar)
 (B) think about having a whole project.type = cli to generate a battery included project (bats,picocli,...)
+(C) fix warnings about deprecated usage of a factory in tests
+(C) check for kdl lib update
+(C) assess Dagger for build
 
 ** 2025.2.0
 

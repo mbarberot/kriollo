@@ -114,6 +114,9 @@ components {
                 - {
                     name "BaseNixPackageExtension"
                 }
+                - {
+                    name "CustomNixPackageExtension"
+                }
             }
         }
         - {

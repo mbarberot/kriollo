@@ -21,5 +21,6 @@ class NixModule(
 
     override fun provideExtensions(generator: Generator) {
         generator.registerExtension(BaseNixPackageExtension(serviceProvider))
+        generator.registerExtension(CustomNixPackageExtension(serviceProvider))
     }
 }
