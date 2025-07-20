@@ -1,21 +1,20 @@
 
-** 2025.1.0
+** 2025.2.0
 
 (A) +release test the release in Jacta
 (A) +bugfix should not have both java.enabled and kotlin.enabled
 (A) +upgrade update kotlin version
 (A) +upgrade lib versions
-(A) +generator nix allow additionnal packages
-(A) +generator libs.jackson.databind = String[] 
+(A) +generator libs.jackson.databind = String[]
 (B) add a way to use a different kriollo jar (to allow poiting on a local repo instead of using the release jar)
 (B) think about having a whole project.type = cli to generate a battery included project (bats,picocli,...)
 (C) fix warnings about deprecated usage of a factory in tests
-(C) check for kdl lib update
+(C) check for kdl lib update => see what changed in kdl v2.0
 (C) assess Dagger for build
+(C) assess changing/mixing template engine => jstachio
 
-** 2025.2.0
+** 2025.3.0
 
-(A) +generators add bats support in the test generator
 (A) improve output (logging ?)
 (B) +ci add coverage report to gitlab pages + link in readme
 (B) +chore bump kotlin version
