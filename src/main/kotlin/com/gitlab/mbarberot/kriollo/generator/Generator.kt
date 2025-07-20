@@ -7,6 +7,7 @@ import com.gitlab.mbarberot.kriollo.generator.git.GitIgnoreExtension
 import com.gitlab.mbarberot.kriollo.generator.java.JavaDependencyExtension
 import com.gitlab.mbarberot.kriollo.generator.maven.MavenArtifactExtension
 import com.gitlab.mbarberot.kriollo.generator.maven.MavenBomExtension
+import com.gitlab.mbarberot.kriollo.generator.maven.MavenExecPluginExtension
 import com.gitlab.mbarberot.kriollo.generator.maven.MavenPluginExtension
 import com.gitlab.mbarberot.kriollo.generator.maven.MavenPropertiesExtension
 import com.gitlab.mbarberot.kriollo.generator.nix.DefaultNixFileExtension
@@ -31,6 +32,9 @@ abstract class Generator {
         // Left empty for child classes to implement if needed
     }
     open fun registerExtension(extension: MavenArtifactExtension) {
+        // Left empty for child classes to implement if needed
+    }
+    open fun registerExtension(extension: MavenExecPluginExtension) {
         // Left empty for child classes to implement if needed
     }
     open fun registerExtension(extension: GitIgnoreExtension) {

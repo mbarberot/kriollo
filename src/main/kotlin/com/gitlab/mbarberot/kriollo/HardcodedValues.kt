@@ -17,9 +17,11 @@ object HardcodedValues {
     const val DEFAULT_JACOCO_BRANCH_COVERAGE = "0.5"
     const val DEFAULT_JACOCO_INSTRUCTION_COVERAGE = "0.8"
 
-    const val MAVEN_COMPILER_PLUGIN_VERSION = "3.13.0"
+    const val DEFAULT_MAVEN_COMPILER_PLUGIN_VERSION = "3.13.0"
+    const val DEFAULT_MAVEN_EXEC_PLUGIN_VERSION = "3.1.0"
 
     const val DEFAULT_ERROR_PRONE_VERSION = "2.36.0"
     const val DEFAULT_NULL_AWAY_VERSION = "0.12.3"
     const val DEFAULT_JSPECIFY_VERSION = "1.0.0"
+
 }

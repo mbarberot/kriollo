@@ -14,6 +14,7 @@ class MavenPomGenerator(val serviceProvider: ServiceProvider) : TemplatedFileGen
     private val pluginExtensions = mutableListOf<MavenPluginExtension>()
     private val bomExtensions = mutableListOf<MavenBomExtension>()
     private val artifactExtensions = mutableListOf<MavenArtifactExtension>()
+    private val execExtensions = mutableListOf<MavenExecPluginExtension>()
 
     override fun getFilePath() = "pom.xml"
 
@@ -30,12 +31,21 @@ class MavenPomGenerator(val serviceProvider: ServiceProvider) : TemplatedFileGen
         },
         dependencies = buildList {
             mergeDependencies(dependencyExtensions)
-                .forEach{ dependency -> add(dependency) }
+                .forEach { dependency -> add(dependency) }
         },
         plugins = buildList {
             pluginExtensions
                 .map { extension -> extension.provide() }
                 .forEach { plugin -> addAll(plugin) }
+
+            if (execExtensions.isNotEmpty()) {
+                add(
+                    MavenExecPluginRenderer(
+                        serviceProvider,
+                        execExtensions.flatMap { extension -> extension.provide() }
+                    ).render()
+                )
+            }
         },
         boms = buildList {
             bomExtensions
@@ -97,6 +107,10 @@ class MavenPomGenerator(val serviceProvider: ServiceProvider) : TemplatedFileGen
             artifactExtensions.isEmpty() -> artifactExtensions.add(extension)
             else -> throw KriolloException("Only one MavenArtifactExtension should be registered")
         }
+    }
+
+    override fun registerExtension(extension: MavenExecPluginExtension) {
+        execExtensions.add(extension)
     }
 }
 

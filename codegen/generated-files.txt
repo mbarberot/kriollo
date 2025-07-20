@@ -32,6 +32,7 @@ src/main/kotlin/com/gitlab/mbarberot/kriollo/generator/maven/MavenPropertiesExte
 src/main/kotlin/com/gitlab/mbarberot/kriollo/generator/maven/MavenPluginExtension.kt
 src/main/kotlin/com/gitlab/mbarberot/kriollo/generator/maven/MavenBomExtension.kt
 src/main/kotlin/com/gitlab/mbarberot/kriollo/generator/maven/MavenArtifactExtension.kt
+src/main/kotlin/com/gitlab/mbarberot/kriollo/generator/maven/MavenExecPluginExtension.kt
 src/main/kotlin/com/gitlab/mbarberot/kriollo/generator/git/GitIgnoreExtension.kt
 src/main/kotlin/com/gitlab/mbarberot/kriollo/generator/java/JavaDependencyExtension.kt
 src/main/kotlin/com/gitlab/mbarberot/kriollo/generator/Generator.kt

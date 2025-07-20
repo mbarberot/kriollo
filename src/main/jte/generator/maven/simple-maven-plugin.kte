@@ -15,4 +15,13 @@
                         @endfor
                     </configuration>
                 @endif
+                @if(model.executions.isNotEmpty())
+                    <executions>
+                        @for(entry in model.executions)
+                            <execution>
+                                $unsafe{entry}
+                            </execution>
+                        @endfor
+                    </executions>
+                @endif
             </plugin>

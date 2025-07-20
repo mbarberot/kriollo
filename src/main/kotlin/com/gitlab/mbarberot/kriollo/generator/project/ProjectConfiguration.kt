@@ -11,6 +11,7 @@ interface IProjectConfiguration {
     val encoding: String
     val dependencies: List<JavaArtifact>
     val libs: JavaLibConfiguration
+    val customBuildSteps: List<BuildStepConfiguration>
 }
 
 data class ProjectConfiguration(
@@ -21,4 +22,5 @@ data class ProjectConfiguration(
     override val encoding: String = "UTF-8",
     override val dependencies: List<JavaArtifact> = listOf(),
     override val libs: JavaLibConfiguration = JavaLibConfiguration(),
+    override val customBuildSteps: List<BuildStepConfiguration> = listOf()
 ) : IProjectConfiguration

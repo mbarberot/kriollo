@@ -19,7 +19,7 @@ class KotlinMavenCompilerPluginExtension(
         return listOf(
             SimpleMavenPluginModel(
                 artifactId = "maven-compiler-plugin",
-                version = HardcodedValues.MAVEN_COMPILER_PLUGIN_VERSION,
+                version = HardcodedValues.DEFAULT_MAVEN_COMPILER_PLUGIN_VERSION,
                 configuration = mapOf(
                     Pair("source", jdkVersion),
                     Pair("target", jdkVersion),

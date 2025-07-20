@@ -12,6 +12,7 @@ import com.gitlab.mbarberot.kriollo.generator.kotlin.KotlinConfiguration
 import com.gitlab.mbarberot.kriollo.generator.libs.JavaLibConfiguration
 import com.gitlab.mbarberot.kriollo.generator.maven.MavenConfiguration
 import com.gitlab.mbarberot.kriollo.generator.nix.NixConfiguration
+import com.gitlab.mbarberot.kriollo.generator.project.BuildStepConfiguration
 import com.gitlab.mbarberot.kriollo.generator.project.IProjectConfiguration
 import com.gitlab.mbarberot.kriollo.generator.scripts.ScriptsConfiguration
 import com.gitlab.mbarberot.kriollo.generator.tests.TestsConfiguration
@@ -92,5 +93,6 @@ data class BackwardCompatibleProjectConfiguration(
     override val encoding: String = "UTF-8",
     override val dependencies: List<JavaArtifact> = listOf(),
     override val libs: JavaLibConfiguration = JavaLibConfiguration(),
+    override val customBuildSteps: List<BuildStepConfiguration> = listOf(),
     val testProperty: String = "test-property",
 ) : IProjectConfiguration

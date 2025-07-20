@@ -20,7 +20,7 @@ class JavaMavenPluginExtension(
         val jdkVersion = configuration.java.version
         return listOf(
             JavaMavenCompilerPluginModel(
-                version = HardcodedValues.MAVEN_COMPILER_PLUGIN_VERSION,
+                version = HardcodedValues.DEFAULT_MAVEN_COMPILER_PLUGIN_VERSION,
                 sourceVersion = jdkVersion,
                 targetVersion = jdkVersion,
                 basePackage = SourceUtils.getRootPackage(configuration, withTrailingDot = false),
