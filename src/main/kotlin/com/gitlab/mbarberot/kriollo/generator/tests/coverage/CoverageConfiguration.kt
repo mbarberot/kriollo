@@ -8,4 +8,5 @@ data class CoverageConfiguration(
     val minimumBranchCoverage: String = HardcodedValues.DEFAULT_JACOCO_BRANCH_COVERAGE,
     val minimumInstructionCoverage: String = HardcodedValues.DEFAULT_JACOCO_INSTRUCTION_COVERAGE,
     val maximumMissedClasses: String? = null,
+    val reportPhase: String = "prepare-package"
 )

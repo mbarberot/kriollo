@@ -53,19 +53,19 @@
                     </execution>
                     <execution>
                         <id>coverage-report</id>
-                        <phase>prepare-package</phase>
+                        <phase>${model.reportPhase}</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>
-                        <configuration>
-                            @if(model.exclusions.isNotEmpty())
+                        @if(model.exclusions.isNotEmpty())
+                            <configuration>
                                 <excludes>
                                     @for(pattern in model.exclusions)
                                         <exclude>${pattern}</exclude>
                                     @endfor
                                 </excludes>
-                            @endif
-                        </configuration>
+                            </configuration>
+                        @endif
                     </execution>
                 </executions>
             </plugin>

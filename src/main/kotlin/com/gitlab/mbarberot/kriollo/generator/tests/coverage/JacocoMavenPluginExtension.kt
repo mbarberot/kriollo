@@ -24,7 +24,8 @@ class JacocoMavenPluginExtension(
                 minimumBranchCoverage = configuration.minimumBranchCoverage,
                 minimumInstructionCoverage = configuration.minimumInstructionCoverage,
                 maximumMissedClasses = configuration.maximumMissedClasses,
-                exclusions = configuration.exclusions
+                exclusions = configuration.exclusions,
+                reportPhase = configuration.reportPhase,
             )
         )
     }

@@ -8,4 +8,5 @@ data class JacocoMavenPluginModel(
     val minimumBranchCoverage: String,
     val minimumInstructionCoverage: String,
     val maximumMissedClasses: String?,
+    val reportPhase: String,
 )
