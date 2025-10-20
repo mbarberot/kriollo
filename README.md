@@ -72,7 +72,7 @@ project {
     customBuildSteps {
         - { 
             id "__ID__" // required, should be unique among build steps
-            step "__STEP__" // requirer, step of the lifecycle (ie.: maven phase)
+            step "__STEP__" // required, step of the lifecycle (ie.: maven phase)
             command "__COMMAND__" // required, the bash command to run
         }
     }
