@@ -7,7 +7,7 @@ project {
         - {
             groupId "com.github.kdl-org"
             artifactId "kdl4j"
-            version "0.3.0"
+            version "1.0.1"
         }
     }
     libs {
