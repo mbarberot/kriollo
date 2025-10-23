@@ -3,21 +3,22 @@ package com.gitlab.mbarberot.kriollo.services.configuration.kdl
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.kotlinModule
 import com.gitlab.mbarberot.kriollo.services.configuration.ConfigurationReader
-import kdl.objects.KDLDocument
-import kdl.parse.KDLParser
-import java.io.FileReader
+import dev.kdl.KdlNode
+import dev.kdl.parse.Kdl1Parser
+import java.nio.file.Path
+import kotlin.io.path.Path
 
-private fun <T> mapToClass(reader: FileReader, clazz: Class<T>): T {
-    val parser = KDLParser();
-    val document = parser.parse(reader)
-    val data = toMap(document)
+private fun <T> mapToClass(path: Path, clazz: Class<T>): T {
+    val parser = Kdl1Parser()
+    val document = parser.parse(path)
+    val data = toMap(document.nodes)
     return toPojo(data, clazz)
 }
 
 fun <T> mapToClass(kdl: String, clazz: Class<T>): T {
-    val parser = KDLParser();
+    val parser = Kdl1Parser()
     val document = parser.parse(kdl)
-    val data = toMap(document)
+    val data = toMap(document.nodes)
     return toPojo(data, clazz)
 }
 
@@ -27,47 +28,47 @@ private fun <T> toPojo(data: Map<String, Any>, clazz: Class<T>): T {
     return objectMapper.convertValue(data, clazz)
 }
 
-private fun toMap(document: KDLDocument): Map<String, Any> {
+private fun toMap(nodes: List<KdlNode>): Map<String, Any> {
     return buildMap {
-        document
-            .nodes
+        nodes
             .forEach { node ->
                 when {
-                    node.child.isPresent -> {
+                    node.children.isNotEmpty() -> {
                         when {
-                            isList(node.child.get()) -> put(node.identifier, toList(node.child.get()))
-                            else -> put(node.identifier, toMap(node.child.get()))
+                            isList(node.children) -> put(node.name, toList(node.children()))
+                            else -> put(node.name, toMap(node.children()))
                         }
                     }
-                    node.args.isNotEmpty() -> put(node.identifier, node.args.first().asString.value)
+
+                    node.arguments.isNotEmpty() -> put(node.name, node.arguments.first().value())
                 }
             }
     }
 }
 
-private fun toList(document: KDLDocument): List<Any> {
+private fun toList(nodes: List<KdlNode>): List<Any> {
     return buildList {
-        document.nodes.forEach { node ->
+        nodes.forEach { node ->
             when {
-                node.child.isPresent -> add(toMap(node.child.get()))
-                node.args.isNotEmpty() -> add(node.args.first().asString.value)
+                node.children.isNotEmpty() -> add(toMap(node.children))
+                node.arguments.isNotEmpty() -> add(node.arguments.first().value())
             }
         }
     }
 }
 
-private fun isList(document: KDLDocument): Boolean {
-    if(document.nodes.isEmpty()) {
+private fun isList(nodes: List<KdlNode>): Boolean {
+    if (nodes.isEmpty()) {
         return false
     }
 
-    return listOf("-", "*").any { it == document.nodes.first().identifier }
+    return listOf("-", "*").any { it == nodes.first().name }
 }
 
-private fun <T>readKdlConfiguration(path: String, clazz: Class<T>): T {
-    return mapToClass(FileReader(path), clazz)
+private fun <T> readKdlConfiguration(path: String, clazz: Class<T>): T {
+    return mapToClass(Path(path), clazz)
 }
 
-class KdlConfigurationReader<T>(val path: String, val clazz: Class<T>): ConfigurationReader<T> {
+class KdlConfigurationReader<T>(val path: String, val clazz: Class<T>) : ConfigurationReader<T> {
     override fun read(): T = readKdlConfiguration(path, clazz)
 }

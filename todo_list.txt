@@ -31,6 +31,10 @@
 (C) +doc add license
 (C) +doc add a short description in the README
 
+** 2026.1.0
+
+(A) BREAKING CHANGE : Kdl4j v2 true => "true"
+
 ** Todos **
 
 (C) +qol +maven order dependencies by : !test > groupId > artifactId
