@@ -1,4 +1,4 @@
-package com.gitlab.mbarberot.kriollo.services.configuration
+package com.gitlab.mbarberot.kriollo.spi.configuration
 
 import kotlin.reflect.KClass
 

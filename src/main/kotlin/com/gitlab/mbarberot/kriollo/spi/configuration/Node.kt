@@ -1,6 +1,4 @@
-package com.gitlab.mbarberot.kriollo.services.configuration
-
-import dev.kdl.KdlNode
+package com.gitlab.mbarberot.kriollo.spi.configuration
 
 interface Node {
     fun get(key: String): Node? {
@@ -124,41 +122,3 @@ class ArrayObject(nodes: List<NamedNode>) : ArrayItem {
         nodes.removeIf { node -> node.name == key }
     }
 }
-
-
-fun build(kdlNodes: List<KdlNode>): List<NamedNode> {
-    return buildList {
-        kdlNodes.forEach { kdlNode ->
-            when {
-                kdlNode.children().isNotEmpty() -> add(toComplexNode(kdlNode))
-                kdlNode.arguments().isNotEmpty() -> add(toValueNode(kdlNode))
-            }
-        }
-    }
-}
-
-val LIST_ITEM = listOf("*", "-")
-
-private fun toValueNode(kdlNode: KdlNode): ValueNode =
-    ValueNode(kdlNode.name, kdlNode.arguments.first().value().toString())
-
-private fun toComplexNode(kdlNode: KdlNode): NamedNode =
-    if (LIST_ITEM.contains(kdlNode.children.first().name)) toArrayNode(kdlNode) else toObjectNode(kdlNode)
-
-private fun toObjectNode(kdlNode: KdlNode): ObjectNode = ObjectNode(kdlNode.name, build(kdlNode.children))
-
-private fun toArrayNode(kdlNode: KdlNode): ArrayNode = ArrayNode(kdlNode.name, buildItem(kdlNode.children))
-
-private fun buildItem(kdlNodes: List<KdlNode>): List<ArrayItem> {
-    return buildList {
-        kdlNodes.forEach { kdlNode ->
-            when {
-                kdlNode.children().isNotEmpty() -> add(toArrayObject(kdlNode))
-                kdlNode.arguments.isNotEmpty() -> add(toArrayValue(kdlNode))
-            }
-        }
-    }
-}
-
-private fun toArrayValue(kdlNode: KdlNode): ArrayValue = ArrayValue(kdlNode.arguments.first().value().toString())
-private fun toArrayObject(kdlNode: KdlNode): ArrayObject = ArrayObject(build(kdlNode.children))

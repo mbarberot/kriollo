@@ -3,7 +3,8 @@ package com.gitlab.mbarberot.kriollo.services.configuration
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.kotlinModule
 import com.gitlab.mbarberot.kriollo.KriolloException
-import dev.kdl.parse.Kdl1Parser
+import com.gitlab.mbarberot.kriollo.configuration.kdl.fromKdl
+import com.gitlab.mbarberot.kriollo.spi.configuration.ConfigurationCustomizer
 import kotlin.reflect.KClass
 
 class DefaultConfigurationService(
@@ -11,7 +12,7 @@ class DefaultConfigurationService(
     val customizers: List<ConfigurationCustomizer> = listOf(),
 ) : ConfigurationService {
 
-    val rootNode = RootNode(build(Kdl1Parser().parse(configurationString).nodes))
+    val rootNode = fromKdl(configurationString) // TODO : inject ?
     val objectMapper: ObjectMapper = ObjectMapper()
 
     init {

@@ -1,6 +1,7 @@
 package com.gitlab.mbarberot.kriollo.services.configuration
 
-import dev.kdl.parse.Kdl1Parser
+import com.gitlab.mbarberot.kriollo.configuration.kdl.fromKdl
+import com.gitlab.mbarberot.kriollo.spi.configuration.Node
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -39,7 +40,7 @@ class ConfigurationModelTest {
 
     @BeforeEach
     fun setUp() {
-        model = RootNode(build(Kdl1Parser().parse(kdlExample).nodes))
+        model = fromKdl(kdlExample)
     }
 
     @Test

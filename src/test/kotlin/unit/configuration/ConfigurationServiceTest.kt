@@ -1,8 +1,8 @@
 package unit.configuration
 
-import com.gitlab.mbarberot.kriollo.services.configuration.ConfigurationCustomizer
+import com.gitlab.mbarberot.kriollo.spi.configuration.ConfigurationCustomizer
 import com.gitlab.mbarberot.kriollo.services.configuration.DefaultConfigurationService
-import com.gitlab.mbarberot.kriollo.services.configuration.RootNode
+import com.gitlab.mbarberot.kriollo.spi.configuration.RootNode
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import kotlin.reflect.KClass

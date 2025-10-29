@@ -2,8 +2,8 @@ package com.gitlab.mbarberot.kriollo.generator.kotlin
 
 import com.gitlab.mbarberot.kriollo.HardcodedValues
 import com.gitlab.mbarberot.kriollo.generator.components.kriollo.KriolloModule
-import com.gitlab.mbarberot.kriollo.services.configuration.ConfigurationCustomizer
-import com.gitlab.mbarberot.kriollo.services.configuration.RootNode
+import com.gitlab.mbarberot.kriollo.spi.configuration.ConfigurationCustomizer
+import com.gitlab.mbarberot.kriollo.spi.configuration.RootNode
 import com.gitlab.mbarberot.kriollo.spi.ModuleFactory
 import com.gitlab.mbarberot.kriollo.spi.ModuleProvider
 import kotlin.reflect.KClass
