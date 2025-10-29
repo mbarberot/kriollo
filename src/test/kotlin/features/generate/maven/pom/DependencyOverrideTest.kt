@@ -6,7 +6,6 @@ import com.gitlab.mbarberot.kriollo.generator.java.JavaConfiguration
 import com.gitlab.mbarberot.kriollo.generator.maven.MavenConfiguration
 import com.gitlab.mbarberot.kriollo.generator.project.ProjectConfiguration
 import com.gitlab.mbarberot.kriollo.generator.tests.TestsConfiguration
-import com.gitlab.mbarberot.kriollo.generator.tests.junit.JUnitConfiguration
 import com.gitlab.mbarberot.kriollo.services.configuration.BasicCodegenConfiguration
 import factories.services.TestFileSystemService
 import factories.services.TestServiceProvider
@@ -42,7 +41,7 @@ class DependencyOverrideTest {
             """.trimIndent()
             )
             .containsOnlyOnce(
-               "<artifactId>junit-platform-commons</artifactId>"
+                "<artifactId>junit-platform-commons</artifactId>"
             )
     }
 
@@ -60,6 +59,6 @@ class DependencyOverrideTest {
         ),
         java = JavaConfiguration(enabled = true),
         maven = MavenConfiguration(enabled = true),
-        tests = TestsConfiguration( enabled = true),
+        tests = TestsConfiguration(enabled = true),
     )
 }

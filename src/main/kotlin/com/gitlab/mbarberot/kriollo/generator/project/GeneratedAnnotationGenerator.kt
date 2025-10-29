@@ -13,7 +13,7 @@ class GeneratedAnnotationGenerator(
 ) : TemplatedFileGenerator() {
 
     override fun getTemplatePath(): String {
-        return "generator/project/GeneratedAnnotation.${getSourceExtension(configuration)}.kte"
+        return "generator/project/GeneratedAnnotation.${getSourceExtension(serviceProvider.configurationService)}.kte"
     }
 
     override fun getTemplateData(): Any {
@@ -27,9 +27,9 @@ class GeneratedAnnotationGenerator(
 
     override fun getFilePath(): String {
         return buildString {
-            append(getRootSourcePath(configuration))
+            append(getRootSourcePath(serviceProvider))
             append("kriollo/")
-            append("${getClassName()}.${getSourceExtension(configuration)}")
+            append("${getClassName()}.${getSourceExtension(serviceProvider.configurationService)}")
         }
     }
 

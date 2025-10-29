@@ -1,11 +1,12 @@
 package features.generate.maven.pom
 
 import com.gitlab.mbarberot.kriollo.features.Generate
+import com.gitlab.mbarberot.kriollo.generator.kotlin.KotlinConfiguration
 import factories.Configs
+import factories.services.TestConfigurationService
 import factories.services.TestFileSystemService
 import factories.services.TestServiceProvider
 import factories.services.fs.FakeFileSystem
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -19,6 +20,8 @@ class SourceDirectoriesTest {
             configuration = Configs.kotlinProject(),
             fileSystem = TestFileSystemService(fakeFileSystem),
             templatingService = TestServiceProvider.jteTemplatingService,
+            configurationService = TestConfigurationService()
+                .withTestConfig(KotlinConfiguration(enabled = true))
         )
         val useCase = Generate(serviceProvider)
 

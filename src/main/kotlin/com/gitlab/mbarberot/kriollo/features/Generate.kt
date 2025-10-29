@@ -14,6 +14,9 @@ class Generate(
             buildList {
                 addAll(CoreModules().getModules(serviceProvider))
                 addAll(KriolloModules().getModules(serviceProvider))
+                addAll(serviceProvider.moduleProviders.mapNotNull { provider ->
+                    provider.getModuleFactory().createModule(serviceProvider)
+                })
             },
         )
     }

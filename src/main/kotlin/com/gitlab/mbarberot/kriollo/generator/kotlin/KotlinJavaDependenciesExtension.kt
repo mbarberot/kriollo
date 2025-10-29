@@ -9,7 +9,7 @@ class KotlinJavaDependenciesExtension(
 ) : JavaDependencyExtension {
 
     override fun provide(): List<JavaArtifact> {
-        val kotlinVersion = serviceProvider.configuration.kotlin.version
+        val kotlinVersion = serviceProvider.configurationService.get(KotlinConfiguration::class).version
         return buildList {
             add(JavaArtifact("org.jetbrains.kotlin", "kotlin-stdlib", kotlinVersion))
             if (serviceProvider.configuration.tests.enabled) {

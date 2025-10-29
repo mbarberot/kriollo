@@ -28,6 +28,6 @@ class KriolloModuleGenerator(
     }
 
     override fun getFilePath(): String {
-        return SourceUtils.getRootSourcePath(serviceProvider.configuration) + "${moduleConfiguration.path}/${moduleConfiguration.getClassName()}.kt"
+        return SourceUtils.getRootSourcePath(serviceProvider) + "${moduleConfiguration.path}/${moduleConfiguration.getClassName()}.kt"
     }
 }

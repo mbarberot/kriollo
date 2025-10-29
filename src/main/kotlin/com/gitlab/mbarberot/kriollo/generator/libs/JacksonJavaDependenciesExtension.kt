@@ -2,6 +2,7 @@ package com.gitlab.mbarberot.kriollo.generator.libs
 
 import com.gitlab.mbarberot.kriollo.generator.java.JavaArtifact
 import com.gitlab.mbarberot.kriollo.generator.java.JavaDependencyExtension
+import com.gitlab.mbarberot.kriollo.generator.kotlin.KotlinConfiguration
 import com.gitlab.mbarberot.kriollo.services.provider.ServiceProvider
 
 class JacksonJavaDependenciesExtension(
@@ -15,7 +16,7 @@ class JacksonJavaDependenciesExtension(
         }
 
         return buildList {
-            if (serviceProvider.configuration.kotlin.enabled) {
+            if (serviceProvider.configurationService.get(KotlinConfiguration::class).enabled) {
                 add(
                     JavaArtifact(
                         groupId = "com.fasterxml.jackson.module",

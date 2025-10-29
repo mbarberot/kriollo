@@ -2,6 +2,7 @@ package com.gitlab.mbarberot.kriollo.generator.templating.jte
 
 import com.gitlab.mbarberot.kriollo.generator.java.JavaArtifact
 import com.gitlab.mbarberot.kriollo.generator.java.JavaDependencyExtension
+import com.gitlab.mbarberot.kriollo.generator.kotlin.KotlinConfiguration
 import com.gitlab.mbarberot.kriollo.services.provider.ServiceProvider
 
 class JteJavaDependenciesExtension(
@@ -12,7 +13,7 @@ class JteJavaDependenciesExtension(
         return buildList {
             add(JavaArtifact(groupId, artifactId, version))
 
-            if (serviceProvider.configuration.kotlin.enabled) {
+            if (serviceProvider.configurationService.get(KotlinConfiguration::class).enabled) {
                 add(JavaArtifact(groupId, "jte-kotlin", version, "compile"))
             }
         }

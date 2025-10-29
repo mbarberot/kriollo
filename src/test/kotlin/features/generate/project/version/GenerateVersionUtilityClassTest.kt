@@ -1,9 +1,11 @@
 package features.generate.project.version
 
-import factories.Configs
-import factories.services.TestServiceProvider
+import com.gitlab.mbarberot.kriollo.generator.kotlin.KotlinConfiguration
 import com.gitlab.mbarberot.kriollo.generator.project.ProjectVersionGenerator
+import factories.Configs
+import factories.services.TestConfigurationService
 import factories.services.TestFileSystemService
+import factories.services.TestServiceProvider
 import factories.services.fs.FakeFileSystem
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -16,7 +18,9 @@ class GenerateVersionUtilityClassTest {
         val fakeFileSystem = FakeFileSystem()
         val serviceProvider = TestServiceProvider(
             configuration = Configs.kotlinProject(),
-            fileSystem = TestFileSystemService(fakeFileSystem)
+            fileSystem = TestFileSystemService(fakeFileSystem),
+            configurationService = TestConfigurationService()
+                .withTestConfig(KotlinConfiguration(enabled = true))
         )
         val generator = ProjectVersionGenerator(serviceProvider)
 

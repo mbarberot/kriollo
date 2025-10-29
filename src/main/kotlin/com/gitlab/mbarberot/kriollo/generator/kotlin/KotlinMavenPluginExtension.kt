@@ -11,10 +11,7 @@ class KotlinMavenPluginExtension(
     override fun getTemplatePath(): String = "generator/kotlin/kotlin-maven-plugin.xml.kte"
 
     override fun getAllTemplateData(): List<Any> {
-        return listOf(
-            KotlinMavenPluginModel(
-                serviceProvider.configuration.kotlin.version
-            )
-        )
+        val kotlinVersion = serviceProvider.configurationService.get(KotlinConfiguration::class).version
+        return listOf(KotlinMavenPluginModel(kotlinVersion))
     }
 }

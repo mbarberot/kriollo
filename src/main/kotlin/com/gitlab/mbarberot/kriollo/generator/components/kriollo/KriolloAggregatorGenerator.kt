@@ -33,7 +33,7 @@ class KriolloAggregatorGenerator(
     }
 
     override fun getFilePath(): String {
-        return SourceUtils.getRootSourcePath(serviceProvider.configuration) + "generator/${getClassName()}.kt"
+        return SourceUtils.getRootSourcePath(serviceProvider) + "generator/${getClassName()}.kt"
     }
 
     private fun getClassName(): String {

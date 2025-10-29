@@ -8,18 +8,23 @@ import dev.kdl.parse.Kdl1Parser
 import java.nio.file.Path
 import kotlin.io.path.Path
 
-private fun <T> mapToClass(path: Path, clazz: Class<T>): T {
+private fun <T> kdlFileToClass(path: Path, clazz: Class<T>): T {
     val parser = Kdl1Parser()
     val document = parser.parse(path)
     val data = toMap(document.nodes)
     return toPojo(data, clazz)
 }
 
-fun <T> mapToClass(kdl: String, clazz: Class<T>): T {
+fun <T> kdlStringToClass(kdl: String, clazz: Class<T>): T {
+    val data = kdlStringToMap(kdl)
+    return toPojo(data, clazz)
+}
+
+fun kdlStringToMap(kdl: String): Map<String, Any> {
     val parser = Kdl1Parser()
     val document = parser.parse(kdl)
     val data = toMap(document.nodes)
-    return toPojo(data, clazz)
+    return data
 }
 
 private fun <T> toPojo(data: Map<String, Any>, clazz: Class<T>): T {
@@ -28,7 +33,7 @@ private fun <T> toPojo(data: Map<String, Any>, clazz: Class<T>): T {
     return objectMapper.convertValue(data, clazz)
 }
 
-private fun toMap(nodes: List<KdlNode>): Map<String, Any> {
+fun toMap(nodes: List<KdlNode>): Map<String, Any> {
     return buildMap {
         nodes
             .forEach { node ->
@@ -66,7 +71,7 @@ private fun isList(nodes: List<KdlNode>): Boolean {
 }
 
 private fun <T> readKdlConfiguration(path: String, clazz: Class<T>): T {
-    return mapToClass(Path(path), clazz)
+    return kdlFileToClass(Path(path), clazz)
 }
 
 class KdlConfigurationReader<T>(val path: String, val clazz: Class<T>) : ConfigurationReader<T> {

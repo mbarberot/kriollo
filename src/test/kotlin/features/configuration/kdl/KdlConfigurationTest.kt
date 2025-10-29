@@ -10,7 +10,7 @@ import com.gitlab.mbarberot.kriollo.generator.scripts.build.BuildScriptCustomSte
 import com.gitlab.mbarberot.kriollo.generator.scripts.test.TestScriptConfiguration
 import com.gitlab.mbarberot.kriollo.services.configuration.BasicCodegenConfiguration
 import com.gitlab.mbarberot.kriollo.services.configuration.kdl.KdlConfigurationReader
-import com.gitlab.mbarberot.kriollo.services.configuration.kdl.mapToClass
+import com.gitlab.mbarberot.kriollo.services.configuration.kdl.kdlStringToClass
 import com.gitlab.mbarberot.kriollo.services.configuration.legacy.LegacyCodegenConfiguration
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -44,7 +44,7 @@ class KdlConfigurationTest {
         """.trimIndent()
 
         // Act
-        val configuration = mapToClass(kdl, BasicCodegenConfiguration::class.java)
+        val configuration = kdlStringToClass(kdl, BasicCodegenConfiguration::class.java)
 
         // Assert
         assertThat(configuration).isEqualTo(
@@ -90,7 +90,7 @@ class KdlConfigurationTest {
         """.trimIndent()
 
         // Act
-        val configuration = mapToClass(kdl, LegacyCodegenConfiguration::class.java)
+        val configuration = kdlStringToClass(kdl, LegacyCodegenConfiguration::class.java)
 
         // Assert
         val expectedConfiguration = LegacyCodegenConfiguration(

@@ -40,7 +40,7 @@ class KriolloBaseGeneratorGenerator(val serviceProvider: ServiceProvider) : Temp
     }
 
     override fun getFilePath(): String {
-        return SourceUtils.getRootSourcePath(serviceProvider.configuration) + "generator/Generator.kt"
+        return SourceUtils.getRootSourcePath(serviceProvider) + "generator/Generator.kt"
     }
 
 }

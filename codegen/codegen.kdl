@@ -294,7 +294,7 @@ components {
             path "generator/kotlin"
             name "Kotlin"
             tag "core"
-            activationKey "kotlin.enabled"
+            activationKey "kotlin.deprecated.enabled"
             generators {
                 - {
                     name "KotlinSourceDirectoryGenerator"

@@ -30,7 +30,7 @@ class KriolloExtensionGenerator(
     }
 
     override fun getFilePath(): String {
-        val rootSourcePath = SourceUtils.getRootSourcePath(serviceProvider.configuration, withTrailingSlash = false)
+        val rootSourcePath = SourceUtils.getRootSourcePath(serviceProvider, withTrailingSlash = false)
         return "$rootSourcePath/${moduleConfiguration.path}/${extensionConfiguration.name}.kt"
     }
 }

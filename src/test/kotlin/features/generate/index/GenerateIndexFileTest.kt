@@ -1,7 +1,9 @@
 package features.generate.index
 
 import com.gitlab.mbarberot.kriollo.features.Generate
+import com.gitlab.mbarberot.kriollo.generator.kotlin.KotlinConfiguration
 import factories.Configs
+import factories.services.TestConfigurationService
 import factories.services.TestFileSystemService
 import factories.services.TestServiceProvider
 import factories.services.fs.FakeFileSystem
@@ -34,6 +36,8 @@ class GenerateIndexFileTest {
         val serviceProvider = TestServiceProvider(
             configuration = Configs.kotlinProject(),
             fileSystem = TestFileSystemService(fakeFileSystem),
+            configurationService = TestConfigurationService()
+                .withTestConfig(KotlinConfiguration(enabled = true))
         )
         val useCase = Generate(serviceProvider)
 

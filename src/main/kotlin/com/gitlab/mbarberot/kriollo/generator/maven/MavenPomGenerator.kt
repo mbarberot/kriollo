@@ -22,8 +22,8 @@ class MavenPomGenerator(val serviceProvider: ServiceProvider) : TemplatedFileGen
 
     override fun getTemplateData() = PomModel(
         artifact = getArtifactOrFail(),
-        sourceDirectory = SourceUtils.getSourceDirectory(serviceProvider.configuration, false),
-        testSourceDirectory = SourceUtils.getSourceDirectory(serviceProvider.configuration, true),
+        sourceDirectory = SourceUtils.getSourceDirectory(serviceProvider.configurationService, false),
+        testSourceDirectory = SourceUtils.getSourceDirectory(serviceProvider.configurationService, true),
         properties = buildMap {
             propertiesExtension
                 .flatMap { it.provide() }
