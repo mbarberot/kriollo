@@ -2,6 +2,7 @@ package unit.configuration
 
 import com.gitlab.mbarberot.kriollo.spi.configuration.ConfigurationCustomizer
 import com.gitlab.mbarberot.kriollo.services.configuration.DefaultConfigurationService
+import com.gitlab.mbarberot.kriollo.services.configuration.legacy.DeprecationHandler
 import com.gitlab.mbarberot.kriollo.spi.configuration.RootNode
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -69,6 +70,13 @@ class ConfigurationServiceTest {
                 }
             }
 
+            override fun check(
+                configuration: RootNode,
+                deprecationHandler: DeprecationHandler,
+            ) {
+                // nothing to do here
+            }
+
             override fun <T : Any> accepts(kclass: KClass<T>): Boolean {
                 return kclass == DependenciesConfig::class
             }
@@ -79,6 +87,13 @@ class ConfigurationServiceTest {
                 if(configuration.get("$.dependencies.version") == null) {
                     configuration.get("$.dependencies")?.setValue("version", "1.3.4")
                 }
+            }
+
+            override fun check(
+                configuration: RootNode,
+                deprecationHandler: DeprecationHandler,
+            ) {
+                // nothing to do here
             }
 
             override fun <T : Any> accepts(kclass: KClass<T>): Boolean {

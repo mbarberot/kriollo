@@ -3,6 +3,7 @@ import com.gitlab.mbarberot.kriollo.features.Config
 import com.gitlab.mbarberot.kriollo.services.configuration.kdl.KdlConfigurationReader
 import com.gitlab.mbarberot.kriollo.services.configuration.legacy.LegacyCodegenConfiguration
 import com.gitlab.mbarberot.kriollo.services.configuration.legacy.LegacyConfigurationAdapter
+import factories.services.TestConfigurationService
 import features.configuration.BackwardConfigurationAdapter
 import features.configuration.BackwardConfigurationReader
 import org.assertj.core.api.Assertions.assertThat
@@ -15,6 +16,7 @@ class CheckConfigTest {
         // Arrange
         val deprecations = mutableListOf<String>()
         val config = Config(
+            TestConfigurationService(),
             KdlConfigurationReader("./codegen/codegen.kdl", LegacyCodegenConfiguration::class.java),
             LegacyConfigurationAdapter { deprecations.add(it) }
         )
@@ -31,6 +33,7 @@ class CheckConfigTest {
         // Arrange
         val deprecations = mutableListOf<String>()
         val config = Config(
+            TestConfigurationService(),
             BackwardConfigurationReader(),
             BackwardConfigurationAdapter { deprecations.add(it) },
         )

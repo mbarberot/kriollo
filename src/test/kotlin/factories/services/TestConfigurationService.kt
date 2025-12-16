@@ -20,6 +20,10 @@ class TestConfigurationService: ConfigurationService {
         return configs[key] as T
     }
 
+    override fun check() {
+        // nothing to do here for the moment
+    }
+
     fun withTestConfig(config: Any): TestConfigurationService {
         val key = config::class.simpleName ?: throw RuntimeException("Cannot get simple name of class ${config::class}")
         configs[key] = config

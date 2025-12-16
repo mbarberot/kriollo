@@ -22,18 +22,20 @@ fun main(args: Array<String>) {
             .load(ModuleProvider::class.java)
             .filterNotNull()
 
+    val configurationService = DefaultConfigurationService(
+        Path("./codegen/codegen.kdl").readText(),
+        moduleProviders.flatMap { it.getConfigurationCustomizers() },
+    )
+
     val serviceProvider: ServiceProvider = DefaultServiceProvider(
-        configurationService = DefaultConfigurationService(
-            Path("./codegen/codegen.kdl").readText(),
-            moduleProviders.flatMap { it.getConfigurationCustomizers() },
-        ),
+        configurationService = configurationService,
         moduleProviders = moduleProviders,
     )
 
     val kriolloCli = KriolloCli(
         Init(serviceProvider),
         Clean(serviceProvider),
-        Config.default(),
+        Config.default(configurationService),
         Generate(serviceProvider),
     )
 

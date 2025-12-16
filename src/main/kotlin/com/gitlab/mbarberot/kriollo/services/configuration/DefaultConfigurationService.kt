@@ -4,12 +4,14 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.kotlinModule
 import com.gitlab.mbarberot.kriollo.KriolloException
 import com.gitlab.mbarberot.kriollo.configuration.kdl.fromKdl
+import com.gitlab.mbarberot.kriollo.services.configuration.legacy.DeprecationHandler
 import com.gitlab.mbarberot.kriollo.spi.configuration.ConfigurationCustomizer
 import kotlin.reflect.KClass
 
 class DefaultConfigurationService(
     configurationString: String,
     val customizers: List<ConfigurationCustomizer> = listOf(),
+    val deprecationHandler: DeprecationHandler = DeprecationHandler { message -> println("[!] $message")}
 ) : ConfigurationService {
 
     val rootNode = fromKdl(configurationString) // TODO : inject ?
@@ -32,9 +34,14 @@ class DefaultConfigurationService(
         return toPojo(config.toMap().getValue(key), klass.java)
     }
 
+    override fun check() {
+        customizers.forEach { it.check(rootNode, deprecationHandler) }
+    }
+
     private fun getConfigKey(klassName: String): String {
         return klassName
             .removeSuffix("Config")
+            .removeSuffix("Configuration")
             .replaceFirstChar { it.lowercaseChar() }
     }
 

@@ -16,16 +16,17 @@ import com.gitlab.mbarberot.kriollo.generator.project.BuildStepConfiguration
 import com.gitlab.mbarberot.kriollo.generator.project.IProjectConfiguration
 import com.gitlab.mbarberot.kriollo.generator.scripts.ScriptsConfiguration
 import com.gitlab.mbarberot.kriollo.generator.tests.TestsConfiguration
-import com.gitlab.mbarberot.kriollo.services.configuration.ConfigurationAdapter
-import com.gitlab.mbarberot.kriollo.services.configuration.ConfigurationProvider
-import com.gitlab.mbarberot.kriollo.services.configuration.ConfigurationReader
+import com.gitlab.mbarberot.kriollo.services.configuration.*
 import com.gitlab.mbarberot.kriollo.services.configuration.legacy.DeprecationHandler
+import com.gitlab.mbarberot.kriollo.spi.configuration.ConfigurationCustomizer
+import com.gitlab.mbarberot.kriollo.spi.configuration.RootNode
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import kotlin.reflect.KClass
 
 class BackwardCompatibleConfigurationTest {
     @Test
-    fun `allow backward compatibility`() {
+    fun `allow backward compatibility legacy`() {
         // Arrange
         val deprecations: MutableList<String> = mutableListOf()
 
@@ -39,7 +40,55 @@ class BackwardCompatibleConfigurationTest {
         assertThat(deprecations).contains("project.testProperty is deprecated, please use project.name instead")
         assertThat(config.project.name).isEqualTo("test-property")
     }
+
+    @Test
+    fun `allow backward compatibility `() {
+        // Arrange
+        val deprecations: MutableList<String> = mutableListOf()
+        val projectConfigCustomizer = object : ConfigurationCustomizer {
+            override val priority = 1
+
+            override fun customize(configuration: RootNode) {
+                val name = configuration.get("$.testProject.testProperty")?.value()
+                if (name != null) {
+                    configuration.get("$.testProject")?.setValue("name", name);
+                }
+            }
+
+            override fun check(configuration: RootNode, deprecationHandler: DeprecationHandler) {
+                val name = configuration.get("$.testProject.testProperty")?.value()
+                if (name != null) {
+                    deprecationHandler.logDeprecation("testProject.testProperty is deprecated, please use testProject.name instead")
+                }
+            }
+
+            override fun <T : Any> accepts(kclass: KClass<T>): Boolean {
+                return kclass == TestProjectConfiguration::class
+            }
+        }
+
+        // Act
+        val config: ConfigurationService = DefaultConfigurationService(
+            """
+                testProject { 
+                  testProperty "test-property"
+                }
+            """.trimIndent(),
+            listOf(projectConfigCustomizer),
+            { message -> deprecations.add(message) }
+        )
+        config.check()
+
+        // Assert
+        assertThat(deprecations).contains("testProject.testProperty is deprecated, please use testProject.name instead")
+        assertThat(config.get(TestProjectConfiguration::class).name).isEqualTo("test-property")
+    }
 }
+
+data class TestProjectConfiguration(
+    val name: String = "",
+    val testProperty: String = ""
+)
 
 class BackwardConfigurationReader: ConfigurationReader<TestBackwardCompatibleConfiguration> {
     override fun read(): TestBackwardCompatibleConfiguration {
