@@ -12,6 +12,7 @@ associated configuration.
 ```kdl
 // Kriollo configuration
 kriollo {
+    version "2025.2.0" // Kriollo version, allow backward compatibility
     dir "codegen" // Directory containing the codegen.kdl and kriollo.jar
 }
 
