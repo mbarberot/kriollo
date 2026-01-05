@@ -3,6 +3,8 @@ package com.gitlab.mbarberot.kriollo.generator.project
 import com.gitlab.mbarberot.kriollo.configuration.CodegenConfiguration
 import com.gitlab.mbarberot.kriollo.generator.base.TemplatedFileGenerator
 import com.gitlab.mbarberot.kriollo.services.provider.ServiceProvider
+import com.gitlab.mbarberot.kriollo.services.templating.JteTemplate
+import com.gitlab.mbarberot.kriollo.services.templating.Template
 import com.gitlab.mbarberot.kriollo.utils.SourceUtils.getRootPackage
 import com.gitlab.mbarberot.kriollo.utils.SourceUtils.getRootSourcePath
 import com.gitlab.mbarberot.kriollo.utils.SourceUtils.getSourceExtension
@@ -12,16 +14,15 @@ class GeneratedAnnotationGenerator(
     val configuration: CodegenConfiguration = serviceProvider.configuration,
 ) : TemplatedFileGenerator() {
 
-    override fun getTemplatePath(): String {
-        return "generator/project/GeneratedAnnotation.${getSourceExtension(serviceProvider.configurationService)}.kte"
-    }
-
-    override fun getTemplateData(): Any {
+    override fun getTemplate(): Template {
         val rootPackage = getRootPackage(configuration, withTrailingDot = false)
-        return GeneratedAnnotationModel(
-            name = getClassName(),
-            namespace = "$rootPackage.kriollo",
-            rootPackage = rootPackage
+        return JteTemplate(
+            "generator/project/GeneratedAnnotation.${getSourceExtension(serviceProvider.configurationService)}.kte",
+            GeneratedAnnotationModel(
+                name = getClassName(),
+                namespace = "$rootPackage.kriollo",
+                rootPackage = rootPackage
+            )
         )
     }
 

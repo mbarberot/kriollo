@@ -1,5 +1,7 @@
 package factories.services
 
+import com.github.jknack.handlebars.Handlebars
+import com.github.jknack.handlebars.io.ClassPathTemplateLoader
 import com.gitlab.mbarberot.kriollo.configuration.CodegenConfiguration
 import com.gitlab.mbarberot.kriollo.services.configuration.BasicCodegenConfiguration
 import com.gitlab.mbarberot.kriollo.services.configuration.ConfigurationService
@@ -32,7 +34,8 @@ class TestServiceProvider(
                 DirectoryCodeResolver(Path.of("src/main/jte")),
                 ContentType.Plain
             )
-            return DefaultTemplatingService(jteTemplateEngine)
+            val handlebarsTemplateEngine = Handlebars(ClassPathTemplateLoader("/templates")).apply { setPrettyPrint(true) }
+            return DefaultTemplatingService(jteTemplateEngine, handlebarsTemplateEngine)
         }
     }
 }

@@ -2,6 +2,7 @@ package com.gitlab.mbarberot.kriollo.generator.maven
 
 import com.gitlab.mbarberot.kriollo.HardcodedValues
 import com.gitlab.mbarberot.kriollo.services.provider.ServiceProvider
+import com.gitlab.mbarberot.kriollo.services.templating.JteTemplate
 
 class MavenExecPluginRenderer(
     val serviceProvider: ServiceProvider,
@@ -39,6 +40,6 @@ class MavenExecPluginRenderer(
     )
 
     fun render(): String {
-        return serviceProvider.templatingService.renderToString(templatePath, templateData)
+        return serviceProvider.templatingService.renderToString(JteTemplate(templatePath, templateData))
     }
 }

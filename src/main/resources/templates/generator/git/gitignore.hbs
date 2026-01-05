@@ -1,0 +1,9 @@
+{{! @formatter:off }}
+{{bashWarning}}
+
+{{#each blocks as |block|}}
+# {{block.description}}
+{{#each block.rules as |rule|}}
+{{rule}}
+{{/each}}
+{{/each}}

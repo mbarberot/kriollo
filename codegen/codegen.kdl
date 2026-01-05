@@ -14,6 +14,11 @@ project {
             artifactId "kdl4j"
             version "1.0.1"
         }
+        - {
+            groupId "com.github.jknack"
+            artifactId "handlebars"
+            version "4.5.0"
+        }
     }
     libs {
         picocli {
@@ -209,10 +214,10 @@ components {
                 - {
                     name "MavenExecPluginExtension"
                     provideType "com.gitlab.mbarberot.kriollo.generator.maven.MavenExecPlugin"
-                    /*
-                    TODO : simplify notation using @ as the project root, should be backward compatible until 2026.1.0
-                    provideType "@.generator.java.JavaArtifact"
-                    */
+                /*
+                TODO : simplify notation using @ as the project root, should be backward compatible until 2026.1.0
+                provideType "@.generator.java.JavaArtifact"
+                */
                 }
             }
 

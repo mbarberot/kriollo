@@ -6,6 +6,8 @@ import com.gitlab.mbarberot.kriollo.generator.java.JavaArtifact
 import com.gitlab.mbarberot.kriollo.generator.java.JavaDependencyExtension
 import com.gitlab.mbarberot.kriollo.generator.nix.DefaultNixFileExtension
 import com.gitlab.mbarberot.kriollo.services.provider.ServiceProvider
+import com.gitlab.mbarberot.kriollo.services.templating.JteTemplate
+import com.gitlab.mbarberot.kriollo.services.templating.Template
 import com.gitlab.mbarberot.kriollo.utils.SourceUtils
 
 class MavenPomGenerator(val serviceProvider: ServiceProvider) : TemplatedFileGenerator() {
@@ -19,9 +21,14 @@ class MavenPomGenerator(val serviceProvider: ServiceProvider) : TemplatedFileGen
 
     override fun getFilePath() = "pom.xml"
 
-    override fun getTemplatePath() = "generator/maven/pom.xml.kte"
+    override fun getTemplate(): Template {
+        return JteTemplate(
+            "generator/maven/pom.xml.kte",
+            getTemplateData()
+        )
+    }
 
-    override fun getTemplateData(): PomModel =
+    private fun getTemplateData(): PomModel =
         serviceProvider
             .configurationService
             .get(MavenConfiguration::class)

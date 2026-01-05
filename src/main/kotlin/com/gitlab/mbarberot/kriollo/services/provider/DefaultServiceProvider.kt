@@ -1,5 +1,7 @@
 package com.gitlab.mbarberot.kriollo.services.provider
 
+import com.github.jknack.handlebars.Handlebars
+import com.github.jknack.handlebars.io.ClassPathTemplateLoader
 import com.gitlab.mbarberot.kriollo.configuration.CodegenConfiguration
 import com.gitlab.mbarberot.kriollo.services.configuration.ConfigurationProvider
 import com.gitlab.mbarberot.kriollo.services.configuration.ConfigurationService
@@ -32,6 +34,7 @@ class DefaultServiceProvider(
     override val templatingService: TemplatingService by lazy {
         DefaultTemplatingService(
             TemplateEngine.createPrecompiled(ContentType.valueOf(configuration.project.libs.jte.contentType)),
+            Handlebars(ClassPathTemplateLoader("/templates")).apply { setPrettyPrint(true) }
         )
     }
 }
