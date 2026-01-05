@@ -16,7 +16,7 @@ class ConfigurationModelTest {
         }
         
         script { 
-            enabled true
+            enabled "true"
             build { 
                 scriptName "bar"
             }

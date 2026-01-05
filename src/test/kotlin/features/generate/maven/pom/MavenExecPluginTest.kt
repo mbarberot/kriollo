@@ -1,5 +1,6 @@
 package features.generate.maven.pom
 
+import com.gitlab.mbarberot.kriollo.HardcodedValues
 import com.gitlab.mbarberot.kriollo.features.Generate
 import com.gitlab.mbarberot.kriollo.generator.java.JavaConfiguration
 import com.gitlab.mbarberot.kriollo.generator.maven.MavenConfiguration
@@ -44,7 +45,7 @@ class MavenExecPluginTest {
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>exec-maven-plugin</artifactId>
-                    <version>3.1.0</version>
+                    <version>${HardcodedValues.DEFAULT_MAVEN_EXEC_PLUGIN_VERSION}</version>
                     <executions>
                         <execution>
                             <id>foo</id>

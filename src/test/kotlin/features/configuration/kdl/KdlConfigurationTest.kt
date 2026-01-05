@@ -64,7 +64,7 @@ class KdlConfigurationTest {
                 version "1.0.0"
                 libs {
                     jackson {
-                        enabled true
+                        enabled "true"
                         core {
                             - "databind"
                         }
@@ -73,9 +73,9 @@ class KdlConfigurationTest {
             }
             
             scripts {
-                enabled true
+                enabled "true"
                 build {
-                    enabled true
+                    enabled "true"
                     customSteps {
                         - { 
                             name "Copy jar into codegen dir"
@@ -84,7 +84,7 @@ class KdlConfigurationTest {
                     }
                 }
                 tests {
-                    enabled true
+                    enabled "true"
                 }
             }
         """.trimIndent()

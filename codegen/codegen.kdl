@@ -1,3 +1,7 @@
+kriollo {
+    version "2026.0.0"
+}
+
 project {
     groupId "com.gitlab.mbarberot"
     name "kriollo"
@@ -29,6 +33,7 @@ project {
 
 kotlin {
     enabled "true"
+    version "2.1.21"
 }
 
 nix {
@@ -67,7 +72,7 @@ maven {
     enabled "true"
     repositories {
         jitpack "true"
-    }
+        }
 }
 
 tests {

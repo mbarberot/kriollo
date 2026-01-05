@@ -16,14 +16,14 @@ class ConfigurationServiceTest {
         }
         
         script { 
-            enabled true
+            enabled "true"
             build { 
                 scriptName "bar"
             }
         }
         
         dependencies { 
-            jackson true
+            jackson "true"
         }
     """.trimIndent()
 
