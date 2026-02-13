@@ -1,17 +1,10 @@
 package com.gitlab.mbarberot.kriollo.configuration.kdl
 
-import com.gitlab.mbarberot.kriollo.spi.configuration.ArrayItem
-import com.gitlab.mbarberot.kriollo.spi.configuration.ArrayNode
-import com.gitlab.mbarberot.kriollo.spi.configuration.ArrayObject
-import com.gitlab.mbarberot.kriollo.spi.configuration.ArrayValue
-import com.gitlab.mbarberot.kriollo.spi.configuration.NamedNode
-import com.gitlab.mbarberot.kriollo.spi.configuration.ObjectNode
-import com.gitlab.mbarberot.kriollo.spi.configuration.RootNode
-import com.gitlab.mbarberot.kriollo.spi.configuration.ValueNode
+import com.gitlab.mbarberot.kriollo.spi.configuration.*
 import dev.kdl.KdlNode
-import dev.kdl.parse.Kdl1Parser
+import dev.kdl.parse.KdlParser
 
-fun fromKdl(configAsText: String) = parseKdl(Kdl1Parser().parse(configAsText).nodes)
+fun fromKdl(configAsText: String) = parseKdl(KdlParser.v2().parse(configAsText).nodes)
 private fun parseKdl(kdlNode: List<KdlNode>): RootNode = RootNode(build(kdlNode))
 
 private fun build(kdlNodes: List<KdlNode>): List<NamedNode> {

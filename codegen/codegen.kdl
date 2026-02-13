@@ -12,35 +12,35 @@ project {
     }
     libs {
         picocli {
-            enabled true
+            enabled "true"
         }
         jackson {
-            enabled true
+            enabled "true"
             core {
                 - "databind"
             }
         }
         jte {
-            enabled true
+            enabled "true"
             contentType "Plain"
         }
     }
 }
 
 kotlin {
-    enabled true
+    enabled "true"
 }
 
 nix {
-    enabled true
+    enabled "true"
 }
 
 jetbrains {
-    enabled true
+    enabled "true"
 }
 
 git {
-    enabled true
+    enabled "true"
     ignore {
         - "jte-classes"
         - "*.swp"
@@ -48,9 +48,9 @@ git {
 }
 
 scripts {
-    enabled true
+    enabled "true"
     build {
-        enabled true
+        enabled "true"
         customSteps {
             - {
                 name "Copy jar into codegen dir"
@@ -59,19 +59,19 @@ scripts {
         }
     }
     tests {
-        enabled true
+        enabled "true"
     }
 }
 
 maven {
-    enabled true
+    enabled "true"
     repositories {
-        jitpack true
+        jitpack "true"
     }
 }
 
 tests {
-    enabled true
+    enabled "true"
     coverage {
         minimumBranchCoverage "0.3"
         minimumInstructionCoverage "0.6"
@@ -82,12 +82,12 @@ tests {
 }
 
 cli {
-    enabled true
+    enabled "true"
     script {
-        enabled true
+        enabled "true"
         fileName "kriollo"
         targetDirectory "codegen"
-        includeDebug true
+        includeDebug "true"
         beforeRun "if [[ $1 == 'self-update' ]]; then sh <(curl -L https://gitlab.com/mbarberot/kriollo/-/raw/main/src/main/bash/self-update.sh); exit 0; fi"
     }
 }
@@ -294,7 +294,7 @@ components {
             path "generator/kotlin"
             name "Kotlin"
             tag "core"
-            activationKey "kotlin.deprecated.enabled"
+            activationKey "kotlin.enabled"
             generators {
                 - {
                     name "KotlinSourceDirectoryGenerator"

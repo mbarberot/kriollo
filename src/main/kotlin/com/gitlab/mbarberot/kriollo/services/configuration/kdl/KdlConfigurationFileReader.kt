@@ -4,12 +4,12 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.kotlinModule
 import com.gitlab.mbarberot.kriollo.services.configuration.ConfigurationReader
 import dev.kdl.KdlNode
-import dev.kdl.parse.Kdl1Parser
+import dev.kdl.parse.KdlParser
 import java.nio.file.Path
 import kotlin.io.path.Path
 
 private fun <T> kdlFileToClass(path: Path, clazz: Class<T>): T {
-    val parser = Kdl1Parser()
+    val parser = KdlParser.v2()
     val document = parser.parse(path)
     val data = toMap(document.nodes)
     return toPojo(data, clazz)
@@ -21,7 +21,7 @@ fun <T> kdlStringToClass(kdl: String, clazz: Class<T>): T {
 }
 
 fun kdlStringToMap(kdl: String): Map<String, Any> {
-    val parser = Kdl1Parser()
+    val parser = KdlParser.v2()
     val document = parser.parse(kdl)
     val data = toMap(document.nodes)
     return data

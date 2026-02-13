@@ -37,22 +37,22 @@ project {
     // These depdenencies are deeply integrated : maven plugin, version management, ...
     libs { 
         jackson {
-            enabled false 
+            enabled "false" 
             version "x.y.z" // Handled by kriollo 
             core { // add jackson core library
                 - "databind" 
             }
         }
         picocli {
-            enabled false
+            enabled "false"
             version "x.y.z" // Handled by Kriollo 
         }
         feign {
-            enabled false
+            enabled "false"
             version "x.y.z" // Handled by Kriollo 
         }
         jte {
-            enabled false
+            enabled "false"
             groupId "gg.jte"
             artifactId "jte"
             version "x.y.z" // Handled by Kriollo 
@@ -81,39 +81,39 @@ project {
 
 // CLI project type support
 cli {
-    enabled false
+    enabled "false"
     // Controls the running bash script
     script {
-        enabled false
+        enabled "false"
         fileName "run.sh" // the script filename
         targetDirectory "./build" // the script directory
         beforeRun: "" // some bash code to run before executing the Jar file
-        includeDebug false // include the remote debug instruction
+        includeDebug "false" // include the remote debug instruction
     }
 }
 
 // Jetbrains IDE support
 jetbrains {
-   enabled false 
+   enabled "false" 
 }
 
 // Java project support
 // ⚠ Cannot be used along Kotlin
 java {
-    enabled false
+    enabled "false"
     version "x.y.z" // handled by Kriollo
 }
 
 // Kotlin project support
 // ⚠ Cannot be used along Java
 kotlin {
-    enabled false
+    enabled "false"
     version "x.y.z" // handled by Kriollo
 }
 
 // Nix support
 nix {
-    enabled false
+    enabled "false"
     // Add more packages into the nix configuration file
     customPackages {
         - "foo"
@@ -123,7 +123,7 @@ nix {
 
 // Git support
 git {
-    enabled false
+    enabled "false"
     // Add custom ignore instructions to the .gitignore
     ignore {
         - "foo"
@@ -133,11 +133,11 @@ git {
 
 // Controls project automated scripts
 scripts {
-    enabled false
+    enabled "false"
     dir "scripts" // scripts directory
     // Control the build script
     build {
-        enabled false
+        enabled "false"
         // Add custom steps to the build script
         customSteps {
             - {
@@ -148,22 +148,22 @@ scripts {
     }
     // Control the test script
     tests {
-       enabled false 
+       enabled "false" 
     }
 }
 
 // Maven support 
 maven {
-    enabled false
+    enabled "false"
     // Activate more Maven Repositories
     repositories {
-        jitpack false // add jitpack to available repository
+        jitpack "false" // add jitpack to available repository
     }
 }
 
 // Test support
 tests {
-    enabled false
+    enabled "false"
     // Configure JUnit/AssertJ
     junit {
         junitVersion "x.y.z" // handled by Kriollo

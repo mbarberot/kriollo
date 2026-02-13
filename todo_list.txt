@@ -1,5 +1,18 @@
+** 2026.0.0
 
-** 2025.2.0
+(A) BREAKING CHANGE : Kdl4j v2 true => "true"
+(A) Bump to Kotlin v2.x => cherry pick ed13d32
+
+** 2026.1.0
+
+(A) +generator exernal generator using handlebars
+
+** 2026.2.0
+
+(A) +generator conventionnal commit git hook
+(A) +generator automatic changelog with conventionnal commit
+
+** 2026.3.0
 
 (A) +release test the release in Jacta
 (A) +bugfix should not have both java.enabled and kotlin.enabled
@@ -11,9 +24,9 @@
 (C) fix warnings about deprecated usage of a factory in tests
 (C) check for kdl lib update => see what changed in kdl v2.0
 (C) assess Dagger for build
-(C) assess changing/mixing template engine => jstachio
+(C) assess Koin for DI
 
-** 2025.3.0
+** 2026.4.0
 
 (A) improve output (logging ?)
 (B) +ci add coverage report to gitlab pages + link in readme
@@ -30,10 +43,6 @@
 (C) +feat +jackson +maven add jackson version in properties for easier add in depdendencies
 (C) +doc add license
 (C) +doc add a short description in the README
-
-** 2026.1.0
-
-(A) BREAKING CHANGE : Kdl4j v2 true => "true"
 
 ** Todos **
 
