@@ -8,7 +8,6 @@ class TestFileSystemService(
     private val fakeFileSystem: FakeFileSystem = FakeFileSystem()
 ) : BaseFileSystemService() {
 
-
     override fun doCreateFile(filename: String, content: String, isScript: Boolean) {
         fakeFileSystem.addFile(TestFile(filename, content))
     }
@@ -25,9 +24,5 @@ class TestFileSystemService(
         fakeFileSystem.removeFile(path);
     }
 
-    @Deprecated(message = "Provide a fakeFileSystem in constructor and make assertion directly on it")
-    fun getTestGeneratedFiles(): FakeFileSystem {
-        return fakeFileSystem
-    }
 }
 
