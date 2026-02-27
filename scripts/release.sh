@@ -24,8 +24,7 @@ then
 fi
 
 # UPDATE VERSION
-
-sed -i '0,/version .*/s//version "'${TAG}'"/' codegen/codegen.kdl
+sed -i '/project {/,/version/s/version .*/version "'${TAG}'"/' codegen/codegen.kdl
 # > regenerate code
 ./codegen/kriollo build
 # > rebuild
