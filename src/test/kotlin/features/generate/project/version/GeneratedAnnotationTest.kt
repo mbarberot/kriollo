@@ -18,9 +18,8 @@ class GeneratedAnnotationTest {
         val fakeFileSystem = FakeFileSystem()
         val serviceProvider = TestServiceProvider(
             configuration = Configs.kotlinProject(),
-            fileSystem = TestFileSystemService(fakeFileSystem),
-            configurationService = TestConfigurationService()
-                .withTestConfig(KotlinConfiguration(enabled = true))
+            configurationService = TestConfigurationService.kotlinMavenProject(),
+            fileSystem = TestFileSystemService(fakeFileSystem)
         )
         val useCase = Generate(serviceProvider)
 
@@ -37,6 +36,7 @@ class GeneratedAnnotationTest {
         val fakeFileSystem = FakeFileSystem()
         val serviceProvider = TestServiceProvider(
             configuration = Configs.javaProject(),
+            configurationService = TestConfigurationService.javaMavenProject(),
             fileSystem = TestFileSystemService(fakeFileSystem)
         )
         val useCase = Generate(serviceProvider)
@@ -54,6 +54,7 @@ class GeneratedAnnotationTest {
         val fakeFileSystem = FakeFileSystem()
         val serviceProvider = TestServiceProvider(
             configuration = Configs.javaProject(),
+            configurationService = TestConfigurationService.javaMavenProject(),
             fileSystem = TestFileSystemService(fakeFileSystem),
             templatingService = TestServiceProvider.jteTemplatingService
         )

@@ -20,8 +20,7 @@ class SourceDirectoriesTest {
             configuration = Configs.kotlinProject(),
             fileSystem = TestFileSystemService(fakeFileSystem),
             templatingService = TestServiceProvider.jteTemplatingService,
-            configurationService = TestConfigurationService()
-                .withTestConfig(KotlinConfiguration(enabled = true))
+            configurationService = TestConfigurationService.kotlinMavenProject()
         )
         val useCase = Generate(serviceProvider)
 
@@ -41,6 +40,7 @@ class SourceDirectoriesTest {
         val fakeFileSystem = FakeFileSystem()
         val serviceProvider = TestServiceProvider(
             configuration = Configs.javaProject(),
+            configurationService = TestConfigurationService.javaMavenProject(),
             fileSystem = TestFileSystemService(fakeFileSystem),
             templatingService = TestServiceProvider.jteTemplatingService
         )

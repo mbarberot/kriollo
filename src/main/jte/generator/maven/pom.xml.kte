@@ -23,12 +23,21 @@
         <finalName>${"$"}{project.artifactId}</finalName>
         <sourceDirectory>${model.sourceDirectory}</sourceDirectory>
         <testSourceDirectory>${model.testSourceDirectory}</testSourceDirectory>
+        @if(model.filtering.enabled)
         <resources>
             <resource>
                 <filtering>true</filtering>
                 <directory>src/main/resources</directory>
+                @if(model.filtering.exclusions.isNotEmpty())
+                <excludes>
+                   @for(pattern in model.filtering.exclusions)
+                   <exclude>${pattern}</exclude>
+                   @endfor
+                </excludes>
+                @endif
             </resource>
         </resources>
+        @endif
         <plugins>
             @for(plugin in model.plugins)
                 $unsafe{plugin}

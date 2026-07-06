@@ -20,42 +20,52 @@ class MavenPomGenerator(val serviceProvider: ServiceProvider) : TemplatedFileGen
 
     override fun getTemplatePath() = "generator/maven/pom.xml.kte"
 
-    override fun getTemplateData() = PomModel(
-        artifact = getArtifactOrFail(),
-        sourceDirectory = SourceUtils.getSourceDirectory(serviceProvider.configurationService, false),
-        testSourceDirectory = SourceUtils.getSourceDirectory(serviceProvider.configurationService, true),
-        properties = buildMap {
-            propertiesExtension
-                .flatMap { it.provide() }
-                .forEach { (key, value) -> put(key, value) }
-        },
-        dependencies = buildList {
-            mergeDependencies(dependencyExtensions)
-                .forEach { dependency -> add(dependency) }
-        },
-        plugins = buildList {
-            pluginExtensions
-                .map { extension -> extension.provide() }
-                .forEach { plugin -> addAll(plugin) }
+    override fun getTemplateData(): PomModel =
+        serviceProvider
+            .configurationService
+            .get(MavenConfiguration::class)
+            .let { config ->
+                return@let PomModel(
+                    artifact = getArtifactOrFail(),
+                    sourceDirectory = SourceUtils.getSourceDirectory(serviceProvider.configurationService, false),
+                    testSourceDirectory = SourceUtils.getSourceDirectory(serviceProvider.configurationService, true),
+                    properties = buildMap {
+                        propertiesExtension
+                            .flatMap { it.provide() }
+                            .forEach { (key, value) -> put(key, value) }
+                    },
+                    dependencies = buildList {
+                        mergeDependencies(dependencyExtensions)
+                            .forEach { dependency -> add(dependency) }
+                    },
+                    plugins = buildList {
+                        pluginExtensions
+                            .map { extension -> extension.provide() }
+                            .forEach { plugin -> addAll(plugin) }
 
-            if (execExtensions.isNotEmpty()) {
-                add(
-                    MavenExecPluginRenderer(
-                        serviceProvider,
-                        execExtensions.flatMap { extension -> extension.provide() }
-                    ).render()
+                        if (execExtensions.isNotEmpty()) {
+                            add(
+                                MavenExecPluginRenderer(
+                                    serviceProvider,
+                                    execExtensions.flatMap { extension -> extension.provide() }
+                                ).render()
+                            )
+                        }
+                    },
+                    boms = buildList {
+                        bomExtensions
+                            .map { extension -> extension.provide() }
+                            .forEach { bom -> addAll(bom) }
+                    },
+                    repositories = PomRepositoriesModel(
+                        jitpack = config.repositories.jitpack
+                    ),
+                    filtering = PomFilteringModel(
+                        enabled = config.filtering.enabled,
+                        exclusions = config.filtering.exclusions()
+                    )
                 )
             }
-        },
-        boms = buildList {
-            bomExtensions
-                .map { extension -> extension.provide() }
-                .forEach { bom -> addAll(bom) }
-        },
-        repositories = PomRepositoriesModel(
-            jitpack = serviceProvider.configuration.maven.repositories.jitpack
-        )
-    )
 
     private fun mergeDependencies(dependencyExtensions: List<JavaDependencyExtension>): List<JavaArtifact> {
         return dependencyExtensions

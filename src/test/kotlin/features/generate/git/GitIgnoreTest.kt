@@ -7,6 +7,7 @@ import com.gitlab.mbarberot.kriollo.generator.maven.MavenConfiguration
 import com.gitlab.mbarberot.kriollo.services.configuration.BasicCodegenConfiguration
 import factories.Configs
 import factories.Configs.projectConfiguration
+import factories.services.TestConfigurationService
 import factories.services.TestFileSystemService
 import factories.services.TestServiceProvider
 import factories.services.fs.FakeFileSystem
@@ -21,6 +22,7 @@ class GitIgnoreTest {
         val fakeFileSystem = FakeFileSystem()
         val serviceProvider = TestServiceProvider(
             configuration = Configs.javaProject(),
+            configurationService = TestConfigurationService.javaMavenProject(),
             fileSystem = TestFileSystemService(fakeFileSystem),
             templatingService = TestServiceProvider.jteTemplatingService,
         )
@@ -39,6 +41,7 @@ class GitIgnoreTest {
         val fakeFileSystem = FakeFileSystem()
         val serviceProvider = TestServiceProvider(
             configuration = Configs.javaProject(),
+            configurationService = TestConfigurationService.javaMavenProject(),
             fileSystem = TestFileSystemService(fakeFileSystem),
             templatingService = TestServiceProvider.jteTemplatingService
         )
@@ -60,6 +63,7 @@ class GitIgnoreTest {
         val fakeFileSystem = FakeFileSystem()
         val serviceProvider = TestServiceProvider(
             configuration = Configs.javaProject(),
+            configurationService = TestConfigurationService.javaMavenProject(),
             fileSystem = TestFileSystemService(fakeFileSystem),
             templatingService = TestServiceProvider.jteTemplatingService
         )
@@ -82,6 +86,7 @@ class GitIgnoreTest {
         val fakeFileSystem = FakeFileSystem()
         val serviceProvider = TestServiceProvider(
             configuration = Configs.javaProject(),
+            configurationService = TestConfigurationService.javaMavenProject(),
             fileSystem = TestFileSystemService(fakeFileSystem),
             templatingService = TestServiceProvider.jteTemplatingService
         )
@@ -111,6 +116,7 @@ class GitIgnoreTest {
                     ignore = listOf("foo", "bar/", "*.baz"),
                 ),
             ),
+            configurationService = TestConfigurationService.javaMavenProject(),
             fileSystem = TestFileSystemService(fakeFileSystem),
             templatingService = TestServiceProvider.jteTemplatingService
         )

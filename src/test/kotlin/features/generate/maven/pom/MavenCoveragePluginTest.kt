@@ -7,6 +7,7 @@ import com.gitlab.mbarberot.kriollo.generator.tests.TestsConfiguration
 import com.gitlab.mbarberot.kriollo.generator.tests.coverage.CoverageConfiguration
 import com.gitlab.mbarberot.kriollo.services.configuration.BasicCodegenConfiguration
 import factories.Configs
+import factories.services.TestConfigurationService
 import factories.services.TestFileSystemService
 import factories.services.TestServiceProvider
 import factories.services.fs.FakeFileSystem
@@ -21,6 +22,7 @@ class MavenCoveragePluginTest {
         val fakeFileSystem = FakeFileSystem()
         val serviceProvider = TestServiceProvider(
             configuration = Configs.javaProjectWithTest(),
+            configurationService = TestConfigurationService.javaMavenProject(),
             fileSystem = TestFileSystemService(fakeFileSystem),
             templatingService = TestServiceProvider.jteTemplatingService,
         )
@@ -46,6 +48,7 @@ class MavenCoveragePluginTest {
         val fakeFileSystem = FakeFileSystem()
         val serviceProvider = TestServiceProvider(
             configuration = Configs.javaProjectWithTest(),
+            configurationService = TestConfigurationService.javaMavenProject(),
             fileSystem = TestFileSystemService(fakeFileSystem),
             templatingService = TestServiceProvider.jteTemplatingService,
         )
@@ -82,6 +85,7 @@ class MavenCoveragePluginTest {
         val fakeFileSystem = FakeFileSystem()
         val serviceProvider = TestServiceProvider(
             configuration = Configs.javaProjectWithTest(),
+            configurationService = TestConfigurationService.javaMavenProject(),
             fileSystem = TestFileSystemService(fakeFileSystem),
             templatingService = TestServiceProvider.jteTemplatingService,
         )
@@ -121,6 +125,7 @@ class MavenCoveragePluginTest {
                     )
                 )
             ),
+            configurationService = TestConfigurationService.javaMavenProject(),
             fileSystem = TestFileSystemService(fakeFileSystem),
             templatingService = TestServiceProvider.jteTemplatingService,
         )

@@ -7,6 +7,7 @@ import com.gitlab.mbarberot.kriollo.generator.maven.MavenConfiguration
 import com.gitlab.mbarberot.kriollo.generator.project.BuildStepConfiguration
 import com.gitlab.mbarberot.kriollo.services.configuration.BasicCodegenConfiguration
 import factories.Configs
+import factories.services.TestConfigurationService
 import factories.services.TestFileSystemService
 import factories.services.TestServiceProvider
 import factories.services.fs.FakeFileSystem
@@ -30,6 +31,7 @@ class MavenExecPluginTest {
                 java = JavaConfiguration(enabled = true),
                 maven = MavenConfiguration(enabled = true),
             ),
+            configurationService = TestConfigurationService.javaMavenProject(),
             fileSystem = TestFileSystemService(fakeFileSystem),
             templatingService = TestServiceProvider.jteTemplatingService,
         )

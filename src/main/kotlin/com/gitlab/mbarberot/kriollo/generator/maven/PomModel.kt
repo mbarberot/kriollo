@@ -11,6 +11,7 @@ data class PomModel(
     val repositories: PomRepositoriesModel,
     val sourceDirectory: String,
     val testSourceDirectory: String,
+    val filtering: PomFilteringModel
 )
 
 data class PomRepositoriesModel(
@@ -18,3 +19,8 @@ data class PomRepositoriesModel(
 ) {
     fun isNotEmpty(): Boolean = listOf(jitpack).all { it }
 }
+
+data class PomFilteringModel(
+    val enabled: Boolean,
+    val exclusions: List<String>
+)

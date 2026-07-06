@@ -72,7 +72,10 @@ maven {
     enabled "true"
     repositories {
         jitpack "true"
-        }
+    }
+    filtering {
+        enabled "false"
+    }
 }
 
 tests {

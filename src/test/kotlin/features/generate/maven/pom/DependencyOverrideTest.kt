@@ -7,6 +7,7 @@ import com.gitlab.mbarberot.kriollo.generator.maven.MavenConfiguration
 import com.gitlab.mbarberot.kriollo.generator.project.ProjectConfiguration
 import com.gitlab.mbarberot.kriollo.generator.tests.TestsConfiguration
 import com.gitlab.mbarberot.kriollo.services.configuration.BasicCodegenConfiguration
+import factories.services.TestConfigurationService
 import factories.services.TestFileSystemService
 import factories.services.TestServiceProvider
 import factories.services.fs.FakeFileSystem
@@ -21,6 +22,7 @@ class DependencyOverrideTest {
         val fakeFileSystem = FakeFileSystem()
         val serviceProvider = TestServiceProvider(
             configuration = projectWithOverriddenJunitDependency(),
+            configurationService = TestConfigurationService.javaMavenProject(),
             fileSystem = TestFileSystemService(fakeFileSystem),
             templatingService = TestServiceProvider.jteTemplatingService,
         )

@@ -1,7 +1,9 @@
 package features.generate.maven.pom
 
 import com.gitlab.mbarberot.kriollo.features.Generate
+import com.gitlab.mbarberot.kriollo.generator.kotlin.KotlinConfiguration
 import factories.Configs
+import factories.services.TestConfigurationService
 import factories.services.TestFileSystemService
 import factories.services.TestServiceProvider
 import factories.services.fs.FakeFileSystem
@@ -16,6 +18,7 @@ class JavaNullSafetyTest {
         val fakeFileSystem = FakeFileSystem()
         val serviceProvider = TestServiceProvider(
             configuration = Configs.javaProject(),
+            configurationService = TestConfigurationService.javaMavenProject(),
             fileSystem = TestFileSystemService(fakeFileSystem),
             templatingService = TestServiceProvider.jteTemplatingService,
         )
@@ -35,6 +38,7 @@ class JavaNullSafetyTest {
         val fakeFileSystem = FakeFileSystem()
         val serviceProvider = TestServiceProvider(
             configuration = Configs.javaProject(),
+            configurationService = TestConfigurationService.javaMavenProject(),
             fileSystem = TestFileSystemService(fakeFileSystem),
             templatingService = TestServiceProvider.jteTemplatingService,
         )
@@ -55,6 +59,7 @@ class JavaNullSafetyTest {
         val fakeFileSystem = FakeFileSystem()
         val serviceProvider = TestServiceProvider(
             configuration = Configs.javaProject(),
+            configurationService = TestConfigurationService.javaMavenProject(),
             fileSystem = TestFileSystemService(fakeFileSystem),
             templatingService = TestServiceProvider.jteTemplatingService,
         )

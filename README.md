@@ -159,6 +159,19 @@ maven {
     repositories {
         jitpack "false" // add jitpack to available repository
     }
+    // Activate resource filtering
+    filtering { 
+        enabled "true"
+        // Override default blacklist
+        exclusions { 
+            - "foo"
+            - "**/*.bar"
+        }
+        // Add exclusions to the default blacklist 
+        additionalExclusions { 
+            - "baz*"
+        }
+    }
 }
 
 // Test support

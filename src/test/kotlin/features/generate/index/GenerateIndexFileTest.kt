@@ -35,9 +35,8 @@ class GenerateIndexFileTest {
         val fakeFileSystem = FakeFileSystem()
         val serviceProvider = TestServiceProvider(
             configuration = Configs.kotlinProject(),
+            configurationService = TestConfigurationService.kotlinMavenProject(),
             fileSystem = TestFileSystemService(fakeFileSystem),
-            configurationService = TestConfigurationService()
-                .withTestConfig(KotlinConfiguration(enabled = true))
         )
         val useCase = Generate(serviceProvider)
 
