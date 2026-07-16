@@ -8,9 +8,7 @@ import com.gitlab.mbarberot.kriollo.generator.cli.script.MainScriptModule
 import com.gitlab.mbarberot.kriollo.generator.git.GitModule
 import com.gitlab.mbarberot.kriollo.generator.java.JavaModule
 import com.gitlab.mbarberot.kriollo.generator.jetbrains.JetbrainsModule
-import com.gitlab.mbarberot.kriollo.generator.kotlin.KotlinModule
 import com.gitlab.mbarberot.kriollo.generator.libs.LibrariesModule
-import com.gitlab.mbarberot.kriollo.generator.maven.MavenModule
 import com.gitlab.mbarberot.kriollo.generator.nix.NixModule
 import com.gitlab.mbarberot.kriollo.generator.project.ProjectModule
 import com.gitlab.mbarberot.kriollo.generator.scripts.ScriptsModule
@@ -31,13 +29,11 @@ class CoreModules {
             BuildScriptModule(serviceProvider),
             ScriptsModule(serviceProvider),
             TestScriptModule(serviceProvider),
-            MavenModule(serviceProvider),
             GitModule(serviceProvider),
             JetbrainsModule(serviceProvider),
             CliModule(serviceProvider),
             MainScriptModule(serviceProvider),
             JavaModule(serviceProvider),
-            KotlinModule(serviceProvider),
             JteModule(serviceProvider),
             ProjectModule(serviceProvider),
             TestsModule(serviceProvider),

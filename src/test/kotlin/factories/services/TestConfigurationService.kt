@@ -3,16 +3,26 @@ package factories.services
 import com.gitlab.mbarberot.kriollo.generator.java.JavaConfiguration
 import com.gitlab.mbarberot.kriollo.generator.kotlin.KotlinConfiguration
 import com.gitlab.mbarberot.kriollo.generator.maven.MavenConfiguration
+import com.gitlab.mbarberot.kriollo.generator.project.ProjectConfiguration
 import com.gitlab.mbarberot.kriollo.services.configuration.ConfigurationService
 import kotlin.reflect.KClass
 
-class TestConfigurationService: ConfigurationService {
+class TestConfigurationService : ConfigurationService {
 
     val configs: MutableMap<String, Any> = mutableMapOf()
 
     init {
         // default configs
         withTestConfig(KotlinConfiguration(enabled = false))
+        withTestConfig(
+            ProjectConfiguration(
+                type = "application",
+                groupId = "org.acme",
+                name = "anvil",
+                version = "2.5.9",
+                mainClass = "AnvilApp.kt"
+            )
+        )
     }
 
     override fun <T : Any> get(klass: KClass<T>): T {

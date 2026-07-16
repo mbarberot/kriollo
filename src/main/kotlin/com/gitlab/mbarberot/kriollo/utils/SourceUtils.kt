@@ -2,6 +2,8 @@ package com.gitlab.mbarberot.kriollo.utils
 
 import com.gitlab.mbarberot.kriollo.configuration.CodegenConfiguration
 import com.gitlab.mbarberot.kriollo.generator.kotlin.KotlinConfiguration
+import com.gitlab.mbarberot.kriollo.generator.project.IProjectConfiguration
+import com.gitlab.mbarberot.kriollo.generator.project.ProjectConfiguration
 import com.gitlab.mbarberot.kriollo.services.configuration.ConfigurationService
 import com.gitlab.mbarberot.kriollo.services.provider.ServiceProvider
 
@@ -45,16 +47,20 @@ object SourceUtils {
         return sourcePath.toString()
     }
 
-    fun getRootPackage(configuration: CodegenConfiguration, withTrailingDot: Boolean = true): String {
+    fun getRootPackage(projectConfiguration: IProjectConfiguration, withTrailingDot: Boolean = true): String {
         val rootPackage = StringBuilder()
-            .append(NamingUtils.toNamespace(configuration.project.groupId))
+            .append(NamingUtils.toNamespace(projectConfiguration.groupId))
             .append(".")
-            .append(NamingUtils.toNamespace(configuration.project.name))
+            .append(NamingUtils.toNamespace(projectConfiguration.name))
 
         if (withTrailingDot) {
             rootPackage.append(".")
         }
 
         return rootPackage.toString()
+    }
+
+    fun getRootPackage(configuration: CodegenConfiguration, withTrailingDot: Boolean = true): String {
+        return getRootPackage(configuration.project, withTrailingDot = withTrailingDot)
     }
 }

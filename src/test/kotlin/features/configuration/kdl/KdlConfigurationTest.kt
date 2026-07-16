@@ -37,6 +37,7 @@ class KdlConfigurationTest {
         // Arrange
         val kdl = """
             project {
+                type "application"
                 groupId "acme"
                 name "tnt"
                 version "1.0.0"
@@ -49,7 +50,7 @@ class KdlConfigurationTest {
         // Assert
         assertThat(configuration).isEqualTo(
             BasicCodegenConfiguration(
-                project = ProjectConfiguration("acme", "tnt", "1.0.0")
+                project = ProjectConfiguration(groupId = "acme", name = "tnt", version = "1.0.0")
             )
         )
     }
@@ -59,6 +60,7 @@ class KdlConfigurationTest {
         // Arrange
         val kdl = """
             project {
+                type "application"
                 groupId "acme"
                 name "tnt"
                 version "1.0.0"

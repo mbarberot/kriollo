@@ -4,6 +4,7 @@ import com.gitlab.mbarberot.kriollo.generator.java.JavaArtifact
 import com.gitlab.mbarberot.kriollo.generator.libs.JavaLibConfiguration
 
 interface IProjectConfiguration {
+    val type: String
     val groupId: String
     val name: String
     val version: String
@@ -15,6 +16,7 @@ interface IProjectConfiguration {
 }
 
 data class ProjectConfiguration(
+    override val type: String = "application",
     override val groupId: String = "",
     override val name: String = "",
     override val version: String = "",

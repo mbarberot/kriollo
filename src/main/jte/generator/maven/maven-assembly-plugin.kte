@@ -1,5 +1,5 @@
-@import com.gitlab.mbarberot.kriollo.generator.cli.CliMavenPluginModel
-@param model: CliMavenPluginModel
+@import com.gitlab.mbarberot.kriollo.generator.maven.MavenAssemblyPluginModel
+@param model: MavenAssemblyPluginModel
 <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>

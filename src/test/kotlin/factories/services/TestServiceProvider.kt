@@ -10,14 +10,18 @@ import com.gitlab.mbarberot.kriollo.spi.ModuleProvider
 import gg.jte.ContentType
 import gg.jte.TemplateEngine
 import gg.jte.resolve.DirectoryCodeResolver
+import org.jetbrains.kotlin.modules.Module
 import java.nio.file.Path
+import java.util.ServiceLoader
+
+private fun withServiceLoader(): List<ModuleProvider> = ServiceLoader.load(ModuleProvider::class.java).filterNotNull()
 
 class TestServiceProvider(
     override val configuration: CodegenConfiguration = BasicCodegenConfiguration(),
     override val fileSystem: TestFileSystemService = TestFileSystemService(),
     override val templatingService: TemplatingService = TestTemplatingService(),
     override val configurationService: ConfigurationService = TestConfigurationService(),
-    override val moduleProviders: List<ModuleProvider> = listOf(),
+    override val moduleProviders: List<ModuleProvider> = withServiceLoader()
 ) : ServiceProvider {
 
     companion object {
@@ -26,7 +30,8 @@ class TestServiceProvider(
         fun makeJteTemplatingService(): TemplatingService {
             val jteTemplateEngine = TemplateEngine.create(
                 DirectoryCodeResolver(Path.of("src/main/jte")),
-                ContentType.Plain)
+                ContentType.Plain
+            )
             return DefaultTemplatingService(jteTemplateEngine)
         }
     }

@@ -55,7 +55,7 @@ class KotlinModuleProvider : ModuleProvider {
     override fun getModuleFactory(): ModuleFactory {
         return ModuleFactory { serviceProvider ->
             if (serviceProvider.configurationService.get(KotlinConfiguration::class).enabled) {
-                KriolloModule(serviceProvider)
+                KotlinModule(serviceProvider)
             } else {
                 null
             }

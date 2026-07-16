@@ -18,6 +18,10 @@ kriollo {
 
 // Main configuration
 project {
+    // Project Type : lib | app
+    // * library : will produce a simple jar
+    // * application : will produce a fat jar, embedding its dependencies
+    type "application" 
     groupId "__GROUP_ID__" // required
     name "__NAME__" // required
     version "__VERSION__" // required
@@ -33,6 +37,7 @@ project {
     // * project path : <root project dir>/src/main/<java|kotlin>/org/anvil/acme
     
     encoding "UTF-8"
+    
     // Managed dependencies
     // These depdenencies are deeply integrated : maven plugin, version management, ...
     libs { 
@@ -69,6 +74,7 @@ project {
             version "__VERSION__" // required
         }
     }
+    
     // Allow running commands in the project
     customBuildSteps {
         - { 

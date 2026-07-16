@@ -13,7 +13,7 @@ class KotlinModule(
     val serviceProvider: ServiceProvider,
 ) : CodegenModule() {
 
-    override fun isActivated(): Boolean = serviceProvider.configuration.kotlin.enabled
+    override fun isActivated(): Boolean = true
 
     override fun provideGenerators(): List<Generator> = listOf(
         KotlinSourceDirectoryGenerator(serviceProvider),

@@ -3,6 +3,7 @@ kriollo {
 }
 
 project {
+    type "application"
     groupId "com.gitlab.mbarberot"
     name "kriollo"
     version "2026.1.0"
@@ -163,8 +164,8 @@ components {
         - {
             path "generator/maven"
             name "Maven"
-            tag "core"
-            activationKey "maven.enabled"
+            tag "ignored"
+            activationKey "-"
             generators {
                 - {
                     name "MavenPomGenerator"
@@ -179,6 +180,9 @@ components {
                 }
                 - {
                     name "MavenCustomBuildStepExtension"
+                }
+                - {
+                    name "MavenAssemblyPluginExtension"
                 }
             }
             provideExtensions {
@@ -249,12 +253,6 @@ components {
             name "cli"
             tag "core"
             activationKey "cli.enabled"
-            extensions {
-                - {
-                    name "CliMavenPluginExtension"
-                }
-            }
-
         }
         - {
             path "generator/cli/script"
@@ -301,8 +299,8 @@ components {
         - {
             path "generator/kotlin"
             name "Kotlin"
-            tag "core"
-            activationKey "kotlin.enabled"
+            tag "ignored"
+            activationKey "-"
             generators {
                 - {
                     name "KotlinSourceDirectoryGenerator"

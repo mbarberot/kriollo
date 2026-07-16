@@ -18,7 +18,4 @@ class CliModule(
     override fun provideGenerators(): List<Generator> = listOf(
     )
 
-    override fun provideExtensions(generator: Generator) {
-        generator.registerExtension(CliMavenPluginExtension(serviceProvider))
-    }
 }

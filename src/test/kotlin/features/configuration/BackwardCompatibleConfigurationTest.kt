@@ -135,6 +135,7 @@ data class TestBackwardCompatibleConfiguration(
  * It's better to fork the whole data class to customize it (val => var)
  */
 data class BackwardCompatibleProjectConfiguration(
+    override val type: String = "application",
     override val groupId: String = "",
     override var name: String = "",
     override val version: String = "",

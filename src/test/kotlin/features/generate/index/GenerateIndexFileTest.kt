@@ -1,7 +1,6 @@
 package features.generate.index
 
 import com.gitlab.mbarberot.kriollo.features.Generate
-import com.gitlab.mbarberot.kriollo.generator.kotlin.KotlinConfiguration
 import factories.Configs
 import factories.services.TestConfigurationService
 import factories.services.TestFileSystemService
@@ -19,11 +18,11 @@ class GenerateIndexFileTest {
         val serviceProvider = TestServiceProvider(
             configuration = Configs.basicConfig(),
             fileSystem = TestFileSystemService(fakeFileSystem),
+            configurationService = TestConfigurationService.javaMavenProject(),
         )
-        val useCase = Generate(serviceProvider)
 
         // Act
-        useCase.generate()
+        Generate(serviceProvider).generate()
 
         // Assert
         assertThat(fakeFileSystem.filenames()).contains("codegen/generated-files.txt")
@@ -38,10 +37,9 @@ class GenerateIndexFileTest {
             configurationService = TestConfigurationService.kotlinMavenProject(),
             fileSystem = TestFileSystemService(fakeFileSystem),
         )
-        val useCase = Generate(serviceProvider)
 
         // Act
-        useCase.generate()
+        Generate(serviceProvider).generate()
 
         // Assert
         assertThat(fakeFileSystem.getContentOf("codegen/generated-files.txt"))

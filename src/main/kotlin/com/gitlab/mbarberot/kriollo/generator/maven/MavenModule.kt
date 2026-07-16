@@ -13,7 +13,7 @@ class MavenModule(
     val serviceProvider: ServiceProvider,
 ) : CodegenModule() {
 
-    override fun isActivated(): Boolean = serviceProvider.configuration.maven.enabled
+    override fun isActivated(): Boolean = true
 
     override fun provideGenerators(): List<Generator> = listOf(
         MavenPomGenerator(serviceProvider),
@@ -23,5 +23,6 @@ class MavenModule(
         generator.registerExtension(MavenGitIgnoreExtension(serviceProvider))
         generator.registerExtension(MavenDefaultNixExtension(serviceProvider))
         generator.registerExtension(MavenCustomBuildStepExtension(serviceProvider))
+        generator.registerExtension(MavenAssemblyPluginExtension(serviceProvider))
     }
 }

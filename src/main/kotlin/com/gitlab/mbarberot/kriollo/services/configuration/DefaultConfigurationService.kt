@@ -30,8 +30,9 @@ class DefaultConfigurationService(
             .sortedBy { it.priority }
             .forEach { it.customize(rootNode) }
 
+        val data = if(config.isObject()) { config.toMap().getValue(key) } else { config.toMap() }
 
-        return toPojo(config.toMap().getValue(key), klass.java)
+        return toPojo(data, klass.java)
     }
 
     override fun check() {
@@ -45,7 +46,7 @@ class DefaultConfigurationService(
             .replaceFirstChar { it.lowercaseChar() }
     }
 
-    private fun <T> toPojo(data: Any, clazz: Class<T>): T {
+    private fun <T> toPojo(data:Any, clazz: Class<T>): T {
         return objectMapper.convertValue(data, clazz)
     }
 

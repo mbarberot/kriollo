@@ -4,6 +4,7 @@ import com.gitlab.mbarberot.kriollo.KriolloException
 import com.gitlab.mbarberot.kriollo.generator.base.TemplatedFileGenerator
 import com.gitlab.mbarberot.kriollo.generator.java.JavaArtifact
 import com.gitlab.mbarberot.kriollo.generator.java.JavaDependencyExtension
+import com.gitlab.mbarberot.kriollo.generator.nix.DefaultNixFileExtension
 import com.gitlab.mbarberot.kriollo.services.provider.ServiceProvider
 import com.gitlab.mbarberot.kriollo.utils.SourceUtils
 

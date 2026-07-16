@@ -2,12 +2,10 @@ package features.generate.nix
 
 import com.gitlab.mbarberot.kriollo.configuration.CodegenConfiguration
 import com.gitlab.mbarberot.kriollo.features.Generate
-import com.gitlab.mbarberot.kriollo.generator.git.GitConfiguration
-import com.gitlab.mbarberot.kriollo.generator.java.JavaConfiguration
-import com.gitlab.mbarberot.kriollo.generator.maven.MavenConfiguration
 import com.gitlab.mbarberot.kriollo.generator.nix.NixConfiguration
 import com.gitlab.mbarberot.kriollo.services.configuration.BasicCodegenConfiguration
 import factories.Configs
+import factories.services.TestConfigurationService
 import factories.services.TestFileSystemService
 import factories.services.TestServiceProvider
 import factories.services.fs.FakeFileSystem
@@ -23,12 +21,12 @@ class DefaultNixTest {
         val serviceProvider = TestServiceProvider(
             configuration = projectWithNix(),
             fileSystem = TestFileSystemService(fakeFileSystem),
-            templatingService = TestServiceProvider.jteTemplatingService
+            templatingService = TestServiceProvider.jteTemplatingService,
+            configurationService = TestConfigurationService.javaMavenProject(),
         )
-        val useCase = Generate(serviceProvider)
 
         // Act
-        useCase.generate()
+        Generate(serviceProvider).generate()
 
         // Assert
         assertThat(fakeFileSystem.getContentLinesOf("default.nix"))
@@ -44,7 +42,8 @@ class DefaultNixTest {
         val serviceProvider = TestServiceProvider(
             configuration = projectWithNix(),
             fileSystem = TestFileSystemService(fakeFileSystem),
-            templatingService = TestServiceProvider.jteTemplatingService
+            templatingService = TestServiceProvider.jteTemplatingService,
+            configurationService = TestConfigurationService.javaMavenProject(),
         )
         val useCase = Generate(serviceProvider)
 

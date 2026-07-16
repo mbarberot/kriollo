@@ -24,6 +24,11 @@ interface Node {
     fun toMap(): Map<String, Any> {
         throw UnsupportedOperationException()
     }
+
+    fun isObject(): Boolean {
+        throw UnsupportedOperationException()
+    }
+
 }
 
 interface NamedNode : Node {
@@ -57,11 +62,15 @@ open class ObjectNode(override val name: String, nodes: List<NamedNode>) : Named
     }
 
     override fun toMap(): Map<String, Any> {
-        val childMap = buildMap {
-            nodes.forEach { node -> putAll(node.toMap()) }
+        return mapOf(Pair(name, buildMap {
+            nodes.forEach { node ->
+                putAll(node.toMap())
+            }
         }
-        return mapOf(Pair(name, childMap))
+        ))
     }
+
+    override fun isObject(): Boolean = true
 }
 
 class RootNode(nodes: List<NamedNode>) : ObjectNode("$", nodes) {
@@ -92,6 +101,17 @@ class ArrayNode(override val name: String, val items: List<ArrayItem>) : NamedNo
             node?.get(rebuildPath(path))
         }
     }
+
+    override fun toMap(): Map<String, Any> {
+        return mapOf(Pair(name, items.map {
+            when {
+                it.isObject() -> it.toMap()
+                else -> it.value()
+            }
+        }))
+    }
+
+    override fun isObject(): Boolean = false
 }
 
 class ArrayValue(private var value: String) : ArrayItem {
@@ -99,6 +119,8 @@ class ArrayValue(private var value: String) : ArrayItem {
     override fun setValue(value: String) {
         this.value = value
     }
+
+    override fun isObject(): Boolean = false
 }
 
 class ArrayObject(nodes: List<NamedNode>) : ArrayItem {
@@ -121,4 +143,16 @@ class ArrayObject(nodes: List<NamedNode>) : ArrayItem {
     override fun remove(key: String) {
         nodes.removeIf { node -> node.name == key }
     }
+
+    override fun toMap(): Map<String, Any> {
+        return buildMap {
+            nodes.forEach { node ->
+                node.value()?.let { value ->
+                    put(node.name, value)
+                }
+            }
+        }
+    }
+
+    override fun isObject(): Boolean = true
 }
