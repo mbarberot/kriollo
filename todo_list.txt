@@ -1,20 +1,16 @@
-** 2026.0.0
-
-x (A) BREAKING CHANGE : Kdl4j v2 true => "true"
-x (A) Bump to Kotlin v2.x => cherry pick ed13d32
-x (A) Bump JTE version
-x (C) Check other versions to bump
-x (C) Check warnings about Kdl4j being cached
-x (C) fix warnings about deprecated usage of a factory in tests
-
 ** 2026.1.0
 
-(A) +generator external generator using handlebars
+x (A) +generator : fat jar activation
+x (A) +generator : concordion setup
+(B) +templating : introduce handlebars
 
 ** 2026.2.0
 
+(A) +generator external generator using handlebars
 (A) +generator conventionnal commit git hook
 (A) +generator automatic changelog with conventionnal commit
+(A) +generator editorconfig
+(B) +tests : add a way to read kdl configuration from condordion
 
 ** 2026.3.0
 
@@ -31,6 +27,7 @@ x (C) fix warnings about deprecated usage of a factory in tests
 
 (A) improve output (logging ?)
 (B) +ci add coverage report to gitlab pages + link in readme
+(B) +ci add living documentation into gitlab pages
 (B) +chore bump kotlin version
 (B) +chore bump jackson version
 (B) +chore bump versions of everything
@@ -60,6 +57,7 @@ x (C) fix warnings about deprecated usage of a factory in tests
 (B) +stabilization +jte use StaticTemplates
 (B) +stabilization move kriollo components into a separate module and load it through ServiceProvider and a codegen/plugin/*.jar folder => careful on release
 (B) +stabilization integrate DI framework
+(C) +tests : ajouter le theme concordion
 
 ** Ideas **
 

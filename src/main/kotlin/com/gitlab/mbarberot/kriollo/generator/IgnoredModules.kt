@@ -5,6 +5,7 @@ package com.gitlab.mbarberot.kriollo.generator
 
 import com.gitlab.mbarberot.kriollo.generator.kotlin.KotlinModule
 import com.gitlab.mbarberot.kriollo.generator.maven.MavenModule
+import com.gitlab.mbarberot.kriollo.generator.tests.livingspecifications.LivingSpecificationsModule
 import com.gitlab.mbarberot.kriollo.services.provider.ServiceProvider
 import com.gitlab.mbarberot.kriollo.kriollo.Generated
 
@@ -14,6 +15,7 @@ class IgnoredModules {
         return listOf(
             MavenModule(serviceProvider),
             KotlinModule(serviceProvider),
+            LivingSpecificationsModule(serviceProvider),
         )
     }
 }

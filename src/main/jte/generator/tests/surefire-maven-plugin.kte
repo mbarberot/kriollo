@@ -1,0 +1,24 @@
+@import com.gitlab.mbarberot.kriollo.generator.tests.SurefireMavenPluginModel
+@param model: SurefireMavenPluginModel
+<plugin>
+                <artifactId>${model.artifactId}</artifactId>
+                <version>${model.version}</version>
+                @if(model.hasConfiguration())
+                    <configuration>
+                        @if(model.systemPropertyVariables.isNotEmpty())
+                        <systemPropertyVariables>
+                            @for(systemProperty in model.systemPropertyVariables)
+                                <${systemProperty.key}>${systemProperty.value}</${systemProperty.key}>
+                            @endfor
+                        </systemPropertyVariables>
+                        @endif
+                        @if(model.includes.isNotEmpty())
+                        <includes>
+                            @for(filePattern in model.includes)
+                                <include>${filePattern}</include>
+                            @endfor
+                        </includes>
+                        @endif
+                    </configuration>
+                @endif
+            </plugin>

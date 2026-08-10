@@ -1,2 +1,3 @@
 com.gitlab.mbarberot.kriollo.generator.kotlin.KotlinModuleProvider
 com.gitlab.mbarberot.kriollo.generator.maven.MavenModuleProvider
+com.gitlab.mbarberot.kriollo.generator.tests.livingspecifications.LivingSpecificationsModuleProvider

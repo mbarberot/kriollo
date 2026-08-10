@@ -22,7 +22,7 @@ class FilteringConfigurationTest {
             configuration = Configs.javaProject(),
             fileSystem = TestFileSystemService(fakeFileSystem),
             templatingService = TestServiceProvider.jteTemplatingService,
-            configurationService = TestConfigurationService()
+            configurationService = TestConfigurationService.javaMavenProject()
                 .withTestConfig(MavenConfiguration(enabled = true))
         )
         val useCase = Generate(serviceProvider)
@@ -62,7 +62,7 @@ class FilteringConfigurationTest {
             configuration = Configs.javaProject(),
             fileSystem = TestFileSystemService(fakeFileSystem),
             templatingService = TestServiceProvider.jteTemplatingService,
-            configurationService = TestConfigurationService()
+            configurationService = TestConfigurationService.javaMavenProject()
                 .withTestConfig(
                     MavenConfiguration(
                         enabled = true,
@@ -88,7 +88,7 @@ class FilteringConfigurationTest {
             configuration = Configs.javaProject(),
             fileSystem = TestFileSystemService(fakeFileSystem),
             templatingService = TestServiceProvider.jteTemplatingService,
-            configurationService = TestConfigurationService()
+            configurationService = TestConfigurationService.javaMavenProject()
                 .withTestConfig(
                     MavenConfiguration(
                         enabled = true,
@@ -137,7 +137,7 @@ class FilteringConfigurationTest {
             configuration = Configs.javaProject(),
             fileSystem = TestFileSystemService(fakeFileSystem),
             templatingService = TestServiceProvider.jteTemplatingService,
-            configurationService = TestConfigurationService()
+            configurationService = TestConfigurationService.javaMavenProject()
                 .withTestConfig(
                     MavenConfiguration(
                         enabled = true,

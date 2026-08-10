@@ -14,6 +14,7 @@ import com.gitlab.mbarberot.kriollo.generator.nix.NixConfiguration
 import com.gitlab.mbarberot.kriollo.generator.project.ProjectConfiguration
 import com.gitlab.mbarberot.kriollo.generator.scripts.ScriptsConfiguration
 import com.gitlab.mbarberot.kriollo.generator.tests.ITestsConfiguration
+import com.gitlab.mbarberot.kriollo.generator.tests.livingspecifications.LivingSpecificationsConfiguration
 import com.gitlab.mbarberot.kriollo.generator.tests.coverage.CoverageConfiguration
 import com.gitlab.mbarberot.kriollo.generator.tests.junit.IJUnitConfiguration
 
@@ -36,6 +37,7 @@ data class LegacyTestConfiguration(
     override val enabled: Boolean = false,
     override val junit: LegacyJUnitConfiguration = LegacyJUnitConfiguration(),
     override val coverage: CoverageConfiguration = CoverageConfiguration(),
+    override val livingSpecifications: LivingSpecificationsConfiguration = LivingSpecificationsConfiguration(),
 ): ITestsConfiguration
 
 data class LegacyJUnitConfiguration(

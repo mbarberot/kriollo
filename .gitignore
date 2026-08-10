@@ -4,6 +4,7 @@
 # Custom rules defined in Kriollo configuration
 jte-classes
 *.swp
+docs/specs/*
 # Jetbrains/Intellij files
 /.idea
 *.iml

@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* *****************************
+ * Theme
+ * ***************************** */
+:root {
+    /* Palette */
+    --pale-sky: rgb(193, 223, 240);
+    --baby-blue: rgb(136, 204, 241);
+    --pacific-cyan: rgb(53, 135, 164);
+    --teal: rgb(45, 132, 138);
+    --dark-cyan: rgb(45, 137, 139);
+
+    /* Font */
+    --font-base: "Raleway";
+    --font-size-l: 2rem;
+    --font-size-m: 1rem;
+
+    /* Theme */
+    --primary: var(--pacific-cyan);
+    --secondary: var(--pale-sky);
+    --tertiary: var(--teal);
+    --white: rgb(255, 255, 255);
+    --black: rgb(0, 0, 0);
+
+    /* Elements */
+    --button-radius: 5px;
+}
+
+* {
+    font-family: var(--font-base), sans-serif;
+}
+
+/* *****************************
+ * Reset
+ * ***************************** */
+body {
+    padding: 0;
+    margin: 0;
+}
+
+/* *****************************
+ * Layout
+ * ***************************** */
+body > * {
+    margin-left: 1rem;
+}
+
+/* *****************************
+ * Header
+ * ***************************** */
+header {
+    background: var(--secondary);
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin-left: 0;
+}
+
+header > nav {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: space-around;
+}
+
+header > .title {
+    font-size: var(--font-size-l);
+    font-weight: bold;
+}
+
+/* *****************************
+ * Breadcrumb
+ * ***************************** */
+.breadcrumbs {
+    display: flex;
+    margin-left: 0;
+    width: 100%;
+    background: var(--secondary);
+    padding: .5rem 1rem;
+    color: var(--black);
+    justify-content: flex-start;
+    gap: .25rem;
+    border-top: 1px solid var(--primary)
+}
+
+.breadcrumbs > a {
+    color: inherit;
+}
+
+/* *****************************
+ * Footer
+ * ***************************** */
+.footer {
+    display: none;
+}
+
+/* *****************************
+ * Buttons
+ * ***************************** */
+.button {
+    background: gray;
+    border: 1px solid gray;
+    border-radius: var(--button-radius);
+    font-size: var(--font-size-m);
+    padding: 0.4rem 0.8rem;
+}
+
+.button.primary {
+    background: var(--primary);
+    color: var(--white);
+    border-color: var(--primary);
+}
+
+.button.primary:hover {
+    background: transparent;
+    color: var(--primary);
+}
+
+.button.tertiary {
+    background: var(--tertiary);
+    color: var(--white);
+}
+
+.button.tertiary:hover {
+    background: transparent;
+    color: var(--tertiary);
+}
+
+a.button {
+    text-decoration: none;
+    color: inherit;
+}

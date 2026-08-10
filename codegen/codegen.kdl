@@ -50,6 +50,7 @@ git {
     ignore {
         - "jte-classes"
         - "*.swp"
+        - "docs/specs/*"
     }
 }
 
@@ -87,6 +88,9 @@ tests {
         exclusions {
             - "**/*Generated*.class"
         }
+    }
+    livingSpecifications {
+        enabled "true"
     }
 }
 
@@ -416,6 +420,17 @@ components {
             extensions {
                 - {
                     name "JacocoMavenPluginExtension"
+                }
+            }
+        }
+        - {
+            path "generator/tests/livingspecifications"
+            name "livingSpecifications"
+            tag "ignored"
+            activationKey "-"
+            extensions {
+                - {
+                    name "ConcordionJavaDependencies"
                 }
             }
         }

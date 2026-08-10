@@ -4,6 +4,7 @@ import com.gitlab.mbarberot.kriollo.generator.java.JavaConfiguration
 import com.gitlab.mbarberot.kriollo.generator.kotlin.KotlinConfiguration
 import com.gitlab.mbarberot.kriollo.generator.maven.MavenConfiguration
 import com.gitlab.mbarberot.kriollo.generator.project.ProjectConfiguration
+import com.gitlab.mbarberot.kriollo.generator.tests.TestsConfiguration
 import com.gitlab.mbarberot.kriollo.services.configuration.ConfigurationService
 import kotlin.reflect.KClass
 
@@ -47,12 +48,14 @@ class TestConfigurationService : ConfigurationService {
             return TestConfigurationService()
                 .withTestConfig(KotlinConfiguration(enabled = true))
                 .withTestConfig(MavenConfiguration(enabled = true))
+                .withTestConfig(TestsConfiguration(enabled = true))
         }
 
         fun javaMavenProject(): TestConfigurationService {
             return TestConfigurationService()
                 .withTestConfig(JavaConfiguration(enabled = true))
                 .withTestConfig(MavenConfiguration(enabled = true))
+                .withTestConfig(TestsConfiguration(enabled = true))
         }
     }
 }
