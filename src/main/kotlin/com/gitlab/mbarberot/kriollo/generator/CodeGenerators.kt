@@ -3,10 +3,10 @@ package com.gitlab.mbarberot.kriollo.generator
 import com.gitlab.mbarberot.kriollo.services.provider.ServiceProvider
 
 class CodeGenerators(
-    modules: List<com.gitlab.mbarberot.kriollo.generator.CodegenModule>,
+    modules: List<CodegenModule>,
 ) {
 
-    private val generators: List<com.gitlab.mbarberot.kriollo.generator.Generator> = buildList {
+    private val generators: List<Generator> = buildList {
         modules
             .filter { it.isActivated() }
             .forEach { module ->

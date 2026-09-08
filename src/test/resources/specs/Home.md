@@ -24,3 +24,7 @@ In that directory, it will expect to have :
 ## Features
 
 * [Tests](tests/Tests.md "c:run")
+
+## Contributing
+
+* [XML Concordion extension](dev/concordion/ConcordionXMLExtension.md "c:run")
