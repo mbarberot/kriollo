@@ -2,7 +2,7 @@
 
 x (A) +generator : fat jar activation
 x (A) +generator : concordion setup
-(B) +templating : introduce handlebars
+x (B) +templating : introduce handlebars
 
 ** 2026.2.0
 
@@ -11,6 +11,7 @@ x (A) +generator : concordion setup
 (A) +generator automatic changelog with conventionnal commit
 (A) +generator editorconfig
 (B) +tests : add a way to read kdl configuration from condordion
+(B) +generator : web app javalin / htmx / koin
 
 ** 2026.3.0
 
@@ -19,7 +20,7 @@ x (A) +generator : concordion setup
 (A) +upgrade lib versions
 (A) +generator libs.jackson.databind = String[]
 (B) add a way to use a different kriollo jar (to allow poiting on a local repo instead of using the release jar)
-(B) think about having a whole project.type = cli to generate a battery included project (bats,picocli,...)
+x (B) think about having a whole project.type = cli to generate a battery included project (bats,picocli,...)
 (C) assess Dagger for build
 (C) assess Koin for DI
 
